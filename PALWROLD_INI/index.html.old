@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>“TVのなっくす”の道具箱</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter & M PLUS Rounded 1p for a friendly Japanese aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1p:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"M PLUS Rounded 1p"', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        },
+                        toolbox: {
+                            dark: '#0f172a',
+                            card: '#1e293b',
+                            accent: '#38bdf8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'M PLUS Rounded 1p', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #1e293b;
+        }
+        .tool-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tool-card:hover {
+            transform: translateY(-6px);
+        }
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .glow {
+            box-shadow: 0 10px 30px -10px rgba(34, 197, 94, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-gradient-to-tr from-brand-600 to-emerald-400 rounded-2xl flex items-center justify-center text-white text-2xl shadow-md glow">
+                    <i class="fa-solid fa-toolbox"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold bg-gradient-to-r from-slate-900 to-brand-700 bg-clip-text text-transparent">
+                        “TVのなっくす”の道具箱
+                    </h1>
+                    <p class="text-xs text-slate-500 font-medium">Creative & Handy Tools Collection</p>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
+                <a href="#tools" class="hover:text-brand-600 transition-colors">道具一覧</a>
+                <a href="#about" class="hover:text-brand-600 transition-colors">このサイトについて</a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-1.5 bg-slate-900 text-white px-4 py-2 rounded-xl hover:bg-slate-800 transition-all shadow-sm">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-white to-slate-50 border-b border-slate-200">
+        <div class="absolute inset-0 opacity-40 pointer-events-none">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-72 h-72 bg-sky-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center space-x-2 bg-brand-50 border border-brand-200 text-brand-700 text-xs sm:text-sm font-bold px-4 py-1.5 rounded-full mb-6 shadow-sm floating">
+                <i class="fa-solid fa-wand-magic-sparkles text-brand-500"></i>
+                <span>便利なWEBツールをぎゅっと詰め込みました</span>
+            </div>
+            <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
+                アイデアをカタチにする、<br class="hidden sm:inline">秘密の<span class="text-brand-600">道具箱</span>
+            </h2>
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-600 mb-10 font-medium">
+                日々の創作やちょっとした作業を便利にする、なっくす特製のWebツールコレクションです。お好きなツールを選んで今すぐ始めましょう！
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#tools" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-brand-600/30 transition-all transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-compass"></i>
+                    <span>ツールを探す</span>
+                </a>
+                <a href="pal_editor.html" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-800 border-2 border-slate-200 font-bold px-8 py-4 rounded-2xl shadow-sm transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-palette text-brand-500"></i>
+                    <span>おすすめ：PAL Editor</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main id="tools" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+        <div class="flex items-center justify-between mb-10">
+            <div>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 flex items-center space-x-3">
+                    <span class="w-3 h-8 bg-brand-500 rounded-full inline-block"></span>
+                    <span>道具一覧 (Tool Catalog)</span>
+                </h3>
+                <p class="text-sm text-slate-500 mt-1 font-medium">現在公開中の便利なWEBアプリケーション一覧です</p>
+            </div>
+            <div class="hidden sm:block">
+                <span class="bg-slate-200 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-xl">全 4 ツール</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Tool 1: PAL Editor (Featured) -->
+            <div class="tool-card bg-white rounded-3xl p-6 border-2 border-brand-500 shadow-xl shadow-brand-500/10 relative flex flex-col justify-between overflow-hidden">
+                <div class="absolute top-0 right-0 bg-brand-500 text-white text-xs font-extrabold px-4 py-1.5 rounded-bl-2xl shadow-sm">
+                    ✨ 1個目の道具
+                </div>
+                <div>
+                    <div class="w-14 h-14 bg-brand-100 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-2">PAL Editor</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6 font-medium">
+                        色彩やカラーパレットを自由自在に編集・作成できるクリエイター向けのエディターツール。デザインやイラスト制作に最適です。
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-lg">デザイン</span>
+                        <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-lg">カラー</span>
+                    </div>
+                    <a href="pal_editor.html" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center space-x-2 shadow-md">
+                        <span>ツールを開く</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tool 2: Idea Generator (Placeholder) -->
+            <div class="tool-card bg-white rounded-3xl p-6 border border-slate-200/80 shadow-lg shadow-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-2">アイディアガチャ</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6 font-medium">
+                        行き詰まったときのブレインストーミングや、新しい創作の種を生み出すランダム発想支援ツール。
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-lg">発想支援</span>
+                        <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-lg">お楽しみ</span>
+                    </div>
+                    <button onclick="showComingSoon('アイディアガチャ')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center space-x-2">
+                        <span>近日公開 / 準備中</span>
+                        <i class="fa-solid fa-lock text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tool 3: Markdown Memo (Placeholder) -->
+            <div class="tool-card bg-white rounded-3xl p-6 border border-slate-200/80 shadow-lg shadow-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="w-14 h-14 bg-sky-100 text-sky-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fa-solid fa-note-sticky"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-2">サクッとメモ帳</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6 font-medium">
+                        ブラウザに自動保存される、軽量でシンプルなMarkdown対応のクイックメモアプリケーション。
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-lg">ユーティリティ</span>
+                        <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-lg">メモ</span>
+                    </div>
+                    <button onclick="showComingSoon('サクッとメモ帳')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center space-x-2">
+                        <span>近日公開 / 準備中</span>
+                        <i class="fa-solid fa-lock text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <section id="about" class="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 mt-12">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="w-16 h-16 bg-slate-800 text-brand-400 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-inner border border-slate-700">
+                <i class="fa-solid fa-mug-hot"></i>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold mb-4">“TVのなっくす”について</h3>
+            <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-8 font-medium">
+                ものづくりやデジタルガジェット、プログラミングが好きな「TVのなっくす」が個人で開発したWEBツールや小さな成果物を気ままに公開していく秘密基地のような場所です。随時新しいツールを追加予定！
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-slate-800 hover:bg-brand-600 text-white rounded-2xl flex items-center justify-center text-xl transition-colors">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-slate-800 hover:bg-brand-600 text-white rounded-2xl flex items-center justify-center text-xl transition-colors">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Modal for Coming Soon notification -->
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full mx-4 shadow-2xl text-center transform scale-95 transition-transform duration-300" id="modal-content">
+            <div class="w-16 h-16 bg-brand-50 text-brand-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                <i class="fa-solid fa-person-digging"></i>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 mb-2" id="modal-title">準備中</h4>
+            <p class="text-slate-600 text-sm mb-6 font-medium" id="modal-desc">こちらのツールは現在鋭意開発中です。公開をお楽しみに！</p>
+            <button onclick="closeModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition-colors">
+                閉じる
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-slate-950 text-slate-500 py-8 text-center text-xs border-t border-slate-800/80">
+        <p>&copy; 2026 “TVのなっくす”の道具箱 All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function showComingSoon(toolName) {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            const titleEl = document.getElementById('modal-title');
+            const descEl = document.getElementById('modal-desc');
+
+            titleEl.textContent = `${toolName} は準備中です`;
+            descEl.textContent = `「${toolName}」は現在なっくすの手によって開発・調整中です。公開までもうしばらくお待ちください！`;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close modal on background click
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palworld 設定GUIエディタ</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            font-family: monospace;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .file-input-container {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #eef2f3;
+            border-radius: 4px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card label {
+            display: block;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+            word-break: break-all;
+            color: #2c3e50;
+        }
+        .card .range-hint {
+            font-size: 0.75rem;
+            color: #e67e22;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .card input, .card select {
+            width: 100%;
+            padding: 6px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Palworld 設定GUIエディタ</h1>
+
+    <div class="section">
+        <h3>1. 設定テキストの読み込み</h3>
+        <div class="file-input-container">
+            <label for="localFile" style="cursor: pointer; font-weight: bold; color: #2c3e50;">📂 ローカルからファイルを選択 (PalWorldSettings.ini)</label><br>
+            <input type="file" id="localFile" accept=".ini,.txt" onchange="loadLocalFile(event)" style="margin-top: 8px;">
+        </div>
+        <p style="font-size: 0.85rem; color: #666; margin-top: 0;">または、下のテキストボックスに直接貼り付けてください。</p>
+        <textarea id="inputText" placeholder="[/Script/Pal.PalGameWorldSettings]&#10;OptionSettings=(...)"></textarea>
+        <button onclick="parseSettings()">GUIを展開する</button>
+    </div>
+
+    <div class="section">
+        <h3>2. 項目ごとの編集</h3>
+        <div id="editorGrid" class="grid">
+            <p style="color: #7f8c8d;">ファイルを読み込むか、テキストを貼り付けて「GUIを展開する」を押してください。</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>3. 編集後のテキストを取得</h3>
+        <button onclick="generateSettings()" style="background-color: #2ecc71;">テキストを更新・生成</button>
+        <textarea id="outputText" placeholder="ここに編集結果が反映されます..." readonly></textarea>
+        <button onclick="copyToClipboard()" style="background-color: #e67e22;">クリップボードにコピー</button>
+    </div>
+
+<script>
+// 主な設定項目の日本語名と設定範囲の定義 (未定義のものは自動でフォールバック表示)
+const settingMeta = {
+    Difficulty: { name: "難易度", range: "None / Casual / Normal / Hard" },
+    DayTimeSpeedRate: { name: "昼の経過速度", range: "0.5 - 5.0" },
+    NightTimeSpeedRate: { name: "夜の経過速度", range: "0.5 - 5.0" },
+    ExpRate: { name: "経験値取得倍率", range: "0.5 - 20.0" },
+    PalCaptureRate: { name: "パル捕獲確率倍率", range: "0.5 - 3.0" },
+    PalSpawnNumRate: { name: "パル出現数倍率", range: "0.5 - 3.0" },
+    PalDamageRateAttack: { name: "パルの攻撃ダメージ倍率", range: "0.1 - 5.0" },
+    PalDamageRateDefense: { name: "パルの受けるダメージ倍率", range: "0.1 - 5.0" },
+    PlayerDamageRateAttack: { name: "プレイヤー攻撃ダメージ倍率", range: "0.1 - 5.0" },
+    PlayerDamageRateDefense: { name: "プレイヤー受けるダメージ倍率", range: "0.1 - 5.0" },
+    PlayerStomachDecreaceRate: { name: "プレイヤー満腹度減少倍率", range: "0.1 - 5.0" },
+    PlayerStaminaDecreaceRate: { name: "プレイヤースタミナ減少倍率", range: "0.1 - 5.0" },
+    PlayerAutoHPRegeneRate: { name: "プレイヤーHP自動回復倍率", range: "0.0 - 100.0" },
+    PlayerAutoHpRegeneRateInSleep: { name: "睡眠時プレイヤーHP回復倍率", range: "0.0 - 100.0" },
+    PalStomachDecreaceRate: { name: "パル満腹度減少倍率", range: "0.1 - 5.0" },
+    PalStaminaDecreaceRate: { name: "パルスタミナ減少倍率", range: "0.1 - 5.0" },
+    PalAutoHPRegeneRate: { name: "パルHP自動回復倍率", range: "0.0 - 100.0" },
+    PalAutoHpRegeneRateInSleep: { name: "睡眠時パルHP回復倍率", range: "0.0 - 100.0" },
+    BuildObjectHpRate: { name: "建築物HP倍率", range: "0.1 - 5.0" },
+    BuildObjectDamageRate: { name: "建築物ダメージ倍率", range: "0.1 - 5.0" },
+    CollectionDropRate: { name: "採集アイテムドロップ倍率", range: "0.5 - 3.0" },
+    CollectionObjectHpRate: { name: "採集オブジェクトHP倍率", range: "0.5 - 3.0" },
+    CollectionObjectRespawnSpeedRate: { name: "採集オブジェクトリスポーン速度", range: "0.5 - 3.0" },
+    EnemyDropItemRate: { name: "敵ドロップアイテム倍率", range: "0.5 - 3.0" },
+    DeathPenalty: { name: "死亡ペナルティ", range: "None / Item / ItemAndEquipment / All" },
+    bEnablePlayerToPlayerDamage: { name: "プレイヤー間ダメージ有効", range: "True / False" },
+    bEnableFriendlyFire: { name: "フレンドリーファイヤ有効", range: "True / False" },
+    bEnableInvaderEnemy: { name: "襲撃イベント有効", range: "True / False" },
+    DropItemMaxNum: { name: "ワールド内ドロップアイテム上限", range: "0 - 5000" },
+    BaseCampMaxNum: { name: "拠点設置上限数", range: "0 - 128" },
+    BaseCampWorkerMaxNum: { name: "拠点パル配置上限数", range: "1 - 50" },
+    PalEggDefaultHatchingTime: { name: "タマゴ孵化にかかる時間(h)", range: "0.0 - 240.0" },
+    WorkSpeedRate: { name: "作業速度倍率", range: "0.5 - 5.0" },
+    AutoSaveSpan: { name: "オートセーブ間隔(分)", range: "10.0 - 60.0" },
+    bIsMultiplay: { name: "マルチプレイ有効", range: "True / False" },
+    bIsPvP: { name: "PvP有効", range: "True / False" },
+    bHardcore: { name: "ハードコアモード", range: "True / False" },
+    ItemWeightRate: { name: "アイテム重量制限倍率", range: "0.0 - 5.0" },
+    CoopPlayerMaxNum: { name: "マルチ参加最大人数", range: "1 - 32" },
+    ServerPlayerMaxNum: { name: "サーバー最大接続人数", range: "1 - 32" },
+    ServerName: { name: "サーバー名", range: "任意の文字列" },
+    ServerDescription: { name: "サーバー説明", range: "任意の文字列" },
+    AdminPassword: { name: "管理者パスワード", range: "任意の文字列" },
+    ServerPassword: { name: "サーバーパスワード", range: "任意の文字列" },
+    PublicPort: { name: "公開ポート", range: "数値 (例: 8211)" },
+    RCONEnabled: { name: "RCON有効", range: "True / False" },
+    RCONPort: { name: "RCONポート", range: "数値 (例: 25575)" }
+};
+
+let parsedData = { prefix: "", settings: {} };
+
+function loadLocalFile(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('inputText').value = e.target.result;
+        parseSettings();
+    };
+    reader.readAsText(file, 'UTF-8');
+}
+
+function parseSettings() {
+    const rawText = document.getElementById('inputText').value.trim();
+    if (!rawText) {
+        alert('テキストが空です。設定テキストを入力またはファイルを読み込んでください。');
+        return;
+    }
+
+    const match = rawText.match(/^([\s\S]*?OptionSettings\s*=\s*\()([\s\S]*)(\))$/);
+    if (!match) {
+        alert('設定のフォーマットが正しくないようです。「OptionSettings=(...)」の形式を確認してください。');
+        return;
+    }
+
+    parsedData.prefix = match[1];
+    const inner = match[2];
+
+    parsedData.settings = {};
+    
+    let depth = 0;
+    let currentKey = "";
+    let currentValue = "";
+    let isKey = true;
+    
+    for (let i = 0; i < inner.length; i++) {
+        let char = inner[i];
+        if (char === '(') depth++;
+        if (char === ')') depth--;
+
+        if (char === '=' && depth === 0 && isKey) {
+            isKey = false;
+            continue;
+        }
+        if (char === ',' && depth === 0) {
+            parsedData.settings[currentKey.trim()] = currentValue.trim();
+            currentKey = "";
+            currentValue = "";
+            isKey = true;
+            continue;
+        }
+
+        if (isKey) {
+            currentKey += char;
+        } else {
+            currentValue += char;
+        }
+    }
+    if (currentKey.trim()) {
+        parsedData.settings[currentKey.trim()] = currentValue.trim();
+    }
+
+    renderEditor();
+    generateSettings();
+}
+
+function renderEditor() {
+    const grid = document.getElementById('editorGrid');
+    grid.innerHTML = '';
+
+    for (let [key, val] of Object.entries(parsedData.settings)) {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        // メタ情報（日本語名と推奨範囲）を取得
+        const meta = settingMeta[key] || { name: key, range: "設定値" };
+
+        const label = document.createElement('label');
+        label.innerHTML = `${key} <span style="color: #2980b9; font-weight: normal;">(${meta.name})</span>`;
+        card.appendChild(label);
+
+        const hint = document.createElement('span');
+        hint.className = 'range-hint';
+        hint.innerText = `推奨・範囲: ${meta.range}`;
+        card.appendChild(hint);
+
+        let input;
+        if (val === 'True' || val === 'False') {
+            input = document.createElement('select');
+            ['True', 'False'].forEach(opt => {
+                let option = document.createElement('option');
+                option.value = opt;
+                option.text = opt;
+                if (opt === val) option.selected = true;
+                input.appendChild(option);
+            });
+        } else {
+            input = document.createElement('input');
+            input.type = 'text';
+            input.value = val;
+        }
+
+        input.dataset.key = key;
+        input.oninput = (e) => {
+            parsedData.settings[e.target.dataset.key] = e.target.value;
+            generateSettings();
+        };
+        input.onchange = (e) => {
+            parsedData.settings[e.target.dataset.key] = e.target.value;
+            generateSettings();
+        };
+
+        card.appendChild(input);
+        grid.appendChild(card);
+    }
+}
+
+function generateSettings() {
+    if (!parsedData.prefix) return;
+
+    let entries = [];
+    for (let [key, val] of Object.entries(parsedData.settings)) {
+        entries.push(`${key}=${val}`);
+    }
+
+    const result = parsedData.prefix + entries.join(',') + ')';
+    document.getElementById('outputText').value = result;
+}
+
+function copyToClipboard() {
+    const outputText = document.getElementById('outputText');
+    if (!outputText.value) {
+        alert('コピーするテキストがありません。');
+        return;
+    }
+    outputText.select();
+    navigator.clipboard.writeText(outputText.value).then(() => {
+        alert('クリップボードにコピーしました！');
+    }).catch(err => {
+        alert('コピーに失敗しました');
+    });
+}
+</script>
+
+</body>
+</html>

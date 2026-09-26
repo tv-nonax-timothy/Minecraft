@@ -1,0 +1,12 @@
+{
+  "resource_pack_name": "Nonax_Survival_Pack",
+  "texture_name": "atlas.terrain",
+  "texture_data": {
+    "custom_grass_top": {
+      "textures": "textures/nonax/blocks/custom_grass_top"
+    },
+    "custom_grass_side": {
+      "textures": "textures/nonax/blocks/custom_grass_side"
+    }
+  }
+}

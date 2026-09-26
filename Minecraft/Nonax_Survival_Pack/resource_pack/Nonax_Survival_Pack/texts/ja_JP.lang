@@ -1,0 +1,5 @@
+﻿pack.name=Nonax Survival Pack
+pack.description=サバイバル要素を追加するリソースパックです。
+item.nonax:banboo_sword=竹刀
+tile.custom:dirt_slab.name=土のハーフブロック
+tile.custom:grass_slab.name=草の生えた土のハーフブロック
