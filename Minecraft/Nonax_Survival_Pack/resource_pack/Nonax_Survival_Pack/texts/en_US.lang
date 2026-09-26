@@ -1,7 +1,5 @@
 pack.name=Nonax Survival Pack
 pack.description=This is a resource pack that can be used in survival mode.
 item.nonax:bamboo_sword=Bamboo Blade
-# 土のハーフブロックの名前
-tile.custom:dirt_slab.name=Dirt Half Slab
-# 草が生えた土ハーフブロックの名前
-tile.custom:grass_slab.name=Grassy Dirt Half Slab
+tile.nonax:dirt_slab.name=Dirt Half Slab
+tile.nonax:grass_slab.name=Grassy Dirt Half Slab

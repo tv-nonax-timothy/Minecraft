@@ -1,22 +1,21 @@
 {
-  "format_version": "1.20.0",
+  "format_version": "1.21.120",
   "minecraft:block": {
     "description": {
-      "identifier": "custom:grass_slab",
+      "identifier": "nonax:grass_slab",
       "is_experimental": false
     },
     "components": {
-      "minecraft:loot": "loot_tables/blocks/dirt.json",
-      "minecraft:geometry": "geometry.half_slab",
+      "minecraft:geometry": "geometry.slab",
       "minecraft:material_instances": {
         "up": {
           "texture": "custom_grass_top",
-          "tint_method": "grass", 
+          "tint_method": "grass",
           "alpha_masked_tint": true,
           "render_method": "opaque"
         },
         "down": {
-          "texture": "dirt",
+          "texture": "custom_dirt_top",
           "render_method": "opaque"
         },
         "*": {
@@ -26,9 +25,17 @@
           "render_method": "opaque"
         }
       },
-      "minecraft:destructible_by_mining": { "seconds_to_destroy": 0.5 },
-      "minecraft:collision_box": { "origin": [-8, 0, -8], "size": [16, 8, 16] },
-      "minecraft:selection_box": { "origin": [-8, 0, -8], "size": [16, 8, 16] },
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.5
+      },
+      "minecraft:collision_box": {
+        "origin": [-8, 0, -8],
+        "size": [16, 8, 16]
+      },
+      "minecraft:selection_box": {
+        "origin": [-8, 0, -8],
+        "size": [16, 8, 16]
+      },
       "minecraft:map_color": {
         "color": "#ffffff",
         "tint_method": "grass"

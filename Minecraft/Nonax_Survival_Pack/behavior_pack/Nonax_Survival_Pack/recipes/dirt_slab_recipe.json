@@ -2,7 +2,7 @@
   "format_version": "1.20.0",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "custom:recipe_dirt_slab"
+      "identifier": "nonax:recipe_dirt_slab"
     },
     "tags": [
       "crafting_table"
@@ -16,8 +16,13 @@
       }
     },
     "result": {
-      "item": "custom:dirt_slab",
+      "item": "nonax:dirt_slab",
       "count": 6
-    }
+    },
+    "unlock": [
+      {
+        "item": "minecraft:dirt"
+      }
+    ]
   }
 }
