@@ -1,24 +1,24 @@
 {
  "format_version": 2,
  "header": {
-   "description": "Nonax Survival Pack ",
-   "name": "Nonax_Survival_Pack",
-   "uuid":"75932c3b-e3c9-4ccb-890d-fcf8b7ad9668",
-   "version": [1, 0, 0],
-   "min_engine_version": [1, 20, 10]
-  },
+  "description": "Nonax Survival Pack",
+  "name": "Nonax Survival Pack (Behavior)",
+  "uuid": "75932c3b-e3c9-4ccb-890d-fcf8b7ad9668",
+  "version": [1, 0, 0],
+  "min_engine_version": [1, 21, 120]
+ },
  "modules": [
-   {
-     "description": "Nonax Add-On!",
-     "type": "data",
-     "uuid": "df47f43b-a0af-4739-b60c-6803da5ef2aa",
-     "version": [1, 0, 0]
-   }
+  {
+   "description": "Nonax Add-On Behavior Module",
+   "type": "data",
+   "uuid": "df47f43b-a0af-4739-b60c-6803da5ef2aa",
+   "version": [1, 0, 0]
+  }
  ],
-"dependencies": [
-    {
-     "uuid":"dbff105c-bd40-49dc-9450-54c304f04fe9",
-      "version":[1,0,0]
-    }
+ "dependencies": [
+  {
+   "uuid": "dbff105c-bd40-49dc-9450-54c304f04fe9",
+   "version": [1, 0, 0]
+  }
  ]
 }

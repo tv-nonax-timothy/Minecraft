@@ -3,24 +3,27 @@
   "minecraft:block": {
     "description": {
       "identifier": "nonax:dirt_slab",
-      "is_experimental": false
+      "is_experimental": false,
+      "block_states": {
+        "nonax:has_grass": [false, true]
+      }
     },
     "components": {
-      "minecraft:geometry": "geometry.slab", 
+      "minecraft:geometry": "geometry.custom_half_slab",
+      
       "minecraft:material_instances": {
-        "up": {
-          "texture": "custom_dirt_top",
-          "render_method": "opaque"
-        },
-        "down": {
-          "texture": "custom_dirt_top",
-          "render_method": "opaque"
-        },
         "*": {
-          "texture": "custom_dirt_side",
-          "render_method": "opaque"
+          "texture": "custom_dirt_top",
+          "render_method": "opaque",
+          "condition": "q.block_state('nonax:has_grass') == 0"
+        },
+        "grass": {
+          "texture": "custom_grass_top",
+          "render_method": "opaque",
+          "condition": "q.block_state('nonax:has_grass') == 1"
         }
       },
+      
       "minecraft:destructible_by_mining": {
         "seconds_to_destroy": 0.5
       },
@@ -31,6 +34,20 @@
       "minecraft:selection_box": {
         "origin": [-8, 0, -8],
         "size": [16, 8, 16]
+      },
+      
+      "minecraft:random_ticking": {
+        "on_tick": {
+          "condition": "q.block_state('nonax:has_grass') == 0 && (q.block_neighbor_has_any_tag(0, 1, 0, 'dirt') || q.block_neighbor_has_any_tag(1, 0, 0, 'dirt') || q.block_neighbor_has_any_tag(-1, 0, 0, 'dirt') || q.block_neighbor_has_any_tag(0, 0, 1, 'dirt') || q.block_neighbor_has_any_tag(0, 0, -1, 'dirt'))",
+          "event": "nonax:grow_grass_event"
+        }
+      }
+    },
+    "events": {
+      "nonax:grow_grass_event": {
+        "set_block_state": {
+          "nonax:has_grass": true
+        }
       }
     }
   }

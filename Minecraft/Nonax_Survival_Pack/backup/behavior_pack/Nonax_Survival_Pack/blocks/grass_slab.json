@@ -6,7 +6,7 @@
       "is_experimental": false
     },
     "components": {
-      "minecraft:geometry": "geometry.custom_half_slab",
+      "minecraft:geometry": "geometry.slab",
       "minecraft:material_instances": {
         "up": {
           "texture": "custom_grass_top",

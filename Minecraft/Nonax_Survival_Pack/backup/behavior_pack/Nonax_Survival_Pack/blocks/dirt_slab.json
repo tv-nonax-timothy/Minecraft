@@ -2,16 +2,14 @@
   "format_version": "1.21.120",
   "minecraft:block": {
     "description": {
-      "identifier": "nonax:grass_slab",
+      "identifier": "nonax:dirt_slab",
       "is_experimental": false
     },
     "components": {
-      "minecraft:geometry": "geometry.custom_half_slab",
+      "minecraft:geometry": "geometry.slab", 
       "minecraft:material_instances": {
         "up": {
-          "texture": "custom_grass_top",
-          "tint_method": "grass",
-          "alpha_masked_tint": true,
+          "texture": "custom_dirt_top",
           "render_method": "opaque"
         },
         "down": {
@@ -19,9 +17,7 @@
           "render_method": "opaque"
         },
         "*": {
-          "texture": "custom_grass_side",
-          "tint_method": "grass",
-          "alpha_masked_tint": true,
+          "texture": "custom_dirt_side",
           "render_method": "opaque"
         }
       },
@@ -35,10 +31,6 @@
       "minecraft:selection_box": {
         "origin": [-8, 0, -8],
         "size": [16, 8, 16]
-      },
-      "minecraft:map_color": {
-        "color": "#ffffff",
-        "tint_method": "grass"
       }
     }
   }
