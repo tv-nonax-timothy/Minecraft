@@ -6,10 +6,18 @@
       "is_experimental": false
     },
     "components": {
-      "minecraft:geometry": "geometry.custom_half_slab",
+      "minecraft:geometry": "geometry.slab", 
       "minecraft:material_instances": {
-        "*": {
+        "up": {
           "texture": "custom_dirt_top",
+          "render_method": "opaque"
+        },
+        "down": {
+          "texture": "custom_dirt_top",
+          "render_method": "opaque"
+        },
+        "*": {
+          "texture": "custom_dirt_side",
           "render_method": "opaque"
         }
       },

@@ -13,9 +13,6 @@
     },
     "custom_grass_side": {
       "textures": "textures/nonax/blocks/custom_grass_side"
-    },
-    "custom_grass_side_notdirt": {
-      "textures": "textures/nonax/blocks/custom_grass_side_notdirt"
     }
   }
 }

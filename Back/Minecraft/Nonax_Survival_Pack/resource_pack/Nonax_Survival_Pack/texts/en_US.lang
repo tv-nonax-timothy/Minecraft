@@ -1,0 +1,5 @@
+pack.name=Nonax Survival Pack
+pack.description=This is a resource pack that can be used in survival mode.
+item.nonax:bamboo_sword=Bamboo Blade
+tile.nonax:dirt_slab.name=Dirt Half Slab
+tile.nonax:grass_slab.name=Grassy Dirt Half Slab

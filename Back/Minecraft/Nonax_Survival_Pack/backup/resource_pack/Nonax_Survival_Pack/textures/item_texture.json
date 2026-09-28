@@ -1,0 +1,10 @@
+{
+  "resource_pack_name": "Nonax_Survival_Pack",
+  "texture_name": "atlas.items",
+  "texture_data": {
+     "bamboo_sword" : {
+        "textures": "textures/nonax/items/bamboo_sword"
+     }
+  }
+  
+}

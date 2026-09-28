@@ -2,14 +2,22 @@
   "format_version": "1.21.120",
   "minecraft:block": {
     "description": {
-      "identifier": "nonax:dirt_slab",
+      "identifier": "nonax:grass_slab",
       "is_experimental": false
     },
     "components": {
       "minecraft:geometry": "geometry.custom_half_slab",
       "minecraft:material_instances": {
-        "*": {
+        "up": {
+          "texture": "custom_grass_top",
+          "render_method": "opaque"
+        },
+        "down": {
           "texture": "custom_dirt_top",
+          "render_method": "opaque"
+        },
+        "*": {
+          "texture": "custom_grass_side",
           "render_method": "opaque"
         }
       },
