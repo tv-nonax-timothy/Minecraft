@@ -1,0 +1,18 @@
+{
+ "format_version": 2,
+ "header": {
+   "description": "Nonax Survival Pack",
+   "name": "Nonax_Survival_Pack",
+   "uuid":"dbff105c-bd40-49dc-9450-54c304f04fe9",
+   "version": [1, 0, 0],
+   "min_engine_version": [1, 20, 10]
+  },
+ "modules": [
+   {
+     "description": "Nonax Add-On!",
+     "type": "resources",
+     "uuid": "3e9d7004-78a3-4ad8-8885-17b71083bc53",
+     "version": [1, 0, 0]
+   }
+ ]
+}

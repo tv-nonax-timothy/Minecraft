@@ -1,0 +1,28 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "nonax:recipe_dirt_slab"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "###"
+    ],
+    "key": {
+      "#": {
+        "item": "minecraft:dirt"
+      }
+    },
+    "result": {
+      "item": "nonax:dirt_slab",
+      "count": 6
+    },
+    "unlock": [
+      {
+        "item": "minecraft:dirt"
+      }
+    ]
+  }
+}
