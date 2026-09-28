@@ -7,8 +7,12 @@
     "components": {
       "minecraft:geometry": "geometry.custom_half_grass_slab",
       "minecraft:material_instances": {
-        "dirt": {
-          "texture": "custom_dirt_top",
+        "*": {
+          "texture": "custom_dirt_side",
+          "render_method": "opaque"
+        },
+        "dirt_base": {
+          "texture": "custom_dirt_side",
           "render_method": "opaque"
         },
         "grass_up": {
@@ -21,10 +25,6 @@
           "texture": "custom_grass_side_notdirt",
           "tint_method": "grass",
           "alpha_masked_tint": true,
-          "render_method": "opaque"
-        },
-        "*": {
-          "texture": "custom_dirt_top",
           "render_method": "opaque"
         }
       },

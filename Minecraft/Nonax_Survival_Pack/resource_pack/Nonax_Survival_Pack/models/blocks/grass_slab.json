@@ -19,24 +19,24 @@
               "origin": [-8, 0, -8],
               "size": [16, 8, 16],
               "uv": {
-                "north": {"uv": [0, 8], "size": [16, 8], "material": "dirt"},
-                "south": {"uv": [0, 8], "size": [16, 8], "material": "dirt"},
-                "east": {"uv": [0, 8], "size": [16, 8], "material": "dirt"},
-                "west": {"uv": [0, 8], "size": [16, 8], "material": "dirt"},
-                "up": {"uv": [0, 0], "size": [16, 16], "material": "dirt"},
-                "down": {"uv": [0, 0], "size": [16, 16], "material": "dirt"}
+                "north": {"uv": [0, 8], "size": [16, 8], "material": "dirt_base"},
+                "south": {"uv": [0, 8], "size": [16, 8], "material": "dirt_base"},
+                "east": {"uv": [0, 8], "size": [16, 8], "material": "dirt_base"},
+                "west": {"uv": [0, 8], "size": [16, 8], "material": "dirt_base"},
+                "up": {"uv": [0, 0], "size": [16, 16], "material": "dirt_base"},
+                "down": {"uv": [0, 0], "size": [16, 16], "material": "dirt_base"}
               }
             },
             {
               "origin": [-8.1, -0.05, -8.1],
               "size": [16.2, 8.1, 16.2],
               "uv": {
-                "north": {"uv": [0, 9], "size": [16, 7], "material": "grass_side"},
-                "south": {"uv": [0, 9], "size": [16, 7], "material": "grass_side"},
-                "east": {"uv": [0, 9], "size": [16, 7], "material": "grass_side"},
-                "west": {"uv": [0, 9], "size": [16, 7], "material": "grass_side"},
+                "north": {"uv": [0, 8], "size": [16, 8], "material": "grass_side"},
+                "south": {"uv": [0, 8], "size": [16, 8], "material": "grass_side"},
+                "east": {"uv": [0, 8], "size": [16, 8], "material": "grass_side"},
+                "west": {"uv": [0, 8], "size": [16, 8], "material": "grass_side"},
                 "up": {"uv": [0, 0], "size": [16, 16], "material": "grass_up"},
-                "down": {"uv": [0, 0], "size": [16, 16], "material": "dirt"}
+                "down": {"uv": [0, 0], "size": [16, 16], "material": "dirt_base"}
               }
             }
           ]
