@@ -7,30 +7,23 @@
     "components": {
       "minecraft:geometry": "geometry.custom_half_grass_slab",
       "minecraft:material_instances": {
+        "dirt": {
+          "texture": "custom_dirt_top",
+          "render_method": "opaque"
+        },
+        "grass_up": {
+          "texture": "custom_grass_top",
+          "tint_method": "grass",
+          "alpha_masked_tint": true,
+          "render_method": "opaque"
+        },
+        "grass_side": {
+          "texture": "custom_grass_side_notdirt",
+          "tint_method": "grass",
+          "alpha_masked_tint": true,
+          "render_method": "opaque"
+        },
         "*": {
-          "texture": "custom_grass_top",
-          "tint_method": "grass",
-          "render_method": "opaque"
-        },
-        "custom_dirt_top": {
-          "texture": "custom_dirt_top",
-          "render_method": "opaque"
-        },
-        "custom_dirt_down": {
-          "texture": "custom_dirt_top",
-          "render_method": "opaque"
-        },
-        "custom_grass_top": {
-          "texture": "custom_grass_top",
-          "tint_method": "grass",
-          "render_method": "opaque"
-        },
-        "custom_grass_side": {
-          "texture": "custom_grass_side",
-          "tint_method": "grass",
-          "render_method": "opaque"
-        },
-        "custom_grass_down": {
           "texture": "custom_dirt_top",
           "render_method": "opaque"
         }

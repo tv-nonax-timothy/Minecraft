@@ -1,0 +1,29 @@
+{
+  "format_version": "1.21.120",
+  "minecraft:block": {
+    "description": {
+      "identifier": "nonax:dirt_slab",
+      "is_experimental": false
+    },
+    "components": {
+      "minecraft:geometry": "geometry.custom_half_slab",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "custom_dirt_top",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.5
+      },
+      "minecraft:collision_box": {
+        "origin": [-8, 0, -8],
+        "size": [16, 8, 16]
+      },
+      "minecraft:selection_box": {
+        "origin": [-8, 0, -8],
+        "size": [16, 8, 16]
+      }
+    }
+  }
+}

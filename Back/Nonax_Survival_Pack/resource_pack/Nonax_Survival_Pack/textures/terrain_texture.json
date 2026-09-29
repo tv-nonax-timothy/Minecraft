@@ -8,9 +8,6 @@
     "custom_dirt_side": {
       "textures": "textures/nonax/blocks/custom_dirt_side"
     },
-    "custom_dirt_down": {
-      "textures": "textures/nonax/blocks/custom_dirt_top"
-    },
     "custom_grass_top": {
       "textures": "textures/nonax/blocks/custom_grass_top"
     },
