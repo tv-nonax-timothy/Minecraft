@@ -19,25 +19,25 @@
           "render_method": "opaque"
         },
         "north": {
-          "texture": "custom_grass_side",
+          "texture": "custom_grass_side_ppl",
           "tint_method": "grass",
           "alpha_masked_tint": true,
           "render_method": "opaque"
         },
         "south": {
-          "texture": "custom_grass_side",
+          "texture": "custom_grass_side_ppl",
           "tint_method": "grass",
           "alpha_masked_tint": true,
           "render_method": "opaque"
         },
         "west": {
-          "texture": "custom_grass_side",
+          "texture": "custom_grass_side_ppl",
           "tint_method": "grass",
           "alpha_masked_tint": true,
           "render_method": "opaque"
         },
         "east": {
-          "texture": "custom_grass_side",
+          "texture": "custom_grass_side_ppl",
           "tint_method": "grass",
           "alpha_masked_tint": true,
           "render_method": "opaque"
