@@ -12,26 +12,14 @@
           "tint_method": "grass",
           "render_method": "opaque"
         },
-        "custom_dirt_top": {
-          "texture": "custom_dirt_top",
+        "dirt_side_layer": {
+          "texture": "custom_grass_side_nograss",
           "render_method": "opaque"
         },
-        "custom_dirt_down": {
-          "texture": "custom_dirt_top",
-          "render_method": "opaque"
-        },
-        "custom_grass_top": {
-          "texture": "custom_grass_top",
+        "grass_side_layer": {
+          "texture": "custom_grass_side_notdirt",
           "tint_method": "grass",
-          "render_method": "opaque"
-        },
-        "custom_grass_side": {
-          "texture": "custom_grass_side",
-          "tint_method": "grass",
-          "render_method": "opaque"
-        },
-        "custom_grass_down": {
-          "texture": "custom_dirt_top",
+          "alpha_masked_tint": true,
           "render_method": "opaque"
         }
       },

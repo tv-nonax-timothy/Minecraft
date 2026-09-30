@@ -12,6 +12,7 @@
 - 認識している不具合
   - ブロックのトップのテクスチャに草の`custom_grass_top`が表示されない。
   - ブロックのトップのテクスチャに半分だけの土のテクスチャが表示されている。おそらく`custom_dirt_side`だと思われる。
+  - ブロックの側面は真っ黒である。
 - 推測している原因
   - `behavior_pack\Nonax_Survival_Pack\blocks\grass_slab.json`の["*": { "texture": "custom_dirt_side", "render_method": "opaque" },]のテクスチャが表示されているのではないかと感じている。
     - この部分を単純に削除すると、エラーとなりブロック自体が消えてしまう。
@@ -44,6 +45,7 @@
 | 15 | # | # | # | # | # | # | # | # | # | # | # | # | # | # | # | # |
 
 ### behavior_pack\Nonax_Survival_Pack\blocks\grass_slab.json
+```
 {
   "format_version": "1.21.120",
   "minecraft:block": {
@@ -57,22 +59,23 @@
           "texture": "custom_dirt_side",
           "render_method": "opaque"
         },
-        "custom_dirt_base": {
-          "texture": "custom_dirt_side",
+        "dirt_side_layer": {
+          "texture": "custom_grass_side_nograss",
           "render_method": "opaque"
         },
-        "custom_dirt_top": {
+        "dirt_top": {
           "texture": "custom_dirt_top",
           "render_method": "opaque"
         },
-        "custom_grass_top": {
+        "grass_top": {
           "texture": "custom_grass_top",
           "tint_method": "grass",
           "render_method": "opaque"
         },
-        "custom_grass_side": {
-          "texture": "custom_grass_side",
+        "grass_side_layer": {
+          "texture": "custom_grass_side_notdirt",
           "tint_method": "grass",
+          "alpha_masked_tint": true,
           "render_method": "opaque"
         }
       },
@@ -90,53 +93,84 @@
     }
   }
 }
-
+```
 ### resource_pack\Nonax_Survival_Pack\models\blocks\grass_slab.json
+```
 {
-    "format_version": "1.12.0",
-    "minecraft:geometry": [
+  "format_version": "1.16.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.custom_half_grass_slab",
+        "texture_width": 16,
+        "texture_height": 16,
+        "visible_bounds_width": 2,
+        "visible_bounds_height": 1.75,
+        "visible_bounds_offset": [0, 0.125, 0]
+      },
+      "bones": [
         {
-            "description": {
-                "identifier": "geometry.custom_half_grass_slab",
-                "texture_width": 16,
-                "texture_height": 16,
-                "visible_bounds_width": 2,
-                "visible_bounds_height": 1.75,
-                "visible_bounds_offset": [0, 0.125, 0]
+          "name": "grass_slab_model",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-8, 0, -8],
+              "size": [16, 8, 16],
+              "uv": {
+                "north": {"uv": [0, 8], "size": [16, 8], "material": "dirt_side_layer"},
+                "east": {"uv": [0, 8], "size": [16, 8], "material": "dirt_side_layer"},
+                "south": {"uv": [0, 8], "size": [16, 8], "material": "dirt_side_layer"},
+                "west": {"uv": [0, 8], "size": [16, 8], "material": "dirt_side_layer"},
+                "up": {"uv": [0, 0], "size": [16, 16], "material": "dirt_top"},
+                "down": {"uv": [0, 0], "size": [16, 16], "material": "dirt_top"}
+              }
             },
-            "bones": [
-                {
-                    "name": "grass_slab_model",
-                    "pivot": [0, 0, 0],
-                    "cubes": [
-                        {
-                            "origin": [-8, 0, -8],
-                            "size": [16, 4, 16],
-                            "uv": {
-                                "north": {"uv": [0, 12], "size": [16, 4], "material": "custom_dirt_base"},
-                                "east": {"uv": [0, 12], "size": [16, 4], "material": "custom_dirt_base"},
-                                "south": {"uv": [0, 12], "size": [16, 4], "material": "custom_dirt_base"},
-                                "west": {"uv": [0, 12], "size": [16, 4], "material": "custom_dirt_base"},
-                                "up": {"uv": [0, 0], "size": [16, 16], "material": "custom_dirt_top"},
-                                "down": {"uv": [0, 0], "size": [16, 16], "material": "custom_dirt_top"}
-                            }
-                        },
-                        {
-                            "origin": [-8, 4, -8],
-                            "size": [16, 4, 16],
-                            "uv": {
-                                "north": {"uv": [0, 8], "size": [16, 4], "material": "custom_grass_side"},
-                                "east": {"uv": [0, 8], "size": [16, 4], "material": "custom_grass_side"},
-                                "south": {"uv": [0, 8], "size": [16, 4], "material": "custom_grass_side"},
-                                "west": {"uv": [0, 8], "size": [16, 4], "material": "custom_grass_side"},
-                                "up": {"uv": [0, 0], "size": [16, 16], "material": "custom_grass_top"},
-                                "down": {"uv": [0, 0], "size": [16, 16], "material": "custom_dirt_top"}
-                            }
-                        }
-                    ]
-                }
-            ]
+            {
+              "origin": [-8, 0, -8],
+              "size": [16, 8, 16],
+              "uv": {
+                "north": {"uv": [0, 0], "size": [16, 8], "material": "grass_side_layer"},
+                "east": {"uv": [0, 0], "size": [16, 8], "material": "grass_side_layer"},
+                "south": {"uv": [0, 0], "size": [16, 8], "material": "grass_side_layer"},
+                "west": {"uv": [0, 0], "size": [16, 8], "material": "grass_side_layer"},
+                "up": {"uv": [0, 0], "size": [16, 16], "material": "grass_top"},
+                "down": {"uv": [0, 0], "size": [16, 16], "material": "dirt_top"}
+              }
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }
-
+```
+### resource_pack\Nonax_Survival_Pack\textures\terrain_texture.json
+```
+{
+  "resource_pack_name": "nonax_survival_rp",
+  "texture_name": "atlas.terrain",
+  "texture_data": {
+    "custom_dirt_top": {
+      "textures": "textures/nonax/blocks/custom_dirt_top"
+    },
+    "custom_dirt_side": {
+      "textures": "textures/nonax/blocks/custom_dirt_side"
+    },
+    "custom_dirt_down": {
+      "textures": "textures/nonax/blocks/custom_dirt_top"
+    },
+    "custom_grass_top": {
+      "textures": "textures/nonax/blocks/custom_grass_top"
+    },
+    "custom_grass_side": {
+      "textures": "textures/nonax/blocks/custom_grass_side"
+    },
+    "custom_grass_side_notdirt": {
+      "textures": "textures/nonax/blocks/custom_grass_side_notdirt"
+    },
+    "custom_grass_side_nograss": {
+      "textures": "textures/nonax/blocks/custom_grass_side_nograss"
+}
+  }
+}
+```

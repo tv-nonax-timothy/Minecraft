@@ -1,47 +1,47 @@
 {
-    "format_version": "1.16.0",
-    "minecraft:geometry": [
+  "format_version": "1.16.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.custom_half_grass_slab",
+        "texture_width": 16,
+        "texture_height": 16,
+        "visible_bounds_width": 2,
+        "visible_bounds_height": 1.75,
+        "visible_bounds_offset": [0, 0.125, 0]
+      },
+      "bones": [
         {
-            "description": {
-                "identifier": "geometry.custom_half_grass_slab",
-                "texture_width": 16,
-                "texture_height": 16,
-                "visible_bounds_width": 2,
-                "visible_bounds_height": 1.75,
-                "visible_bounds_offset": [0, 0.125, 0]
+          "name": "grass_slab_model",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-8, 0, -8],
+              "size": [16, 8, 16],
+              "uv": {
+                "north": {"uv": [0, 8], "size": [16, 8], "material": "dirt_side_layer"},
+                "east": {"uv": [0, 8], "size": [16, 8], "material": "dirt_side_layer"},
+                "south": {"uv": [0, 8], "size": [16, 8], "material": "dirt_side_layer"},
+                "west": {"uv": [0, 8], "size": [16, 8], "material": "dirt_side_layer"},
+                "up": {"uv": [0, 0], "size": [16, 16]},
+                "down": {"uv": [0, 0], "size": [16, 16]}
+              }
             },
-            "bones": [
-                {
-                    "name": "grass_slab_model",
-                    "pivot": [0, 0, 0],
-                    "cubes": [
-                        {
-                            "origin": [-8, 0, -8],
-                            "size": [16, 4, 16],
-                            "uv": {
-                                "north": {"uv": [0, 12], "size": [16, 4]},
-                                "east": {"uv": [0, 12], "size": [16, 4]},
-                                "south": {"uv": [0, 12], "size": [16, 4]},
-                                "west": {"uv": [0, 12], "size": [16, 4]},
-                                "up": {"uv": [0, 0], "size": [16, 16], "material": "custom_dirt_top"},
-                                "down": {"uv": [0, 0], "size": [16, 16], "material": "custom_dirt_down"}
-                            }
-                        },
-                        {
-                            "origin": [-8, 4, -8],
-                            "size": [16, 4, 16],
-                            "uv": {
-                                "north": {"uv": [0, 8], "size": [16, 4], "material": "custom_grass_side"},
-                                "east": {"uv": [0, 8], "size": [16, 4], "material": "custom_grass_side"},
-                                "south": {"uv": [0, 8], "size": [16, 4], "material": "custom_grass_side"},
-                                "west": {"uv": [0, 8], "size": [16, 4], "material": "custom_grass_side"},
-                                "up": {"uv": [0, 0], "size": [16, 16], "material": "custom_grass_top"},
-                                "down": {"uv": [0, 0], "size": [16, 16], "material": "custom_dirt_down"}
-                            }
-                        }
-                    ]
-                }
-            ]
+            {
+              "origin": [-8.01, 0, -8.01],
+              "size": [16.02, 8, 16.02],
+              "uv": {
+                "north": {"uv": [0, 0], "size": [16, 8], "material": "grass_side_layer"},
+                "east": {"uv": [0, 0], "size": [16, 8], "material": "grass_side_layer"},
+                "south": {"uv": [0, 0], "size": [16, 8], "material": "grass_side_layer"},
+                "west": {"uv": [0, 0], "size": [16, 8], "material": "grass_side_layer"},
+                "up": {"uv": [0, 0], "size": [16, 16]},
+                "down": {"uv": [0, 0], "size": [16, 16]}
+              }
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }
