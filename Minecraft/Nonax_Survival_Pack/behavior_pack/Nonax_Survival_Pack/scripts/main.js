@@ -1,4 +1,4 @@
-import { world, system, BlockPermutation, ItemStack } from "@minecraft/server";
+import { world, system, BlockPermutation, ItemStack, Direction } from "@minecraft/server";
 
 const DIRT_SLAB_ID = "nonax:dirt_slab";
 const GRASS_SLAB_ID = "nonax:grass_slab";
@@ -89,7 +89,12 @@ function tryGrowDirtSlab(dimension, pos) {
     return;
   }
 
-  block.setPermutation(BlockPermutation.resolve(GRASS_SLAB_ID));
+  let currentHalf = "bottom";
+  try {
+    currentHalf = block.permutation.getState("minecraft:vertical_half") || "bottom";
+  } catch {}
+
+  block.setPermutation(BlockPermutation.resolve(GRASS_SLAB_ID, { "minecraft:vertical_half": currentHalf }));
 }
 
 system.runInterval(() => {
@@ -186,7 +191,90 @@ world.afterEvents.playerBreakBlock.subscribe((event) => {
   });
 });
 
-// 2. ハーフブロックの上にハーフブロックを設置した場合、標準の土ブロックに変化する処理
+// 2. ハーフブロックへの重ね置き時の即時土ブロック化（設置前イベントで横取り＆即一体化）
+world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
+  const { block, blockFace, faceLocation, itemStack, player } = event;
+  if (!block || !itemStack || !player) return;
+
+  const targetId = block.typeId;
+  if (targetId !== DIRT_SLAB_ID && targetId !== GRASS_SLAB_ID) return;
+
+  const heldId = itemStack.typeId;
+  if (heldId !== DIRT_SLAB_ID && heldId !== GRASS_SLAB_ID) return;
+
+  let verticalHalf = "bottom";
+  try {
+    verticalHalf = block.permutation?.getState("minecraft:vertical_half") || "bottom";
+  } catch {}
+
+  const faceStr = typeof blockFace === "string" ? blockFace : blockFace?.toString();
+  const isUp = faceStr === "Up" || blockFace === Direction?.Up;
+  const isDown = faceStr === "Down" || blockFace === Direction?.Down;
+
+  let shouldCombine = false;
+
+  // 下付きハーフブロックの場合：上面をクリック、または側面の上半分をクリックしたとき
+  if (verticalHalf === "bottom") {
+    if (isUp || (faceLocation && faceLocation.y >= 0.5)) {
+      shouldCombine = true;
+    }
+  }
+  // 上付きハーフブロックの場合：下面をクリック、または側面の下半分をクリックしたとき
+  else if (verticalHalf === "top") {
+    if (isDown || (faceLocation && faceLocation.y < 0.5)) {
+      shouldCombine = true;
+    }
+  }
+
+  if (shouldCombine) {
+    // 通常の別ブロックとしての配置をキャンセル（上の空間に一瞬見える現象を完全に防止）
+    event.cancel = true;
+
+    const dimension = player.dimension;
+    const blockPos = { x: block.location.x, y: block.location.y, z: block.location.z };
+
+    system.run(() => {
+      try {
+        const targetBlock = dimension.getBlock(blockPos);
+        if (!targetBlock) return;
+        if (targetBlock.typeId !== DIRT_SLAB_ID && targetBlock.typeId !== GRASS_SLAB_ID) return;
+
+        // 即座に標準の土ブロックに変化
+        targetBlock.setPermutation(BlockPermutation.resolve("minecraft:dirt"));
+
+        // 設置音を再生
+        try {
+          dimension.playSound("step.grass", blockPos, { volume: 1.0, pitch: 0.8 });
+        } catch {}
+
+        // サバイバルモードなら手持ちのハーフブロックを1個消費
+        if (!isPlayerCreative(player)) {
+          try {
+            const inventory = player.getComponent("minecraft:inventory");
+            if (inventory && inventory.container) {
+              const slot = player.selectedSlotIndex;
+              const currentItem = inventory.container.getItem(slot);
+              if (currentItem && (currentItem.typeId === DIRT_SLAB_ID || currentItem.typeId === GRASS_SLAB_ID)) {
+                if (currentItem.amount > 1) {
+                  currentItem.amount -= 1;
+                  inventory.container.setItem(slot, currentItem);
+                } else {
+                  inventory.container.setItem(slot, undefined);
+                }
+              }
+            }
+          } catch (invErr) {
+            console.warn(`アイテム消費に失敗しました: ${invErr}`);
+          }
+        }
+      } catch (err) {
+        console.warn(`土ブロックの一体化に失敗しました: ${err}`);
+      }
+    });
+  }
+});
+
+// 3. フォールバック：万が一通常の設置が成立した場合の土ブロック化処理
 world.afterEvents.playerPlaceBlock.subscribe((event) => {
   const { block, dimension } = event;
   if (!block) return;

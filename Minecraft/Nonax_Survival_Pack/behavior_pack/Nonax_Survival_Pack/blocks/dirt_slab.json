@@ -3,7 +3,14 @@
   "minecraft:block": {
     "description": {
       "identifier": "nonax:dirt_slab",
-      "is_experimental": false
+      "is_experimental": false,
+      "traits": {
+        "minecraft:placement_position": {
+          "enabled_states": [
+            "minecraft:vertical_half"
+          ]
+        }
+      }
     },
     "components": {
       "minecraft:tick": {
@@ -28,6 +35,22 @@
         "origin": [-8, 0, -8],
         "size": [16, 8, 16]
       }
-    }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('minecraft:vertical_half') == 'top'",
+        "components": {
+          "minecraft:geometry": "geometry.custom_half_slab_top",
+          "minecraft:collision_box": {
+            "origin": [-8, 8, -8],
+            "size": [16, 8, 16]
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 8, -8],
+            "size": [16, 8, 16]
+          }
+        }
+      }
+    ]
   }
 }

@@ -72,14 +72,33 @@
     - シルクタッチが付いていない（素手・通常ツール等）場合：`nonax:dirt_slab` をドロップ。
   - アイテムの生成は `system.run` 内で `dimension.spawnItem(new ItemStack(dropId, 1), dropLocation)` を実行。
 
-### ハーフブロックの重ね設置による標準土ブロック化仕様
-- `nonax:dirt_slab` または `nonax:grass_slab` の上に、`nonax:dirt_slab` または `nonax:grass_slab` を設置した場合：
-  - スクリプト側：`world.afterEvents.playerPlaceBlock` でブロック設置を検知。
-  - 設置されたブロックの直下（`y - 1`）が `nonax:dirt_slab` または `nonax:grass_slab` であるかを判定。
-  - 条件を満たした場合、`system.run` 内で以下を実行：
-    - 直下のハーフブロックを `BlockPermutation.resolve("minecraft:dirt")` で標準の土ブロックに置換。
-    - 上に設置されたハーフブロックを `BlockPermutation.resolve("minecraft:air")` で空気に戻し、1つのフルブロックとして一体化。
-  - サバイバルモードでは設置時に手元のハーフブロックが1つ消費されているため、下のハーフブロック（0.5）＋手元のハーフブロック（0.5）＝標準土ブロック（1.0）としてアイテム数・体積ともに整合。
+### ハーフブロックの重ね設置による即時土ブロック化仕様
+- `nonax:dirt_slab` または `nonax:grass_slab` に対して、手持ちの `nonax:dirt_slab` または `nonax:grass_slab` を重ねて設置した場合：
+  - 課題の解消：
+    - 以前は `afterEvents.playerPlaceBlock` で上の空間（y+1）に一旦設置した後に消していたため、上の空間にブロックがあると設置できず、また一瞬上の空間にブロックが見える違和感があった。
+    - これを解消するため、`world.beforeEvents.playerInteractWithBlock` による**設置前インターセプト**を導入。
+  - 判定ロジック：
+    - 下付きハーフブロック（`vertical_half == 'bottom'`）の上面（`Up`）または側面の上半分（`faceLocation.y >= 0.5`）をクリックした場合
+    - 上付きハーフブロック（`vertical_half == 'top'`）の下面（`Down`）または側面の下半分（`faceLocation.y < 0.5`）をクリックした場合
+  - 動作：
+    - `event.cancel = true` で通常の別ブロック設置（y+1への配置）を完全にキャンセル。
+    - `system.run` でクリックされたブロックそのものを `BlockPermutation.resolve("minecraft:dirt")` で即座に土ブロックに置換。
+    - サバイバルモードでは手持ちのハーフブロックを1個消費（クリエイティブでは無消費）。
+    - 設置音（`step.grass`）を再生。
+    - 上にすでに別のブロックが存在していても、下付きハーフブロックをクリックすればその場で即座に土ブロックに一体化できる。
+  - フォールバック：
+    - 万が一のケースに備え、`world.afterEvents.playerPlaceBlock` による一体化処理もセーフティネットとして併用。
+
+### 上付きハーフブロック（ブロック上8ピクセル）対応仕様
+- バニラのハーフブロック同様、ブロックの上半分（上8ピクセル）にも張り付くよう対応：
+  - ブロック定義側（`blocks/dirt_slab.json`, `blocks/grass_slab.json`）：
+    - `"traits": { "minecraft:placement_position": { "enabled_states": ["minecraft:vertical_half"] } }` を追加。
+    - プレイヤーの視線・クリック位置（ブロックの下面や側面上部など）に応じて、自動で `"minecraft:vertical_half"` state が `"bottom"` / `"top"` に設定される。
+    - `permutations` にて、`q.block_state('minecraft:vertical_half') == 'top'` の場合の `collision_box`, `selection_box` を `origin: [-8, 8, -8]`、サイズ `[16, 8, 16]` に切り替え。
+  - モデル側（`models/blocks/half_slab.json`, `models/blocks/grass_slab.json`）：
+    - 上付き専用モデル `geometry.custom_half_slab_top`, `geometry.custom_half_grass_slab_top` を追加（origin: `[-8, 8, -8]`、pivot: `[0, 8, 0]`）。
+  - スクリプト側（`scripts/main.js`）：
+    - 土ハーフから草ハーフへの成長時（`tryGrowDirtSlab`）、`block.permutation.getState("minecraft:vertical_half")` を取得し、上付き・下付きの姿勢を維持したまま草ハーフブロックに変換。
 
 ## デバッグ時のメモ
 - 失敗時は log の `Scripting` と `Blocks` を優先して確認する

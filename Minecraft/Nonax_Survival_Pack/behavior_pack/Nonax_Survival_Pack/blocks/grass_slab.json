@@ -3,7 +3,14 @@
   "minecraft:block": {
     "description": {
       "identifier": "nonax:grass_slab",
-      "is_experimental": false
+      "is_experimental": false,
+      "traits": {
+        "minecraft:placement_position": {
+          "enabled_states": [
+            "minecraft:vertical_half"
+          ]
+        }
+      }
     },
     "components": {
       "minecraft:loot": "loot_tables/blocks/grass_slab.json",
@@ -51,6 +58,16 @@
         "color": "#ffffff",
         "tint_method": "grass"
       }
-    }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('minecraft:vertical_half') == 'top'",
+        "components": {
+          "minecraft:geometry": "geometry.custom_half_grass_slab_top",
+          "minecraft:collision_box": { "origin": [-8, 8, -8], "size": [16, 8, 16] },
+          "minecraft:selection_box": { "origin": [-8, 8, -8], "size": [16, 8, 16] }
+        }
+      }
+    ]
   }
 }
