@@ -63,6 +63,24 @@
      - これにより「置いてすぐ変わる」不自然さを解消し、バニラの草伝播と同等の自然な時間感覚を実現
    - スキャン範囲もプレイヤー足元（Y=0）固定から、上下1段（Y: -1 ~ +1）および段差伝播に対応
 
+### 草のハーフブロックの破壊・ドロップ仕様（シルクタッチ対応）
+- 設置された草のハーフブロック（`nonax:grass_slab`）を破壊したときのドロップ制御：
+  - ブロック定義側：`blocks/grass_slab.json` に `"minecraft:loot": "loot_tables/blocks/grass_slab.json"` を指定し、空の loot table（`"pools": []`）を設定してバニラ本体の自動ドロップを無効化。
+  - スクリプト側：`world.afterEvents.playerBreakBlock` で破壊を検知。
+    - プレイヤーがクリエイティブモードの場合はアイテムをドロップしない。
+    - 破壊した道具（`itemStackBeforeBreak`）に `silk_touch` が付与されている場合：`nonax:grass_slab` をドロップ。
+    - シルクタッチが付いていない（素手・通常ツール等）場合：`nonax:dirt_slab` をドロップ。
+  - アイテムの生成は `system.run` 内で `dimension.spawnItem(new ItemStack(dropId, 1), dropLocation)` を実行。
+
+### ハーフブロックの重ね設置による標準土ブロック化仕様
+- `nonax:dirt_slab` または `nonax:grass_slab` の上に、`nonax:dirt_slab` または `nonax:grass_slab` を設置した場合：
+  - スクリプト側：`world.afterEvents.playerPlaceBlock` でブロック設置を検知。
+  - 設置されたブロックの直下（`y - 1`）が `nonax:dirt_slab` または `nonax:grass_slab` であるかを判定。
+  - 条件を満たした場合、`system.run` 内で以下を実行：
+    - 直下のハーフブロックを `BlockPermutation.resolve("minecraft:dirt")` で標準の土ブロックに置換。
+    - 上に設置されたハーフブロックを `BlockPermutation.resolve("minecraft:air")` で空気に戻し、1つのフルブロックとして一体化。
+  - サバイバルモードでは設置時に手元のハーフブロックが1つ消費されているため、下のハーフブロック（0.5）＋手元のハーフブロック（0.5）＝標準土ブロック（1.0）としてアイテム数・体積ともに整合。
+
 ## デバッグ時のメモ
 - 失敗時は log の `Scripting` と `Blocks` を優先して確認する
 - `Blocks` の `child 'custom_components' not valid here` は JSON 仕様違反の確認ポイント

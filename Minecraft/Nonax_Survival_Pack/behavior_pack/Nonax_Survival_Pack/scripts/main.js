@@ -1,4 +1,4 @@
-import { world, system, BlockPermutation } from "@minecraft/server";
+import { world, system, BlockPermutation, ItemStack } from "@minecraft/server";
 
 const DIRT_SLAB_ID = "nonax:dirt_slab";
 const GRASS_SLAB_ID = "nonax:grass_slab";
@@ -115,3 +115,112 @@ system.runInterval(() => {
     }
   }
 }, CHECK_INTERVAL_TICKS);
+
+// クリエイティブモード判定
+function isPlayerCreative(player) {
+  if (!player) return false;
+  try {
+    return player.getGameMode() === "creative";
+  } catch {
+    return false;
+  }
+}
+
+// シルクタッチエンチャント判定
+function hasSilkTouch(itemStack) {
+  if (!itemStack) return false;
+  try {
+    const enchantable = itemStack.getComponent("minecraft:enchantable");
+    if (!enchantable) return false;
+
+    if (typeof enchantable.hasEnchantment === "function") {
+      if (enchantable.hasEnchantment("silk_touch") || enchantable.hasEnchantment("minecraft:silk_touch")) {
+        return true;
+      }
+    }
+
+    if (typeof enchantable.getEnchantments === "function") {
+      const enchantments = enchantable.getEnchantments();
+      if (Array.isArray(enchantments)) {
+        return enchantments.some((e) => {
+          const id = e?.type?.id || e?.id;
+          return id === "silk_touch" || id === "minecraft:silk_touch";
+        });
+      }
+    }
+  } catch {
+    // 判定エラー時は通常ドロップへ
+  }
+  return false;
+}
+
+// 1. 草のハーフブロック破壊時のドロップ処理（シルクタッチ判定）
+world.afterEvents.playerBreakBlock.subscribe((event) => {
+  const { block, dimension, brokenBlockPermutation, itemStackBeforeBreak, player } = event;
+  if (!brokenBlockPermutation) return;
+
+  const isGrassSlab =
+    (typeof brokenBlockPermutation.matches === "function" && brokenBlockPermutation.matches(GRASS_SLAB_ID)) ||
+    brokenBlockPermutation.type?.id === GRASS_SLAB_ID;
+
+  if (!isGrassSlab) return;
+
+  // クリエイティブモードの場合はドロップしない
+  if (isPlayerCreative(player)) return;
+
+  const isSilk = hasSilkTouch(itemStackBeforeBreak);
+  const dropId = isSilk ? GRASS_SLAB_ID : DIRT_SLAB_ID;
+
+  const dropLocation = {
+    x: block.location.x + 0.5,
+    y: block.location.y + 0.2,
+    z: block.location.z + 0.5
+  };
+
+  system.run(() => {
+    try {
+      dimension.spawnItem(new ItemStack(dropId, 1), dropLocation);
+    } catch (err) {
+      console.warn(`アイテムドロップに失敗しました: ${err}`);
+    }
+  });
+});
+
+// 2. ハーフブロックの上にハーフブロックを設置した場合、標準の土ブロックに変化する処理
+world.afterEvents.playerPlaceBlock.subscribe((event) => {
+  const { block, dimension } = event;
+  if (!block) return;
+
+  const placedTypeId = block.typeId;
+  if (placedTypeId !== DIRT_SLAB_ID && placedTypeId !== GRASS_SLAB_ID) {
+    return;
+  }
+
+  const placedPos = { x: block.location.x, y: block.location.y, z: block.location.z };
+  const belowPos = { x: placedPos.x, y: placedPos.y - 1, z: placedPos.z };
+
+  const belowBlock = dimension.getBlock(belowPos);
+  if (!belowBlock) return;
+
+  const belowTypeId = belowBlock.typeId;
+  if (belowTypeId === DIRT_SLAB_ID || belowTypeId === GRASS_SLAB_ID) {
+    system.run(() => {
+      try {
+        const targetBelow = dimension.getBlock(belowPos);
+        const targetPlaced = dimension.getBlock(placedPos);
+
+        // 下のハーフブロックを標準の土ブロックに置き換え
+        if (targetBelow && (targetBelow.typeId === DIRT_SLAB_ID || targetBelow.typeId === GRASS_SLAB_ID)) {
+          targetBelow.setPermutation(BlockPermutation.resolve("minecraft:dirt"));
+        }
+        // 上に設置されたハーフブロックを空気に戻して1つの土ブロックとして一体化
+        if (targetPlaced && (targetPlaced.typeId === DIRT_SLAB_ID || targetPlaced.typeId === GRASS_SLAB_ID)) {
+          targetPlaced.setPermutation(BlockPermutation.resolve("minecraft:air"));
+        }
+      } catch (err) {
+        console.warn(`ハーフブロックの一体化に失敗しました: ${err}`);
+      }
+    });
+  }
+});
+

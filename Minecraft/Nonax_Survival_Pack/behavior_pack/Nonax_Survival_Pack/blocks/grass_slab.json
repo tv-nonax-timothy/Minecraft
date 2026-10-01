@@ -6,6 +6,7 @@
       "is_experimental": false
     },
     "components": {
+      "minecraft:loot": "loot_tables/blocks/grass_slab.json",
       "minecraft:geometry": "geometry.custom_half_grass_slab",
       "minecraft:material_instances": {
         "up": {
