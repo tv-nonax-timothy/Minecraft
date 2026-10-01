@@ -1,0 +1,139 @@
+12:16:10[Scripting][verbose]-Plugin Discovered [Nonax Survival Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+12:16:10[Scripting][verbose]-Plugin [Nonax Survival Pack (Behavior)] - promoted [@minecraft/server] from [2.1.0] to [2.10.0] requested by [Nonax Survival Pack (Behavior) - 1.0.0].
+
+12:16:10[Scripting][verbose]-Plugin [Nonax Survival Pack (Behavior)] - promoted [@minecraft/server-bindings] from [2.1.0] to [2.10.0] requested by [@minecraft/server - 2.1.0].
+
+12:16:14[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:15[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:16[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:16[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:16[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:17[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:18[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:19[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:20[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:21[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:21[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:21[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:21[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:21[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:21[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:22[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:22[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:23[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:24[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:25[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:26[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:27[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+
+12:16:28[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:16:28[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at hasEnoughLight (main.js:32)
+    at tryGrowDirtSlab (main.js:44)
+    at <anonymous> (main.js:75)
+
+

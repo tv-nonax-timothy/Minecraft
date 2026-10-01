@@ -5,7 +5,7 @@
   "name": "Nonax Survival Pack (Resource)",
   "uuid": "dbff105c-bd40-49dc-9450-54c304f04fe9",
   "version": [1, 0, 0],
-  "min_engine_version": [1, 21, 120]
+  "min_engine_version": [1, 26, 0]
  },
  "modules": [
   {

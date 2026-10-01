@@ -1,0 +1,12 @@
+10:57:05[Scripting][verbose]-Plugin Discovered [Nonax Survival Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+10:57:06[Scripting][verbose]-Plugin [Nonax Survival Pack (Behavior)] - promoted [@minecraft/server] from [2.1.0] to [2.10.0] requested by [Nonax Survival Pack (Behavior) - 1.0.0].
+
+10:57:06[Scripting][verbose]-Plugin [Nonax Survival Pack (Behavior)] - promoted [@minecraft/server-bindings] from [2.1.0] to [2.10.0] requested by [@minecraft/server - 2.1.0].
+
+10:57:11[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+10:57:11[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+10:57:11[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+

@@ -1,0 +1,232 @@
+12:48:50[Scripting][verbose]-Plugin Discovered [Nonax Survival Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+12:48:51[Scripting][verbose]-Plugin [Nonax Survival Pack (Behavior)] - promoted [@minecraft/server] from [2.1.0] to [2.10.0] requested by [Nonax Survival Pack (Behavior) - 1.0.0].
+
+12:48:51[Scripting][verbose]-Plugin [Nonax Survival Pack (Behavior)] - promoted [@minecraft/server-bindings] from [2.1.0] to [2.10.0] requested by [@minecraft/server - 2.1.0].
+
+12:48:55[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:57[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:48:57[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:57[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:57[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:57[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:57[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:57[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:57[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:57[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:57[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:59[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:48:59[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:59[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:59[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:48:59[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:00[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:00[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:00[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:00[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:00[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:01[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:01[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:01[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:01[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:02[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:02[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:02[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:02[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:02[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:03[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:03[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:03[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:03[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:04[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:04[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:04[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:04[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:05[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:05[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:05[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:05[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:05[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:06[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:06[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:06[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:06[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:06[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:06[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:06[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:07[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:08[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:08[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:09[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:15[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:15[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:16[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:17[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:17[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:18[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:49:19[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+
+12:49:20[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: not a function    at tryGrowDirtSlab (main.js:54)
+    at <anonymous> (main.js:72)
+
+

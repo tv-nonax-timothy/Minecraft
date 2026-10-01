@@ -1,0 +1,42 @@
+10:08:57[Scripting][verbose]-Plugin Discovered [Nonax Survival Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+10:08:58[Scripting][error]-[Nonax Survival Pack (Behavior)] TypeError: cannot read property 'subscribe' of undefined    at <anonymous> (main.js:36)
+
+
+10:08:58[Scripting][error]-Plugin [Nonax Survival Pack (Behavior) - 1.0.0] - [main.js] ran with error: [TypeError: cannot read property 'subscribe' of undefined    at <anonymous> (main.js:36)
+]
+
+10:08:58[Blocks][inform]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/grass_slab.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/grass_slab.json | nonax:grass_slab | components | custom_components | [ "nonax:grass_slab_static" ]
+
+
+10:08:58[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/grass_slab.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/grass_slab.json | nonax:grass_slab | components | custom_components | child 'custom_components' not valid here.
+
+10:08:58[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/grass_slab.json | Block definition parsing failed
+
+10:08:58[Blocks][inform]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/dirt_slab.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/dirt_slab.json | nonax:dirt_slab | components | custom_components | [ "nonax:dirt_slab_growth" ]
+
+
+10:08:58[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/dirt_slab.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/dirt_slab.json | nonax:dirt_slab | components | custom_components | child 'custom_components' not valid here.
+
+10:08:58[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/dirt_slab.json | Block definition parsing failed
+
+10:08:59[Recipes][error]-recipes/dirt_slab_recipe.json | nonax:recipe_dirt_slab | The Item: nonax:dirt_slab is missing or invalid, can't make the recipe
+
+
+10:08:59[Recipes][error]-recipes/dirt_slab_recipe.json | nonax:recipe_dirt_slab | Recipe result malformed
+
+
+10:08:59[Recipes][error]-recipes/grass_slab_recipe.json | nonax:recipe_grass_slab | The Item: nonax:grass_slab is missing or invalid, can't make the recipe
+
+
+10:08:59[Recipes][error]-recipes/grass_slab_recipe.json | nonax:recipe_grass_slab | Recipe result malformed
+
+
+10:09:10[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+10:09:11[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+10:09:11[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+10:09:13[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+

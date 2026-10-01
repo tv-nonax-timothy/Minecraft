@@ -1,0 +1,30 @@
+09:56:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:56:28[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:56:30[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:56:31[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:56:31[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:56:49[Scripting][verbose]-Plugin Discovered [Nonax Survival Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+09:56:49[Json][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/grass_slab.json | upgrade blocks/grass_slab.json | minecraft:block | components | minecraft:custom_components component is not valid from 1.21.90 onward.
+
+09:56:49[Json][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/dirt_slab.json | upgrade blocks/dirt_slab.json | minecraft:block | components | minecraft:custom_components component is not valid from 1.21.90 onward.
+
+09:56:50[Scripting][error]-Plugin [Nonax Survival Pack (Behavior) - 1.0.0] - failed to create context.
+
+09:56:50[Scripting][error]-Plugin [Nonax Survival Pack (Behavior)] - module [Nonax Survival Pack (Behavior) - 1.0.0] requested invalid version [1.21.120] of [@minecraft/server].
+
+Available versions:
+0.1.0
+1.19.0
+2.10.0
+2.11.0-beta
+3.0.0-alpha
+
+
+09:56:50[Scripting][error]-Plugin [Nonax Survival Pack (Behavior) - 1.0.0] - run failed, no runtime or context available.
+

@@ -5,7 +5,7 @@
   "name": "Nonax Survival Pack (Behavior)",
   "uuid": "75932c3b-e3c9-4ccb-890d-fcf8b7ad9668",
   "version": [1, 0, 0],
-  "min_engine_version": [1, 21, 120]
+  "min_engine_version": [1, 26, 0]
  },
  "modules": [
   {
@@ -13,12 +13,24 @@
    "type": "data",
    "uuid": "df47f43b-a0af-4739-b60c-6803da5ef2aa",
    "version": [1, 0, 0]
+  },
+  {
+   "description": "Nonax Add-On Script Module",
+   "type": "script",
+   "language": "javascript",
+   "entry": "scripts/main.js",
+   "uuid": "d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1",
+   "version": [1, 0, 0]
   }
  ],
  "dependencies": [
   {
    "uuid": "dbff105c-bd40-49dc-9450-54c304f04fe9",
    "version": [1, 0, 0]
+  },
+  {
+   "module_name": "@minecraft/server",
+   "version": "2.1.0"
   }
  ]
 }

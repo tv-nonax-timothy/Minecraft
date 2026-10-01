@@ -6,6 +6,10 @@
       "is_experimental": false
     },
     "components": {
+      "minecraft:tick": {
+        "looping": true,
+        "interval_range": [20, 40]
+      },
       "minecraft:geometry": "geometry.custom_half_slab",
       "minecraft:material_instances": {
         "*": {
