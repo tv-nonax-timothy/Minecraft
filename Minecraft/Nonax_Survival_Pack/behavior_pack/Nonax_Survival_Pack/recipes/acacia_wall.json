@@ -1,0 +1,11 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "nonax:recipe_acacia_wall" },
+    "tags": ["crafting_table"],
+    "pattern": ["###", " # ", "###"],
+    "key": { "#": { "item": "minecraft:acacia_planks" } },
+    "result": { "item": "nonax:acacia_wall", "count": 6 },
+    "unlock": [{ "item": "minecraft:acacia_planks" }]
+  }
+}

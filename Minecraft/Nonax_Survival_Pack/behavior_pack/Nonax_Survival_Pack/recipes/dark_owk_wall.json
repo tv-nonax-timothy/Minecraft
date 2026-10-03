@@ -1,0 +1,11 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "nonax:recipe_dark_owk_wall" },
+    "tags": ["crafting_table"],
+    "pattern": ["###", " # ", "###"],
+    "key": { "#": { "item": "minecraft:dark_oak_planks" } },
+    "result": { "item": "nonax:dark_owk_wall", "count": 6 },
+    "unlock": [{ "item": "minecraft:dark_oak_planks" }]
+  }
+}

@@ -1,0 +1,472 @@
+12:54:58[Scripting][verbose]-Plugin Discovered [Nonax Survival Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+12:54:59[Scripting][verbose]-Plugin [Nonax Survival Pack (Behavior)] - promoted [@minecraft/server] from [2.1.0] to [2.10.0] requested by [Nonax Survival Pack (Behavior) - 1.0.0].
+
+12:54:59[Scripting][verbose]-Plugin [Nonax Survival Pack (Behavior)] - promoted [@minecraft/server-bindings] from [2.1.0] to [2.10.0] requested by [@minecraft/server - 2.1.0].
+
+12:55:04[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:04[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:04[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:04[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:05[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:05[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:05[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:06[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:06[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:07[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:07[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:08[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:09[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:09[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:09[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:10[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:10[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:12[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:12[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:17[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:17[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:17[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:18[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:21[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:21[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:21[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:21[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:22[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:22[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:22[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:23[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:23[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:23[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:23[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:23[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:23[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:23[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:25[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:28[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:28[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:28[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:29[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:29[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:29[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:29[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:33[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:33[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:34[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:34[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:35[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:35[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:36[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:37[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:39[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:39[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:40[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:40[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:40[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:40[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:41[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:42[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:43[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:43[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:43[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:44[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:44[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:44[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:45[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:45[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:45[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:45[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:45[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:45[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:46[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:47[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:48[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:48[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:48[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:48[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:48[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:48[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:48[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:48[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:48[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:49[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:49[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:49[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:49[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:49[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:49[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:51[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:51[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:51[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:51[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:51[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:51[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:51[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:51[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:51[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:52[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:52[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:52[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:52[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:52[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:52[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:52[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:52[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:53[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:54[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:54[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:55[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:55[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:57[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:55:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:56:00[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:56:05[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:56:11[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:56:11[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:56:12[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:56:12[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:56:13[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:56:13[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:56:13[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+12:56:14[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+

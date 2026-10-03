@@ -1,0 +1,11 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "nonax:recipe_pale_oak_wall" },
+    "tags": ["crafting_table"],
+    "pattern": ["###", " # ", "###"],
+    "key": { "#": { "item": "minecraft:pale_oak_planks" } },
+    "result": { "item": "nonax:pale_oak_wall", "count": 6 },
+    "unlock": [{ "item": "minecraft:pale_oak_planks" }]
+  }
+}

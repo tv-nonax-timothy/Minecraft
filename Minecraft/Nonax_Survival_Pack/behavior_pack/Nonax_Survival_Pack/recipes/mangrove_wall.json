@@ -1,0 +1,11 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "nonax:recipe_mangrove_wall" },
+    "tags": ["crafting_table"],
+    "pattern": ["###", " # ", "###"],
+    "key": { "#": { "item": "minecraft:mangrove_planks" } },
+    "result": { "item": "nonax:mangrove_wall", "count": 6 },
+    "unlock": [{ "item": "minecraft:mangrove_planks" }]
+  }
+}

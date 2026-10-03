@@ -2,6 +2,23 @@ import { world, system, BlockPermutation, ItemStack, Direction } from "@minecraf
 
 const DIRT_SLAB_ID = "nonax:dirt_slab";
 const GRASS_SLAB_ID = "nonax:grass_slab";
+const WALL_IDS = new Set([
+  "nonax:acacia_wall",
+  "nonax:owk_wall",
+  "nonax:jungle_wall",
+  "nonax:birch_wall",
+  "nonax:dark_owk_wall",
+  "nonax:spruce_wall",
+  "nonax:mangrove_wall",
+  "nonax:cherry_wall",
+  "nonax:pale_oak_wall"
+]);
+const WALL_DIRECTIONS = [
+  { name: "north", state: "nonax:north", dx: 0, dz: -1 },
+  { name: "east", state: "nonax:west", dx: 1, dz: 0 },
+  { name: "south", state: "nonax:south", dx: 0, dz: 1 },
+  { name: "west", state: "nonax:east", dx: -1, dz: 0 }
+];
 
 // スキャン範囲の設定
 const SCAN_RADIUS_XZ = 10; // 水平半径 (周囲 21x21 ブロック)
@@ -24,6 +41,52 @@ function isGrassBlock(block) {
     id === "minecraft:mycelium" ||
     id === GRASS_SLAB_ID
   );
+}
+
+function canWallConnectTo(block) {
+  if (!block) return false;
+  if (WALL_IDS.has(block.typeId) || (block.typeId.startsWith("minecraft:") && block.typeId.endsWith("_wall"))) {
+    return true;
+  }
+
+  try {
+    return !block.isAir && !block.isLiquid;
+  } catch {
+    return false;
+  }
+}
+
+function updateWallConnectionsAt(dimension, pos) {
+  try {
+    const block = dimension.getBlock(pos);
+    if (!block || !WALL_IDS.has(block.typeId)) return;
+
+    let permutation = block.permutation;
+    let changed = false;
+    for (const direction of WALL_DIRECTIONS) {
+      const neighbor = dimension.getBlock({ x: pos.x + direction.dx, y: pos.y, z: pos.z + direction.dz });
+      const connected = canWallConnectTo(neighbor);
+      if (permutation.getState(direction.state) !== connected) {
+        permutation = permutation.withState(direction.state, connected);
+        changed = true;
+      }
+    }
+
+    if (changed) block.setPermutation(permutation);
+  } catch {
+    // Ignore unloaded neighboring chunks while scanning.
+  }
+}
+
+function refreshWallsAround(dimension, pos) {
+  updateWallConnectionsAt(dimension, pos);
+  for (const direction of WALL_DIRECTIONS) {
+    updateWallConnectionsAt(dimension, {
+      x: pos.x + direction.dx,
+      y: pos.y,
+      z: pos.z + direction.dz
+    });
+  }
 }
 
 // 周囲（水平4方向 + 上下1ブロックの高低差）にある草ブロックの数をカウント
@@ -68,9 +131,12 @@ function hasEnoughLight(dimension, pos) {
 
 function tryGrowDirtSlab(dimension, pos) {
   const block = dimension.getBlock(pos);
-  if (!block || block.typeId !== DIRT_SLAB_ID) {
+  if (!block) return;
+  if (WALL_IDS.has(block.typeId)) {
+    updateWallConnectionsAt(dimension, pos);
     return;
   }
+  if (block.typeId !== DIRT_SLAB_ID) return;
 
   // 直上が空気かつ光量が9以上か
   if (!hasEnoughLight(dimension, pos)) {
@@ -162,6 +228,11 @@ function hasSilkTouch(itemStack) {
 // 1. 草のハーフブロック破壊時のドロップ処理（シルクタッチ判定）
 world.afterEvents.playerBreakBlock.subscribe((event) => {
   const { block, dimension, brokenBlockPermutation, itemStackBeforeBreak, player } = event;
+  const brokenLocation = block?.location;
+  if (brokenLocation) {
+    const pos = { x: brokenLocation.x, y: brokenLocation.y, z: brokenLocation.z };
+    system.run(() => refreshWallsAround(dimension, pos));
+  }
   if (!brokenBlockPermutation) return;
 
   const isGrassSlab =
@@ -278,6 +349,10 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
 world.afterEvents.playerPlaceBlock.subscribe((event) => {
   const { block, dimension } = event;
   if (!block) return;
+
+  const placedLocation = block.location;
+  const placedPosition = { x: placedLocation.x, y: placedLocation.y, z: placedLocation.z };
+  system.run(() => refreshWallsAround(dimension, placedPosition));
 
   const placedTypeId = block.typeId;
   if (placedTypeId !== DIRT_SLAB_ID && placedTypeId !== GRASS_SLAB_ID) {

@@ -1,0 +1,11 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "nonax:recipe_spruce_wall" },
+    "tags": ["crafting_table"],
+    "pattern": ["###", " # ", "###"],
+    "key": { "#": { "item": "minecraft:spruce_planks" } },
+    "result": { "item": "nonax:spruce_wall", "count": 6 },
+    "unlock": [{ "item": "minecraft:spruce_planks" }]
+  }
+}

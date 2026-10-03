@@ -1,0 +1,139 @@
+17:25:21[Scripting][verbose]-Plugin Discovered [Nonax Survival Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+17:25:21[Scripting][verbose]-Plugin [Nonax Survival Pack (Behavior)] - promoted [@minecraft/server] from [2.1.0] to [2.10.0] requested by [Nonax Survival Pack (Behavior) - 1.0.0].
+
+17:25:21[Scripting][verbose]-Plugin [Nonax Survival Pack (Behavior)] - promoted [@minecraft/server-bindings] from [2.1.0] to [2.10.0] requested by [@minecraft/server - 2.1.0].
+
+17:25:21[Blocks][inform]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/spruce_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/spruce_wall.json | nonax:spruce_wall | components | minecraft:tags | [ "minecraft:wood" ]
+
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/spruce_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/spruce_wall.json | nonax:spruce_wall | components | minecraft:tags | child 'minecraft:tags' not valid here.
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/spruce_wall.json | Block definition parsing failed
+
+17:25:21[Blocks][inform]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/pale_oak_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/pale_oak_wall.json | nonax:pale_oak_wall | components | minecraft:tags | [ "minecraft:wood" ]
+
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/pale_oak_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/pale_oak_wall.json | nonax:pale_oak_wall | components | minecraft:tags | child 'minecraft:tags' not valid here.
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/pale_oak_wall.json | Block definition parsing failed
+
+17:25:21[Blocks][inform]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/owk_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/owk_wall.json | nonax:owk_wall | components | minecraft:tags | [ "minecraft:wood" ]
+
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/owk_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/owk_wall.json | nonax:owk_wall | components | minecraft:tags | child 'minecraft:tags' not valid here.
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/owk_wall.json | Block definition parsing failed
+
+17:25:21[Blocks][inform]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/mangrove_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/mangrove_wall.json | nonax:mangrove_wall | components | minecraft:tags | [ "minecraft:wood" ]
+
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/mangrove_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/mangrove_wall.json | nonax:mangrove_wall | components | minecraft:tags | child 'minecraft:tags' not valid here.
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/mangrove_wall.json | Block definition parsing failed
+
+17:25:21[Blocks][inform]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/jungle_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/jungle_wall.json | nonax:jungle_wall | components | minecraft:tags | [ "minecraft:wood" ]
+
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/jungle_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/jungle_wall.json | nonax:jungle_wall | components | minecraft:tags | child 'minecraft:tags' not valid here.
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/jungle_wall.json | Block definition parsing failed
+
+17:25:21[Blocks][inform]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/dark_owk_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/dark_owk_wall.json | nonax:dark_owk_wall | components | minecraft:tags | [ "minecraft:wood" ]
+
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/dark_owk_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/dark_owk_wall.json | nonax:dark_owk_wall | components | minecraft:tags | child 'minecraft:tags' not valid here.
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/dark_owk_wall.json | Block definition parsing failed
+
+17:25:21[Blocks][inform]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/cherry_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/cherry_wall.json | nonax:cherry_wall | components | minecraft:tags | [ "minecraft:wood" ]
+
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/cherry_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/cherry_wall.json | nonax:cherry_wall | components | minecraft:tags | child 'minecraft:tags' not valid here.
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/cherry_wall.json | Block definition parsing failed
+
+17:25:21[Blocks][inform]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/birch_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/birch_wall.json | nonax:birch_wall | components | minecraft:tags | [ "minecraft:wood" ]
+
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/birch_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/birch_wall.json | nonax:birch_wall | components | minecraft:tags | child 'minecraft:tags' not valid here.
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/birch_wall.json | Block definition parsing failed
+
+17:25:21[Blocks][inform]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/acacia_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/acacia_wall.json | nonax:acacia_wall | components | minecraft:tags | [ "minecraft:wood" ]
+
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/acacia_wall.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/acacia_wall.json | nonax:acacia_wall | components | minecraft:tags | child 'minecraft:tags' not valid here.
+
+17:25:21[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Survival_Pack | blocks/acacia_wall.json | Block definition parsing failed
+
+17:25:22[Recipes][error]-recipes/acacia_wall.json | nonax:recipe_acacia_wall | The Item: nonax:acacia_wall is missing or invalid, can't make the recipe
+
+
+17:25:22[Recipes][error]-recipes/acacia_wall.json | nonax:recipe_acacia_wall | Recipe result malformed
+
+
+17:25:22[Recipes][error]-recipes/birch_wall.json | nonax:recipe_birch_wall | The Item: nonax:birch_wall is missing or invalid, can't make the recipe
+
+
+17:25:22[Recipes][error]-recipes/birch_wall.json | nonax:recipe_birch_wall | Recipe result malformed
+
+
+17:25:22[Recipes][error]-recipes/cherry_wall.json | nonax:recipe_cherry_wall | The Item: nonax:cherry_wall is missing or invalid, can't make the recipe
+
+
+17:25:22[Recipes][error]-recipes/cherry_wall.json | nonax:recipe_cherry_wall | Recipe result malformed
+
+
+17:25:22[Recipes][error]-recipes/dark_owk_wall.json | nonax:recipe_dark_owk_wall | The Item: nonax:dark_owk_wall is missing or invalid, can't make the recipe
+
+
+17:25:22[Recipes][error]-recipes/dark_owk_wall.json | nonax:recipe_dark_owk_wall | Recipe result malformed
+
+
+17:25:22[Recipes][error]-recipes/jungle_wall.json | nonax:recipe_jungle_wall | The Item: nonax:jungle_wall is missing or invalid, can't make the recipe
+
+
+17:25:22[Recipes][error]-recipes/jungle_wall.json | nonax:recipe_jungle_wall | Recipe result malformed
+
+
+17:25:22[Recipes][error]-recipes/mangrove_wall.json | nonax:recipe_mangrove_wall | The Item: nonax:mangrove_wall is missing or invalid, can't make the recipe
+
+
+17:25:22[Recipes][error]-recipes/mangrove_wall.json | nonax:recipe_mangrove_wall | Recipe result malformed
+
+
+17:25:22[Recipes][error]-recipes/owk_wall.json | nonax:recipe_owk_wall | The Item: nonax:owk_wall is missing or invalid, can't make the recipe
+
+
+17:25:22[Recipes][error]-recipes/owk_wall.json | nonax:recipe_owk_wall | Recipe result malformed
+
+
+17:25:22[Recipes][error]-recipes/pale_oak_wall.json | nonax:recipe_pale_oak_wall | The Item: nonax:pale_oak_wall is missing or invalid, can't make the recipe
+
+
+17:25:22[Recipes][error]-recipes/pale_oak_wall.json | nonax:recipe_pale_oak_wall | Recipe result malformed
+
+
+17:25:22[Recipes][error]-recipes/spruce_wall.json | nonax:recipe_spruce_wall | The Item: nonax:spruce_wall is missing or invalid, can't make the recipe
+
+
+17:25:22[Recipes][error]-recipes/spruce_wall.json | nonax:recipe_spruce_wall | Recipe result malformed
+
+
+17:25:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+17:25:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+17:25:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+17:25:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+17:25:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+17:25:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+17:25:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+17:25:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+

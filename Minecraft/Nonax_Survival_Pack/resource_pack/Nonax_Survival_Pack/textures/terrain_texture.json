@@ -25,6 +25,33 @@
     },
     "custom_grass_side_ppl": {
       "textures": "textures/nonax/blocks/custom_grass_side_ppl"
+    },
+    "custom_acacia_planks": {
+      "textures": "textures/nonax/blocks/custom_acacia_planks"
+    },
+    "custom_oak_planks": {
+      "textures": "textures/nonax/blocks/custom_oak_planks"
+    },
+    "custom_jungle_planks": {
+      "textures": "textures/nonax/blocks/custom_jungle_planks"
+    },
+    "custom_birch_planks": {
+      "textures": "textures/nonax/blocks/custom_birch_planks"
+    },
+    "custom_dark_oak_planks": {
+      "textures": "textures/nonax/blocks/custom_dark_oak_planks"
+    },
+    "custom_spruce_planks": {
+      "textures": "textures/nonax/blocks/custom_spruce_planks"
+    },
+    "custom_mangrove_planks": {
+      "textures": "textures/nonax/blocks/custom_mangrove_planks"
+    },
+    "custom_cherry_planks": {
+      "textures": "textures/nonax/blocks/custom_cherry_planks"
+    },
+    "custom_pale_oak_planks": {
+      "textures": "textures/nonax/blocks/custom_pale_oak_planks"
     }
   }
 }
