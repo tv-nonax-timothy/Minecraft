@@ -11,7 +11,8 @@ const WALL_IDS = new Set([
   "nonax:spruce_wall",
   "nonax:mangrove_wall",
   "nonax:cherry_wall",
-  "nonax:pale_oak_wall"
+  "nonax:pale_oak_wall",
+  "nonax:poplar_wall"
 ]);
 const WALL_DIRECTIONS = [
   { name: "north", state: "nonax:north", dx: 0, dz: -1 },

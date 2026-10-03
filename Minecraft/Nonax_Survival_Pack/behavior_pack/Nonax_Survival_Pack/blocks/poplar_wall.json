@@ -1,0 +1,32 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:block": {
+    "description": {
+      "identifier": "nonax:poplar_wall",
+      "menu_category": { "category": "construction" },
+      "states": {
+        "nonax:north": [false, true],
+        "nonax:east": [false, true],
+        "nonax:south": [false, true],
+        "nonax:west": [false, true]
+      }
+    },
+    "components": {
+      "minecraft:geometry": {
+        "identifier": "geometry.nonax_wall",
+        "bone_visibility": {
+          "arm_north": "q.block_state('nonax:north')",
+          "arm_south": "q.block_state('nonax:south')",
+          "arm_east": "q.block_state('nonax:east')",
+          "arm_west": "q.block_state('nonax:west')"
+        }
+      },
+      "minecraft:material_instances": {
+        "*": { "texture": "custom_poplar_planks", "render_method": "opaque" }
+      },
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 0.5 },
+      "minecraft:collision_box": { "origin": [-8, 0, -8], "size": [16, 16, 16] },
+      "minecraft:selection_box": { "origin": [-8, 0, -8], "size": [16, 16, 16] }
+    }
+  }
+}

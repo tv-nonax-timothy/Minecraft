@@ -52,6 +52,9 @@
     },
     "custom_pale_oak_planks": {
       "textures": "textures/nonax/blocks/custom_pale_oak_planks"
+    },
+    "custom_poplar_planks": {
+      "textures": "textures/nonax/blocks/custom_poplar_planks"
     }
   }
 }

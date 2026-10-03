@@ -43,7 +43,7 @@
 - テスト用など一覧に出さないブロックは `menu_category` を追加しない。今回の確認では `test_slab.json` を除く11ブロックを建築カテゴリに登録し、JSON検証後に一覧への追加を確認。
 - 実機で一覧に出ない場合は、resource packではなくbehavior pack側のブロック定義が読み込まれているかも確認する。
 
-### 木材の塀9種
+### 木材の塀10種
 - バニラ板材のテクスチャを behavior pack / resource pack の名称と混同しないよう、`custom_` を付けて `resource_pack/Nonax_Survival_Pack/textures/nonax/blocks/` に複製。
 - `textures/terrain_texture.json` に各テクスチャを登録し、対応するカスタムブロックの `minecraft:material_instances` から参照。
 - 追加ブロックIDとテクスチャ：
@@ -56,8 +56,10 @@
   - `nonax:mangrove_wall` / `custom_mangrove_planks`
   - `nonax:cherry_wall` / `custom_cherry_planks`
   - `nonax:pale_oak_wall` / `custom_pale_oak_planks`
+  - `nonax:poplar_wall` / `custom_poplar_planks`
 - 各レシピは指定の `###` / ` # ` / `###` の形で、対応する板材6枚から塀6個を作成し、板材を `unlock` 条件に設定。
 - 表示名は resource pack の `texts/ja_JP.lang` と `texts/en_US.lang` に登録。
+- ポプラ塀のレシピは `minecraft:poplar_planks` のみで解放し、完成数6。建築タブには `description.menu_category.category: "construction"` を指定し、接続スクリプトの `WALL_IDS` にもIDを登録する。
 - **形状と接続の自動切替:** 各塀に `nonax:north/east/south/west` のboolean block stateを追加し、`minecraft:geometry.bone_visibility` から対応する4方向の腕を表示制御する。設置・破壊後に対象位置と東西南北の隣接塀のstateを再計算し、既存配置もプレイヤー周辺の周期走査で更新する。
 - 上面図に合わせ、モデルは中央8×8pxと、各方向へ伸びる8px幅×4px長の腕で構成。パーツはY=0〜16pxで同じ高さ。`collision_box` / `selection_box` も高さ16px。
 - 接続判定は隣が空気・液体でなければ接続扱いとする。塀同士に限らず、石や板材などのブロックにも接続する一方、花など一部の非固体ブロックにも接続し得る。バニラ壁と同一の接続フィルターではない。
