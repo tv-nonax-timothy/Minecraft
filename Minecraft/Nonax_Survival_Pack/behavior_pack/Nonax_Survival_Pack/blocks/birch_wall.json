@@ -3,6 +3,7 @@
   "minecraft:block": {
     "description": {
       "identifier": "nonax:birch_wall",
+      "menu_category": { "category": "construction" },
       "states": {
         "nonax:north": [false, true],
         "nonax:east": [false, true],

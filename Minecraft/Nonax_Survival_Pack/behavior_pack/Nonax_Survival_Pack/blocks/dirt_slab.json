@@ -3,6 +3,7 @@
   "minecraft:block": {
     "description": {
       "identifier": "nonax:dirt_slab",
+      "menu_category": { "category": "construction" },
       "is_experimental": false,
       "traits": {
         "minecraft:placement_position": {
