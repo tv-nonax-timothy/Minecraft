@@ -1,0 +1,11 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shaped": {
+    "description": { "identifier": "nonax:recipe_glass_wall" },
+    "tags": ["crafting_table"],
+    "pattern": ["###", " # ", "###"],
+    "key": { "#": { "item": "minecraft:glass" } },
+    "result": { "item": "nonax:glass_wall", "count": 6 },
+    "unlock": [{ "item": "minecraft:glass" }]
+  }
+}

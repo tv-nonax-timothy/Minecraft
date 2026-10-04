@@ -55,6 +55,9 @@
     },
     "custom_poplar_planks": {
       "textures": "textures/nonax/blocks/custom_poplar_planks"
+    },
+    "custom_glass": {
+      "textures": "textures/nonax/blocks/custom_glass"
     }
   }
 }

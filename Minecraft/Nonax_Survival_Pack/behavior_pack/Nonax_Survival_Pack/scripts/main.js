@@ -12,7 +12,8 @@ const WALL_IDS = new Set([
   "nonax:mangrove_wall",
   "nonax:cherry_wall",
   "nonax:pale_oak_wall",
-  "nonax:poplar_wall"
+  "nonax:poplar_wall",
+  "nonax:glass_wall"
 ]);
 const WALL_DIRECTIONS = [
   { name: "north", state: "nonax:north", dx: 0, dz: -1 },
@@ -20,6 +21,66 @@ const WALL_DIRECTIONS = [
   { name: "south", state: "nonax:south", dx: 0, dz: 1 },
   { name: "west", state: "nonax:east", dx: -1, dz: 0 }
 ];
+
+const WALL_CONNECTION_EXCLUDED_TYPES = new Set([
+  "minecraft:grass",
+  "minecraft:tall_grass",
+  "minecraft:short_grass",
+  "minecraft:fern",
+  "minecraft:large_fern",
+  "minecraft:deadbush",
+  "minecraft:allium",
+  "minecraft:azure_bluet",
+  "minecraft:blue_orchid",
+  "minecraft:cornflower",
+  "minecraft:dandelion",
+  "minecraft:lily_of_the_valley",
+  "minecraft:oxeye_daisy",
+  "minecraft:poppy",
+  "minecraft:red_tulip",
+  "minecraft:orange_tulip",
+  "minecraft:white_tulip",
+  "minecraft:pink_tulip",
+  "minecraft:sunflower",
+  "minecraft:lilac",
+  "minecraft:rose_bush",
+  "minecraft:peony",
+  "minecraft:wither_rose",
+  "minecraft:azalea",
+  "minecraft:flowering_azalea",
+  "minecraft:pink_petals",
+  "minecraft:spore_blossom",
+  "minecraft:seagrass",
+  "minecraft:tall_seagrass",
+  "minecraft:kelp",
+  "minecraft:kelp_plant",
+  "minecraft:sugar_cane",
+  "minecraft:vine",
+  "minecraft:glow_lichen",
+  "minecraft:snow_layer",
+  "minecraft:farmland",
+  "minecraft:dirt_path",
+  "minecraft:cake",
+  "minecraft:bed",
+  "minecraft:lily_pad",
+  "minecraft:lever",
+  "minecraft:redstone_wire",
+  "minecraft:tripwire",
+  "minecraft:repeater",
+  "minecraft:comparator",
+  "minecraft:daylight_detector",
+  "minecraft:rail",
+  "minecraft:powered_rail",
+  "minecraft:detector_rail",
+  "minecraft:activator_rail",
+  "minecraft:torch",
+  "minecraft:wall_torch",
+  "minecraft:redstone_torch",
+  "minecraft:redstone_wall_torch",
+  "minecraft:soul_torch",
+  "minecraft:soul_wall_torch",
+  "minecraft:flower_pot"
+]);
 
 // スキャン範囲の設定
 const SCAN_RADIUS_XZ = 10; // 水平半径 (周囲 21x21 ブロック)
@@ -46,9 +107,20 @@ function isGrassBlock(block) {
 
 function canWallConnectTo(block) {
   if (!block) return false;
-  if (WALL_IDS.has(block.typeId) || (block.typeId.startsWith("minecraft:") && block.typeId.endsWith("_wall"))) {
-    return true;
-  }
+  const typeId = block.typeId;
+  if (WALL_CONNECTION_EXCLUDED_TYPES.has(typeId)) return false;
+  if (
+    typeId.endsWith("_slab") ||
+    typeId.endsWith("_carpet") ||
+    typeId.endsWith("_pressure_plate") ||
+    typeId.endsWith("_button") ||
+    typeId.endsWith("_trapdoor") ||
+    typeId.endsWith("_leaves") ||
+    typeId.endsWith("_flower") ||
+    typeId.endsWith("_tulip")
+  ) return false;
+
+  if (WALL_IDS.has(typeId) || (typeId.startsWith("minecraft:") && typeId.endsWith("_wall"))) return true;
 
   try {
     return !block.isAir && !block.isLiquid;

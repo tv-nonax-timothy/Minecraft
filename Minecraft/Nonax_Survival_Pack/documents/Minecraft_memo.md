@@ -62,17 +62,25 @@
 - ポプラ塀のレシピは `minecraft:poplar_planks` のみで解放し、完成数6。建築タブには `description.menu_category.category: "construction"` を指定し、接続スクリプトの `WALL_IDS` にもIDを登録する。
 - **形状と接続の自動切替:** 各塀に `nonax:north/east/south/west` のboolean block stateを追加し、`minecraft:geometry.bone_visibility` から対応する4方向の腕を表示制御する。設置・破壊後に対象位置と東西南北の隣接塀のstateを再計算し、既存配置もプレイヤー周辺の周期走査で更新する。
 - 上面図に合わせ、モデルは中央8×8pxと、各方向へ伸びる8px幅×4px長の腕で構成。パーツはY=0〜16pxで同じ高さ。`collision_box` / `selection_box` も高さ16px。
-- 接続判定は隣が空気・液体でなければ接続扱いとする。塀同士に限らず、石や板材などのブロックにも接続する一方、花など一部の非固体ブロックにも接続し得る。バニラ壁と同一の接続フィルターではない。
-- A座標が増加する方向で接続腕が反対側に出る実機結果を受け、A軸に対応する東西の隣接座標と表示stateの対応を反転。東西stateへの割当を `WALL_DIRECTIONS` で合わせる。
+- 接続判定は空気・液体に加えて `WALL_CONNECTION_EXCLUDED_TYPES` の明示IDと `_slab` / `_carpet` / `_pressure_plate` / `_button` / `_trapdoor` / `_leaves` / `_flower` のsuffixを除外する。自動寸法判定ではなく、低いブロックが追加されたらこのリストへ追記する。
+- **A軸方向の再発防止:** 塀の接続方向テーブルは、除外判定を追加する前に正常動作していた割当を維持する。現在の既存割当は `dx: 1` → `nonax:west`、`dx: -1` → `nonax:east`。接続除外を変更するときは `canWallConnectTo` の判定だけを編集し、`WALL_DIRECTIONS` の方向state割当を変更しない。
+- **A軸方向の回帰確認:** 方向state割当は変更せず、東西それぞれに通常ブロックを隣接させて、除外判定追加前と同じ腕が表示されることを確認する。開発用behavior packへ同期し、ワールドを再読み込みして確認する。
 - **斧での採掘（実験機能なし）:** `item_specific_speeds` は Upcoming Creator Features 実験が必要なため使用禁止。また、このパックの `format_version: 1.26.0` では `minecraft:tags` が実機ログで `child 'minecraft:tags' not valid here` となったため使用不可。塀は `seconds_to_destroy: 0.5` とし、実験や未対応tagに依存せず採掘を速くする（斧だけを個別に速くする設定ではない）。
 - 材質別に1枚の板材テクスチャを全面へ引き伸ばさず、ジオメトリ面ごとのUVを指定する。上面のちらつき防止として、中央板と接続腕が体積的に重ならない形状にする。
 - **形状上の制約:** バニラ石塀の専用ジオメトリはサンプルに含まれないため、`geometry.nonax_wall` は独自モデル。接続方向の切替は再現するが、バニラ石塀と細部まで同じ端点・角形状や接続規則ではない。ゲーム内の形状と当たり判定は実機確認が必要。
 - 実機ログ `ContentLog2026-10-03_15-30-49_1.txt` で、`minecraft:selection_box` のY範囲上限は16と確認。塀の selection box は `[16, 16, 16]` にする（高さ24はエラー）。`minecraft:collision_box` は同ログで範囲エラーなし。
 
+### ガラス塀
+- ブロックIDは `nonax:glass_wall`、ジオメトリは木材塀と同じ `geometry.nonax_wall`。4方向stateと接続更新スクリプトの `WALL_IDS` に追加する。
+- バニラの `resource_pack/textures/blocks/glass.png` を `textures/nonax/blocks/custom_glass.png` にコピーし、`textures/terrain_texture.json` に `custom_glass` を登録。
+- ガラスの透過には `minecraft:material_instances` の `render_method: "blend"` を使う。`alpha_test` は使用しない。対象 `format_version` で未対応のlight-dampening等の追加コンポーネントは入れない。
+- レシピはガラス8個を指定の `###` / ` # ` / `###` に並べ、ガラスでアンロック、ガラス塀6個を出力する。`description.menu_category.category` は `construction`。
+- `ja_JP.lang` と `en_US.lang` の表示名キーは `tile.nonax:glass_wall.name`。
+
 ### 木材の塀の成功条件（実機確認済み）
 - Minecraft v26.52 / `@minecraft/server` runtime 2.10.0 で、9種の塀ブロックが読み込まれ、レシピとアンロックが機能すること。
 - 対象ブロックをワールドに設置できること。桜の塀はレシピ・アンロック・設置を実機確認済み。
-- 隣接ブロックの向きに合わせ、塀の該当する腕だけが表示されること。A座標が増加する側の接続は東西stateの割当を反転して合わせる。
+- 隣接ブロックの向きに合わせ、塀の該当する腕だけが表示されること。方向state割当は正常動作していた既存値（`dx: 1` → `nonax:west`、`dx: -1` → `nonax:east`）を維持する。接続除外の変更に方向割当の変更を混在させない。
 - 上面図の形状は中央8×8px、東西南北の腕は幅8px・長さ4px。全パーツをY=0〜16pxに揃え、隣接時に隙間や不自然な重なりがないこと。
 - 接続先の判定では空気・液体を除く隣接ブロックに接続できること。
 - 実験機能を有効にしなくてもブロック定義エラーが出ないこと。`minecraft:tags` と `item_specific_speeds` は現行制約では使わず、`seconds_to_destroy: 0.5` で採掘しやすくする。
