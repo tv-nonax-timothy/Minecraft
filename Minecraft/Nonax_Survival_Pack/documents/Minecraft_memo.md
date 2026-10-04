@@ -62,7 +62,7 @@
 - ポプラ塀のレシピは `minecraft:poplar_planks` のみで解放し、完成数6。建築タブには `description.menu_category.category: "construction"` を指定し、接続スクリプトの `WALL_IDS` にもIDを登録する。
 - **形状と接続の自動切替:** 各塀に `nonax:north/east/south/west` のboolean block stateを追加し、`minecraft:geometry.bone_visibility` から対応する4方向の腕を表示制御する。設置・破壊後に対象位置と東西南北の隣接塀のstateを再計算し、既存配置もプレイヤー周辺の周期走査で更新する。
 - 上面図に合わせ、モデルは中央8×8pxと、各方向へ伸びる8px幅×4px長の腕で構成。パーツはY=0〜16pxで同じ高さ。`collision_box` / `selection_box` も高さ16px。
-- 接続判定は空気・液体に加えて `WALL_CONNECTION_EXCLUDED_TYPES` の明示IDと `_slab` / `_carpet` / `_pressure_plate` / `_button` / `_trapdoor` / `_leaves` / `_flower` のsuffixを除外する。自動寸法判定ではなく、低いブロックが追加されたらこのリストへ追記する。
+- 接続判定は空気・液体に加えて `WALL_CONNECTION_EXCLUDED_TYPES` の明示ID（`minecraft:leaf_litter` を含む）と `_slab` / `_carpet` / `_pressure_plate` / `_button` / `_trapdoor` / `_leaves` / `_flower` のsuffixを除外する。自動寸法判定ではなく、低いブロックが追加されたらこのリストへ追記する。
 - **A軸方向の再発防止:** 塀の接続方向テーブルは、除外判定を追加する前に正常動作していた割当を維持する。現在の既存割当は `dx: 1` → `nonax:west`、`dx: -1` → `nonax:east`。接続除外を変更するときは `canWallConnectTo` の判定だけを編集し、`WALL_DIRECTIONS` の方向state割当を変更しない。
 - **A軸方向の回帰確認:** 方向state割当は変更せず、東西それぞれに通常ブロックを隣接させて、除外判定追加前と同じ腕が表示されることを確認する。開発用behavior packへ同期し、ワールドを再読み込みして確認する。
 - **斧での採掘（実験機能なし）:** `item_specific_speeds` は Upcoming Creator Features 実験が必要なため使用禁止。また、このパックの `format_version: 1.26.0` では `minecraft:tags` が実機ログで `child 'minecraft:tags' not valid here` となったため使用不可。塀は `seconds_to_destroy: 0.5` とし、実験や未対応tagに依存せず採掘を速くする（斧だけを個別に速くする設定ではない）。

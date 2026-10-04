@@ -57,6 +57,7 @@ const WALL_CONNECTION_EXCLUDED_TYPES = new Set([
   "minecraft:sugar_cane",
   "minecraft:vine",
   "minecraft:glow_lichen",
+  "minecraft:leaf_litter",
   "minecraft:snow_layer",
   "minecraft:farmland",
   "minecraft:dirt_path",
