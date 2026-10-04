@@ -10,10 +10,10 @@
 - behavior_packやresource_packの名称を変更します。
   - 名称を`Nonax Survival Pak` から `Nonax Building Pack`に変更します。
   - 説明に追加要素を要約して記載します。
-  - フォルダ名も変更します。
+  - フォルダ名も`Nonax_Survival_Pak`から`Nonax_Building_Pack`に変更します。
 
 # 制約条件
-- 既存の[ビヘイビアーパック][リソースパック]の名称は共通で[Nonax_Survival_Pack]を使います。
+- 既存の[ビヘイビアーパック][リソースパック]の名称は共通で[Nonax_Building_Pack]を使います。
 - `alpha_test`は使用禁止です。
 - 実験的要素は使用禁止です。
 

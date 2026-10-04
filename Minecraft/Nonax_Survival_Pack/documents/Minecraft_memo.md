@@ -37,14 +37,14 @@
 - スクリプト側の `registerCustomComponent` と block JSON の定義は、エラーが出ない組み合わせで維持する
 
 ### 新規ブロックをクリエイティブの建築タブへ表示
-- `behavior_pack/Nonax_Survival_Pack/blocks/*.json` の `minecraft:block.description` に、`menu_category` を追加する。
+- `behavior_pack/Nonax_Building_Pack/blocks/*.json` の `minecraft:block.description` に、`menu_category` を追加する。
   - 建築タブに表示する場合: `"menu_category": { "category": "construction" }`
 - `menu_category` は `minecraft:block.components` ではなく `description` 内に置く。
 - テスト用など一覧に出さないブロックは `menu_category` を追加しない。今回の確認では `test_slab.json` を除く11ブロックを建築カテゴリに登録し、JSON検証後に一覧への追加を確認。
 - 実機で一覧に出ない場合は、resource packではなくbehavior pack側のブロック定義が読み込まれているかも確認する。
 
 ### 木材の塀10種
-- バニラ板材のテクスチャを behavior pack / resource pack の名称と混同しないよう、`custom_` を付けて `resource_pack/Nonax_Survival_Pack/textures/nonax/blocks/` に複製。
+- バニラ板材のテクスチャを behavior pack / resource pack の名称と混同しないよう、`custom_` を付けて `resource_pack/Nonax_Building_Pack/textures/nonax/blocks/` に複製。
 - `textures/terrain_texture.json` に各テクスチャを登録し、対応するカスタムブロックの `minecraft:material_instances` から参照。
 - 追加ブロックIDとテクスチャ：
   - `nonax:acacia_wall` / `custom_acacia_planks`

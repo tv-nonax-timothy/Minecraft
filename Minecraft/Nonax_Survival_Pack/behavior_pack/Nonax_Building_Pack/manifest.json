@@ -1,15 +1,15 @@
 {
  "format_version": 2,
  "header": {
-  "description": "Nonax Survival Pack",
-  "name": "Nonax Survival Pack (Behavior)",
+    "description": "Adds custom dirt and grass slabs, plus wood, poplar, and glass walls.",
+    "name": "Nonax Building Pack (Behavior)",
   "uuid": "75932c3b-e3c9-4ccb-890d-fcf8b7ad9668",
   "version": [1, 0, 0],
   "min_engine_version": [1, 26, 0]
  },
  "modules": [
   {
-   "description": "Nonax Add-On Behavior Module",
+    "description": "Custom blocks, recipes, and scripts for the Nonax Building Pack.",
    "type": "data",
    "uuid": "df47f43b-a0af-4739-b60c-6803da5ef2aa",
    "version": [1, 0, 0]
