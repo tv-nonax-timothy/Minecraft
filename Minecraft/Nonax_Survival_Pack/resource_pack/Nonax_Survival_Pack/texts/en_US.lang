@@ -1,0 +1,16 @@
+pack.name=Nonax Building Pack
+pack.description=This is a resource pack that can be used in survival mode.
+item.nonax:bamboo_sword=Bamboo Blade
+tile.nonax:dirt_slab.name=Dirt Half Slab
+tile.nonax:grass_slab.name=Grassy Dirt Half Slab
+tile.nonax:acacia_wall.name=Acacia Wall
+tile.nonax:owk_wall.name=Oak Wall
+tile.nonax:jungle_wall.name=Jungle Wall
+tile.nonax:birch_wall.name=Birch Wall
+tile.nonax:dark_owk_wall.name=Dark Oak Wall
+tile.nonax:spruce_wall.name=Spruce Wall
+tile.nonax:mangrove_wall.name=Mangrove Wall
+tile.nonax:cherry_wall.name=Cherry Wall
+tile.nonax:pale_oak_wall.name=Pale Oak Wall
+tile.nonax:poplar_wall.name=Poplar Wall
+tile.nonax:glass_wall.name=Glass Wall

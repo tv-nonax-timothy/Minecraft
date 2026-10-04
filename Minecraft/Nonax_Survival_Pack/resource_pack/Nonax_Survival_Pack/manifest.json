@@ -1,0 +1,24 @@
+{
+ "format_version": 2,
+ "header": {
+    "description": "Models and textures for custom slabs and wood, poplar, and glass walls.",
+    "name": "Nonax Building Pack (Resource)",
+  "uuid": "dbff105c-bd40-49dc-9450-54c304f04fe9",
+  "version": [1, 0, 0],
+  "min_engine_version": [1, 26, 0]
+ },
+ "modules": [
+  {
+    "description": "Models and textures for the Nonax Building Pack.",
+   "type": "resources",
+   "uuid": "3e9d7004-78a3-4ad8-8885-17b71083bc53",
+   "version": [1, 0, 0]
+  }
+ ],
+ "dependencies": [
+  {
+   "uuid": "75932c3b-e3c9-4ccb-890d-fcf8b7ad9668",
+   "version": [1, 0, 0]
+  }
+ ]
+}
