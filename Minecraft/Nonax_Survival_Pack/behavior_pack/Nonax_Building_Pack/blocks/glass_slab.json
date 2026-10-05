@@ -1,0 +1,38 @@
+{
+  "format_version": "1.21.120",
+  "minecraft:block": {
+    "description": {
+      "identifier": "nonax:glass_slab",
+      "menu_category": { "category": "construction" },
+      "is_experimental": false,
+      "traits": {
+        "minecraft:placement_position": {
+          "enabled_states": ["minecraft:vertical_half"]
+        }
+      }
+    },
+    "components": {
+      "minecraft:loot": "loot_tables/blocks/glass_slab.json",
+      "minecraft:geometry": "geometry.custom_half_slab",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "custom_glass_org",
+          "render_method": "blend"
+        }
+      },
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 0.3 },
+      "minecraft:collision_box": { "origin": [-8, 0, -8], "size": [16, 8, 16] },
+      "minecraft:selection_box": { "origin": [-8, 0, -8], "size": [16, 8, 16] }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('minecraft:vertical_half') == 'top'",
+        "components": {
+          "minecraft:geometry": "geometry.custom_half_slab_top",
+          "minecraft:collision_box": { "origin": [-8, 8, -8], "size": [16, 8, 16] },
+          "minecraft:selection_box": { "origin": [-8, 8, -8], "size": [16, 8, 16] }
+        }
+      }
+    ]
+  }
+}

@@ -17,7 +17,7 @@
   - `behavior_pack\Nonax_Survival_Pack\blocks\grass_slab.json`の["*": { "texture": "custom_dirt_side", "render_method": "opaque" },]のテクスチャが表示されているのではないかと感じている。
     - この部分を単純に削除すると、エラーとなりブロック自体が消えてしまう。
 # 制約条件
-- 既存の[ビヘイビアーパック][リソースパック]の名称は共通で[Nonax_Survival_Pack]を使います。
+- 既存の[ビヘイビアーパック][リソースパック]の名称は共通で[Nonax_Building_Pack]を使います。
 - "format_version"は "1.21.120"を前提とします。
 - `alpha_test`は使用禁止です。
 

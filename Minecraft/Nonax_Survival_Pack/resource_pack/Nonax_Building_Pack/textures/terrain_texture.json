@@ -58,6 +58,9 @@
     },
     "custom_glass": {
       "textures": "textures/nonax/blocks/custom_glass"
+    },
+    "custom_glass_org": {
+      "textures": "textures/nonax/blocks/custom_glass_org"
     }
   }
 }

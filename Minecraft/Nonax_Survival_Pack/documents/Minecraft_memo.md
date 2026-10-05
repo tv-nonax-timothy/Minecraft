@@ -77,6 +77,14 @@
 - レシピはガラス8個を指定の `###` / ` # ` / `###` に並べ、ガラスでアンロック、ガラス塀6個を出力する。`description.menu_category.category` は `construction`。
 - `ja_JP.lang` と `en_US.lang` の表示名キーは `tile.nonax:glass_wall.name`。
 
+### ガラスのハーフブロック
+- ブロックID `nonax:glass_slab`。`geometry.custom_half_slab` / `geometry.custom_half_slab_top` を使い、`minecraft:vertical_half` による上下配置とcollision/selection boxの切り替えを行う。
+- 既存のバニラガラス複製画像を `textures/nonax/blocks/custom_glass_org.png` として使い、terrain atlasの `custom_glass_org` に登録する。`render_method: "blend"` で透過し、`alpha_test` は使わない。
+- `menu_category` は `construction`。ガラス3個を横一列に置くレシピでガラススラブ6個を作成し、ガラスで解放する。
+- 空の `loot_tables/blocks/glass_slab.json` で通常ドロップを止め、`playerBreakBlock` でシルクタッチ時だけ `nonax:glass_slab` をドロップする。シルクタッチなしではアイテムを落とさない。既存の重ね置き変換処理は土・草スラブだけが対象のため、ガラススラブは標準ガラスへ変換しない。
+- 採掘時間は `seconds_to_destroy: 0.3` とする。これは素早く壊すための時間設定で、入力回数を厳密に3回へ固定するものではない。
+- 表示名キーは `tile.nonax:glass_slab.name`（英語 `Glass Half Slab`、日本語 `ガラスのハーフブロック`）。
+
 ### 木材の塀の成功条件（実機確認済み）
 - Minecraft v26.52 / `@minecraft/server` runtime 2.10.0 で、9種の塀ブロックが読み込まれ、レシピとアンロックが機能すること。
 - 対象ブロックをワールドに設置できること。桜の塀はレシピ・アンロック・設置を実機確認済み。

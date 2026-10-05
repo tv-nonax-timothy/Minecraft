@@ -2,6 +2,7 @@ import { world, system, BlockPermutation, ItemStack, Direction } from "@minecraf
 
 const DIRT_SLAB_ID = "nonax:dirt_slab";
 const GRASS_SLAB_ID = "nonax:grass_slab";
+const GLASS_SLAB_ID = "nonax:glass_slab";
 const WALL_IDS = new Set([
   "nonax:acacia_wall",
   "nonax:owk_wall",
@@ -312,14 +313,18 @@ world.afterEvents.playerBreakBlock.subscribe((event) => {
   const isGrassSlab =
     (typeof brokenBlockPermutation.matches === "function" && brokenBlockPermutation.matches(GRASS_SLAB_ID)) ||
     brokenBlockPermutation.type?.id === GRASS_SLAB_ID;
+  const isGlassSlab =
+    (typeof brokenBlockPermutation.matches === "function" && brokenBlockPermutation.matches(GLASS_SLAB_ID)) ||
+    brokenBlockPermutation.type?.id === GLASS_SLAB_ID;
 
-  if (!isGrassSlab) return;
+  if (!isGrassSlab && !isGlassSlab) return;
 
   // クリエイティブモードの場合はドロップしない
   if (isPlayerCreative(player)) return;
 
   const isSilk = hasSilkTouch(itemStackBeforeBreak);
-  const dropId = isSilk ? GRASS_SLAB_ID : DIRT_SLAB_ID;
+  if (isGlassSlab && !isSilk) return;
+  const dropId = isGlassSlab ? GLASS_SLAB_ID : isSilk ? GRASS_SLAB_ID : DIRT_SLAB_ID;
 
   const dropLocation = {
     x: block.location.x + 0.5,
