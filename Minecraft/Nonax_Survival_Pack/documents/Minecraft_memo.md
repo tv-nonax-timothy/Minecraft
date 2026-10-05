@@ -98,6 +98,14 @@
 - `loot_tables/blocks/glass_slab.json` は空poolに保ち、シルクタッチなしではドロップせず、シルクタッチ時はエンジン標準で1個を回収できること。
 - 今後、ガラススラブの破壊処理へ手動 `spawnItem` を追加しない。変更後はシルクタッチで1個だけ回収されることを実機で再確認する。
 
+### ガラスの階段
+- ブロックID `nonax:glass_stairs`。`format_version: 1.26.0` とし、`minecraft:placement_direction` の `minecraft:cardinal_direction` および `minecraft:placement_position` の `minecraft:vertical_half` で方向・上下を決める。
+- カスタムgeometryは北向き基準で、下付きは「下半分全面＋北側上半分」、上付きは「上半分全面＋北側下半分」の2箱構成。向きstateごとにY軸を0/90/180/-90度回転し、2個のcollision boxもgeometryと一緒に回転する。
+- バニラサンプルのoak stairsレシピ（`###`形の3段配置）に合わせ、ガラス6個から `nonax:glass_stairs` 4個を作る。レシピshapeは上から `#  ` / `## ` / `###`、ガラスで解放する。
+- `custom_glass_org` と `render_method: "blend"` を使い、`menu_category` は `construction`、採掘時間は `seconds_to_destroy: 0.3`。破壊時は空loot tableで非シルクタッチのドロップを抑え、シルクタッチ時はエンジン標準ドロップに任せる。`alpha_test` は使わない。
+- `tile.nonax:glass_stairs.name` を英語 `Glass Stairs`、日本語 `ガラスの階段` とする。
+- Vanilla blockshapeはcustom blockで利用できないため、ステップ形状は独自geometryで再現する。selection boxはカスタムcollision box配列と同じ段形状にはならず、単一の全体選択範囲となる点に注意。実機で方向、上下、衝突、selectionを確認する。
+
 ### 木材の塀の成功条件（実機確認済み）
 - Minecraft v26.52 / `@minecraft/server` runtime 2.10.0 で、9種の塀ブロックが読み込まれ、レシピとアンロックが機能すること。
 - 対象ブロックをワールドに設置できること。桜の塀はレシピ・アンロック・設置を実機確認済み。
