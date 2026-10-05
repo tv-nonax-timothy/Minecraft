@@ -9,6 +9,8 @@
 
 人による実機テストが必要な場合は、上記にコピーしてから、依頼すること。
 
+**コードやリソースを修正したら、検証後に必ず上記2つのフォルダへ配置（`behavior_pack\Nonax_Building_Pack` と `resource_pack\Nonax_Building_Pack` をそれぞれ上書きコピー）すること。**
+
 ## 互換性メモ
 - 本体バージョン `v26.52` を基準にし、互換対象を `[1, 26, 0]` として扱う
 - `format_version` と `min_engine_version` は `[1, 26, 0]` を使用する
@@ -49,6 +51,15 @@
 - `menu_category` は `minecraft:block.components` ではなく `description` 内に置く。
 - テスト用など一覧に出さないブロックは `menu_category` を追加しない。今回の確認では `test_slab.json` を除く11ブロックを建築カテゴリに登録し、JSON検証後に一覧への追加を確認。
 - 実機で一覧に出ない場合は、resource packではなくbehavior pack側のブロック定義が読み込まれているかも確認する。
+
+### 草レイヤーブロック
+- `nonax:grass_layer` は `nonax:layers` state で厚さ2 / 4 / 6ピクセルを切り替える。上面を同じブロックで操作すると、最大3層まで増える。
+- 草色の自動適用には、草ハーフブロックと同じ `custom_grass_top` / `custom_grass_side_ppl` テクスチャと `tint_method: "grass"` を使う。
+- `minecraft:grass_block` 1個から2個を作成し、草ブロックでレシピをアンロックする。破壊時のドロップを防ぐため、空の loot table を指定する。
+- クリエイティブ一覧は `menu_category.category: "nature"` に登録する。
+- 実機で確認済みの成功条件:
+  - 同じブロックの上面に重ねると 2 → 4 → 6ピクセルへ増え、ログに `Scripting` のエラーが出ない。
+  - サバイバルで手持ちが1個のときもエラーなく消費される。`ItemStack.amount` は 1〜255 のため 0 を設定できず、残り1個は `setItem(slot, undefined)` で空にする。
 
 ### 木材の塀10種
 - バニラ板材のテクスチャを behavior pack / resource pack の名称と混同しないよう、`custom_` を付けて `resource_pack/Nonax_Building_Pack/textures/nonax/blocks/` に複製。

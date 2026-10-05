@@ -1,0 +1,95 @@
+{
+  "format_version": "1.16.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.custom_grass_layer_2",
+        "texture_width": 16,
+        "texture_height": 16,
+        "visible_bounds_width": 2,
+        "visible_bounds_height": 1,
+        "visible_bounds_offset": [0, 0, 0]
+      },
+      "bones": [
+        {
+          "name": "layer",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-8, 0, -8],
+              "size": [16, 2, 16],
+              "uv": {
+                "north": { "uv": [0, 0], "uv_size": [16, 2] },
+                "south": { "uv": [0, 0], "uv_size": [16, 2] },
+                "west": { "uv": [0, 0], "uv_size": [16, 2] },
+                "east": { "uv": [0, 0], "uv_size": [16, 2] },
+                "up": { "uv": [0, 0], "uv_size": [16, 16] },
+                "down": { "uv": [0, 0], "uv_size": [16, 16] }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": {
+        "identifier": "geometry.custom_grass_layer_4",
+        "texture_width": 16,
+        "texture_height": 16,
+        "visible_bounds_width": 2,
+        "visible_bounds_height": 1,
+        "visible_bounds_offset": [0, 0, 0]
+      },
+      "bones": [
+        {
+          "name": "layer",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-8, 0, -8],
+              "size": [16, 4, 16],
+              "uv": {
+                "north": { "uv": [0, 0], "uv_size": [16, 4] },
+                "south": { "uv": [0, 0], "uv_size": [16, 4] },
+                "west": { "uv": [0, 0], "uv_size": [16, 4] },
+                "east": { "uv": [0, 0], "uv_size": [16, 4] },
+                "up": { "uv": [0, 0], "uv_size": [16, 16] },
+                "down": { "uv": [0, 0], "uv_size": [16, 16] }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": {
+        "identifier": "geometry.custom_grass_layer_6",
+        "texture_width": 16,
+        "texture_height": 16,
+        "visible_bounds_width": 2,
+        "visible_bounds_height": 1,
+        "visible_bounds_offset": [0, 0, 0]
+      },
+      "bones": [
+        {
+          "name": "layer",
+          "pivot": [0, 0, 0],
+          "cubes": [
+            {
+              "origin": [-8, 0, -8],
+              "size": [16, 6, 16],
+              "uv": {
+                "north": { "uv": [0, 0], "uv_size": [16, 6] },
+                "south": { "uv": [0, 0], "uv_size": [16, 6] },
+                "west": { "uv": [0, 0], "uv_size": [16, 6] },
+                "east": { "uv": [0, 0], "uv_size": [16, 6] },
+                "up": { "uv": [0, 0], "uv_size": [16, 16] },
+                "down": { "uv": [0, 0], "uv_size": [16, 16] }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

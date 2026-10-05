@@ -1,0 +1,96 @@
+{
+  "format_version": "1.21.120",
+  "minecraft:block": {
+    "description": {
+      "identifier": "nonax:grass_layer",
+      "menu_category": { "category": "nature" },
+      "is_experimental": false,
+      "states": {
+        "nonax:layers": [1, 2, 3]
+      }
+    },
+    "components": {
+      "minecraft:loot": "loot_tables/blocks/grass_layer.json",
+      "minecraft:geometry": "geometry.custom_grass_layer_2",
+      "minecraft:material_instances": {
+        "up": {
+          "texture": "custom_grass_top",
+          "tint_method": "grass",
+          "alpha_masked_tint": true,
+          "render_method": "opaque"
+        },
+        "down": {
+          "texture": "custom_dirt_top",
+          "render_method": "opaque"
+        },
+        "north": {
+          "texture": "custom_grass_top",
+          "tint_method": "grass",
+          "alpha_masked_tint": true,
+          "render_method": "opaque"
+        },
+        "south": {
+          "texture": "custom_grass_top",
+          "tint_method": "grass",
+          "alpha_masked_tint": true,
+          "render_method": "opaque"
+        },
+        "west": {
+          "texture": "custom_grass_top",
+          "tint_method": "grass",
+          "alpha_masked_tint": true,
+          "render_method": "opaque"
+        },
+        "east": {
+          "texture": "custom_grass_top",
+          "tint_method": "grass",
+          "alpha_masked_tint": true,
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 0.2 },
+      "minecraft:collision_box": {
+        "origin": [-8, 0, -8],
+        "size": [16, 2, 16]
+      },
+      "minecraft:selection_box": {
+        "origin": [-8, 0, -8],
+        "size": [16, 2, 16]
+      },
+      "minecraft:map_color": {
+        "color": "#ffffff",
+        "tint_method": "grass"
+      }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('nonax:layers') == 2",
+        "components": {
+          "minecraft:geometry": "geometry.custom_grass_layer_4",
+          "minecraft:collision_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 4, 16]
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 4, 16]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layers') == 3",
+        "components": {
+          "minecraft:geometry": "geometry.custom_grass_layer_6",
+          "minecraft:collision_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 6, 16]
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 6, 16]
+          }
+        }
+      }
+    ]
+  }
+}

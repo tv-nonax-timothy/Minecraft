@@ -2,6 +2,7 @@ import { world, system, BlockPermutation, ItemStack, Direction } from "@minecraf
 
 const DIRT_SLAB_ID = "nonax:dirt_slab";
 const GRASS_SLAB_ID = "nonax:grass_slab";
+const GRASS_LAYER_ID = "nonax:grass_layer";
 const GLASS_SLAB_ID = "nonax:glass_slab";
 const WALL_IDS = new Set([
   "nonax:acacia_wall",
@@ -81,7 +82,8 @@ const WALL_CONNECTION_EXCLUDED_TYPES = new Set([
   "minecraft:redstone_wall_torch",
   "minecraft:soul_torch",
   "minecraft:soul_wall_torch",
-  "minecraft:flower_pot"
+  "minecraft:flower_pot",
+  "nonax:grass_layer"
 ]);
 
 // スキャン範囲の設定
@@ -347,6 +349,62 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
   if (!block || !itemStack || !player) return;
 
   const targetId = block.typeId;
+  if (targetId === GRASS_LAYER_ID && itemStack.typeId === GRASS_LAYER_ID) {
+    const faceStr = typeof blockFace === "string" ? blockFace : blockFace?.toString();
+    if (faceStr === "Up" || blockFace === Direction?.Up) {
+      event.cancel = true;
+      const blockPos = { x: block.location.x, y: block.location.y, z: block.location.z };
+
+      system.run(() => {
+        try {
+          const targetBlock = player.dimension.getBlock(blockPos);
+          if (!targetBlock || targetBlock.typeId !== GRASS_LAYER_ID) return;
+
+          const currentLayers = targetBlock.permutation.getState("nonax:layers");
+          if (typeof currentLayers !== "number") {
+            throw new Error("草レイヤーブロックの層数 state が不正です。");
+          }
+          if (currentLayers >= 3) return;
+
+          let inventory;
+          let slot;
+          let currentItem;
+          if (!isPlayerCreative(player)) {
+            inventory = player.getComponent("minecraft:inventory");
+            slot = player.selectedSlotIndex;
+            currentItem = inventory?.container?.getItem(slot);
+            if (!currentItem || currentItem.typeId !== GRASS_LAYER_ID) {
+              throw new Error("手持ちの草レイヤーブロックを確認できません。");
+            }
+          }
+
+          const previousPermutation = targetBlock.permutation;
+          targetBlock.setPermutation(BlockPermutation.resolve(GRASS_LAYER_ID, {
+            "nonax:layers": currentLayers + 1
+          }));
+
+          if (currentItem) {
+            try {
+              if (currentItem.amount > 1) {
+                const nextItem = currentItem.clone();
+                nextItem.amount -= 1;
+                inventory.container.setItem(slot, nextItem);
+              } else {
+                inventory.container.setItem(slot, undefined);
+              }
+            } catch (err) {
+              targetBlock.setPermutation(previousPermutation);
+              throw err;
+            }
+          }
+        } catch (err) {
+          console.warn(`草レイヤーブロックの積み重ねに失敗しました: ${err}`);
+        }
+      });
+      return;
+    }
+  }
+
   if (targetId !== DIRT_SLAB_ID && targetId !== GRASS_SLAB_ID) return;
 
   const heldId = itemStack.typeId;
@@ -465,4 +523,3 @@ world.afterEvents.playerPlaceBlock.subscribe((event) => {
     });
   }
 });
-
