@@ -104,7 +104,15 @@
 - バニラサンプルのoak stairsレシピ（`###`形の3段配置）に合わせ、ガラス6個から `nonax:glass_stairs` 4個を作る。レシピshapeは上から `#  ` / `## ` / `###`、ガラスで解放する。
 - `custom_glass_org` と `render_method: "blend"` を使い、`menu_category` は `construction`、採掘時間は `seconds_to_destroy: 0.3`。破壊時は空loot tableで非シルクタッチのドロップを抑え、シルクタッチ時はエンジン標準ドロップに任せる。`alpha_test` は使わない。
 - `tile.nonax:glass_stairs.name` を英語 `Glass Stairs`、日本語 `ガラスの階段` とする。
-- Vanilla blockshapeはcustom blockで利用できないため、ステップ形状は独自geometryで再現する。selection boxはカスタムcollision box配列と同じ段形状にはならず、単一の全体選択範囲となる点に注意。実機で方向、上下、衝突、selectionを確認する。
+- Vanilla blockshapeはcustom blockで利用できないため、ステップ形状は独自geometryで再現する。selection boxはカスタムcollision box配列と同じ段形状にはならず、単一の全体選択範囲となる。
+
+### ガラスの階段の成功条件（実機確認済み）
+- Minecraft v26.52のゲーム内で、ガラス階段が正常に動作することを確認済み。
+- 下付き・上付きの両方で階段形状が表示され、設置方向に応じて高い側が奥になること。
+- 階段状のcollision boxで移動・立ち止まりができ、通常ガラスの透明テクスチャが表示されること。選択範囲は仕様上ブロック全体。
+- 作業台レシピでガラス6個から階段4個を作成でき、建築カテゴリに表示されること。
+- シルクタッチで階段を回収でき、シルクタッチなしでは破壊されてアイテムをドロップしないこと。採掘時間は `seconds_to_destroy: 0.3`。
+- `alpha_test` および実験的機能を使わずに動作すること。
 
 ### 木材の塀の成功条件（実機確認済み）
 - Minecraft v26.52 / `@minecraft/server` runtime 2.10.0 で、9種の塀ブロックが読み込まれ、レシピとアンロックが機能すること。
