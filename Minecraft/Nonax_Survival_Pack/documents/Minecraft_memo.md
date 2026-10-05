@@ -18,6 +18,7 @@
 - `world.events.tick` はこの実行環境では未定義であり、`system.runInterval(...)` を使うべきである
 - `minecraft:tick` は block の更新処理に使えるが、script 側のイベントと依存する API の整合が必要
 - 互換性の最終判断は、Minecraft のログ（`Scripting` / `Blocks`）で実際に runtime が提示する API を確認してから行う
+- `C:\MyProject\Minecraft\bedrock-samples-v1.26.50.4-full`に統合版バニラのサンプルをダウンロードしてあります。
 
 ## manifest.json で指定できる @minecraft/server モジュールの利用可能バージョンは以下の通りです。
 ### 1. 安定版（Stable API）の基本方針

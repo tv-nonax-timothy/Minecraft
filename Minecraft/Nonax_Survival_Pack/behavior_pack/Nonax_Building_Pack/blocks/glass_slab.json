@@ -15,8 +15,28 @@
       "minecraft:loot": "loot_tables/blocks/glass_slab.json",
       "minecraft:geometry": "geometry.custom_half_slab",
       "minecraft:material_instances": {
-        "*": {
+        "up": {
           "texture": "custom_glass_org",
+          "render_method": "blend"
+        },
+        "down": {
+          "texture": "custom_glass_org",
+          "render_method": "blend"
+        },
+        "north": {
+          "texture": "custom_glass_org_side",
+          "render_method": "blend"
+        },
+        "south": {
+          "texture": "custom_glass_org_side",
+          "render_method": "blend"
+        },
+        "west": {
+          "texture": "custom_glass_org_side",
+          "render_method": "blend"
+        },
+        "east": {
+          "texture": "custom_glass_org_side",
           "render_method": "blend"
         }
       },
