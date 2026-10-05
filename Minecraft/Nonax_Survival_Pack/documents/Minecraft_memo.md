@@ -3,6 +3,12 @@
 - Minecraft v26.52
 - Bedrock Edition / 通常の Minecraft の実行環境で確認
 
+### 実機テスト用の設置場所
+- "C:\Users\shini\AppData\Roaming\Minecraft Bedrock\Users\Shared\games\com.mojang\development_behavior_packs"
+- "C:\Users\shini\AppData\Roaming\Minecraft Bedrock\Users\Shared\games\com.mojang\development_resource_packs"
+
+人による実機テストが必要な場合は、上記にコピーしてから、依頼すること。
+
 ## 互換性メモ
 - 本体バージョン `v26.52` を基準にし、互換対象を `[1, 26, 0]` として扱う
 - `format_version` と `min_engine_version` は `[1, 26, 0]` を使用する
@@ -81,9 +87,15 @@
 - ブロックID `nonax:glass_slab`。`geometry.custom_half_slab` / `geometry.custom_half_slab_top` を使い、`minecraft:vertical_half` による上下配置とcollision/selection boxの切り替えを行う。
 - 既存のバニラガラス複製画像を `textures/nonax/blocks/custom_glass_org.png` として使い、terrain atlasの `custom_glass_org` に登録する。`render_method: "blend"` で透過し、`alpha_test` は使わない。
 - `menu_category` は `construction`。ガラス3個を横一列に置くレシピでガラススラブ6個を作成し、ガラスで解放する。
-- 空の `loot_tables/blocks/glass_slab.json` で通常ドロップを止め、`playerBreakBlock` でシルクタッチ時だけ `nonax:glass_slab` をドロップする。シルクタッチなしではアイテムを落とさない。既存の重ね置き変換処理は土・草スラブだけが対象のため、ガラススラブは標準ガラスへ変換しない。
+- `loot_tables/blocks/glass_slab.json` は空poolとし、シルクタッチなしではドロップしない。シルクタッチ時のガラススラブ1個はエンジン標準の破壊ドロップに任せ、`playerBreakBlock` から `spawnItem` しない（二重生成防止）。効率・幸運などを用いた手動の個数計算も行わない。既存の重ね置き変換処理は土・草スラブだけが対象のため、ガラススラブは標準ガラスへ変換しない。
 - 採掘時間は `seconds_to_destroy: 0.3` とする。これは素早く壊すための時間設定で、入力回数を厳密に3回へ固定するものではない。
 - 表示名キーは `tile.nonax:glass_slab.name`（英語 `Glass Half Slab`、日本語 `ガラスのハーフブロック`）。
+
+### ガラスのハーフブロックの破壊増殖修正（実機確認済み）
+- Minecraft v26.52で、シルクタッチ付きの道具でガラススラブ1個を破壊したとき、ガラススラブが1個だけドロップし、複数個へ増殖しないことを実機確認済み。
+- 原因はエンジン標準のシルクタッチドロップに加え、`playerBreakBlock` スクリプトでも同じスラブを `spawnItem` していた二重生成。ガラススラブはスクリプトの手動ドロップ対象から外し、エンジン標準ドロップだけを使う。
+- `loot_tables/blocks/glass_slab.json` は空poolに保ち、シルクタッチなしではドロップせず、シルクタッチ時はエンジン標準で1個を回収できること。
+- 今後、ガラススラブの破壊処理へ手動 `spawnItem` を追加しない。変更後はシルクタッチで1個だけ回収されることを実機で再確認する。
 
 ### 木材の塀の成功条件（実機確認済み）
 - Minecraft v26.52 / `@minecraft/server` runtime 2.10.0 で、9種の塀ブロックが読み込まれ、レシピとアンロックが機能すること。

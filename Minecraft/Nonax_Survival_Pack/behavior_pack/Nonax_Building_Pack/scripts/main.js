@@ -323,9 +323,9 @@ world.afterEvents.playerBreakBlock.subscribe((event) => {
   if (isPlayerCreative(player)) return;
 
   const isSilk = hasSilkTouch(itemStackBeforeBreak);
-  if (isGlassSlab && !isSilk) return;
-  const dropId = isGlassSlab ? GLASS_SLAB_ID : isSilk ? GRASS_SLAB_ID : DIRT_SLAB_ID;
+  if (isGlassSlab) return;
 
+  const dropId = isSilk ? GRASS_SLAB_ID : DIRT_SLAB_ID;
   const dropLocation = {
     x: block.location.x + 0.5,
     y: block.location.y + 0.2,
