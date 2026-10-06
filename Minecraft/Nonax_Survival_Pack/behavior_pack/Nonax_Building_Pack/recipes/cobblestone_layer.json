@@ -1,0 +1,25 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:recipe_cobblestone_layer"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:cobblestone"
+      }
+    ],
+    "result": {
+      "item": "nonax:cobblestone_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:cobblestone"
+      }
+    ]
+  }
+}

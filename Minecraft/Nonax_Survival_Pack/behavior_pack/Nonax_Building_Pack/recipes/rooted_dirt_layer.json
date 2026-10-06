@@ -1,0 +1,25 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:recipe_rooted_dirt_layer"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:dirt_with_roots"
+      }
+    ],
+    "result": {
+      "item": "nonax:rooted_dirt_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:dirt_with_roots"
+      }
+    ]
+  }
+}

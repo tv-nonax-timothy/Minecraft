@@ -61,6 +61,19 @@
   - 同じブロックの上面に重ねると 2 → 4 → 6ピクセルへ増え、ログに `Scripting` のエラーが出ない。
   - サバイバルで手持ちが1個のときもエラーなく消費される。`ItemStack.amount` は 1〜255 のため 0 を設定できず、残り1個は `setItem(slot, undefined)` で空にする。
 
+### 石材・土砂レイヤーブロック
+- `nonax:cobblestone_layer`、`nonax:mossy_cobblestone_layer`、`nonax:sandstone_layer`、`nonax:granite_layer`、`nonax:diorite_layer`、`nonax:andesite_layer`、`nonax:gravel_layer`、`nonax:sand_layer`、`nonax:smooth_stone_layer`、`nonax:clay_layer`、`nonax:red_sand_layer`、`nonax:red_sandstone_layer`、`nonax:tuff_layer`、`nonax:deepslate_layer`、`nonax:calcite_layer`、`nonax:rooted_dirt_layer`、`nonax:coarse_dirt_layer`、`nonax:podzol_layer`、`nonax:mycelium_layer` の19種類を追加。
+- すべて `nonax:layers` state 1〜7に対応し、厚さはstate×2ピクセル（2〜14ピクセル）。同じ種類のブロックを上面に重ねると1層増え、7層が上限。草レイヤーは従来どおり3層上限。
+- バニラサンプルの各ブロック画像を `textures/nonax/blocks/custom_*_layer*.png` に複製し、terrain atlasへ登録する。面ごとのtop/side画像があるブロックは対応する面へ割り当て、`tint_method` は使わない。
+- 各元ブロック1個を作業台でshapelessレシピに使い、対応レイヤー8個を作成。元ブロックでレシピを解放し、`menu_category` は `nature`。
+- 根付いた土のBedrock item IDは `minecraft:dirt_with_roots`（`minecraft:rooted_dirt` は無効）。レシピ材料とunlockの両方に同じBedrock IDを使う。
+- 破壊時に何も落とさないよう、共有空loot table `loot_tables/blocks/layers_no_drop.json` を参照する。
+- 重ね設置は `playerInteractWithBlock` で上面クリックを捕捉し、state更新後にサバイバルの手持ちを1個消費する。最大層到達時は設置をキャンセルしてアイテムを消費しない。
+
+### 根付いた土レイヤーのレシピエラー解消（実機確認済み）
+- Minecraft v26.52で、`rooted_dirt_layer` のレシピエラーが解消したことを実機確認済み。
+- 原因の `minecraft:rooted_dirt` をBedrock正規IDの `minecraft:dirt_with_roots` に材料・unlock両方で修正した後、レシピエラーが出なくなった。
+
 ### 木材の塀10種
 - バニラ板材のテクスチャを behavior pack / resource pack の名称と混同しないよう、`custom_` を付けて `resource_pack/Nonax_Building_Pack/textures/nonax/blocks/` に複製。
 - `textures/terrain_texture.json` に各テクスチャを登録し、対応するカスタムブロックの `minecraft:material_instances` から参照。

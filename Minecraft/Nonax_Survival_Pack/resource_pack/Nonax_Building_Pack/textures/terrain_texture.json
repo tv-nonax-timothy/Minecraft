@@ -64,6 +64,87 @@
     },
     "custom_glass_org_side": {
       "textures": "textures/nonax/blocks/custom_glass_org_side"
+    },
+    "custom_cobblestone_layer": {
+      "textures": "textures/nonax/blocks/custom_cobblestone_layer"
+    },
+    "custom_mossy_cobblestone_layer": {
+      "textures": "textures/nonax/blocks/custom_mossy_cobblestone_layer"
+    },
+    "custom_sandstone_layer_top": {
+      "textures": "textures/nonax/blocks/custom_sandstone_layer_top"
+    },
+    "custom_sandstone_layer_side": {
+      "textures": "textures/nonax/blocks/custom_sandstone_layer_side"
+    },
+    "custom_sandstone_layer_bottom": {
+      "textures": "textures/nonax/blocks/custom_sandstone_layer_bottom"
+    },
+    "custom_granite_layer": {
+      "textures": "textures/nonax/blocks/custom_granite_layer"
+    },
+    "custom_diorite_layer": {
+      "textures": "textures/nonax/blocks/custom_diorite_layer"
+    },
+    "custom_andesite_layer": {
+      "textures": "textures/nonax/blocks/custom_andesite_layer"
+    },
+    "custom_gravel_layer": {
+      "textures": "textures/nonax/blocks/custom_gravel_layer"
+    },
+    "custom_sand_layer": {
+      "textures": "textures/nonax/blocks/custom_sand_layer"
+    },
+    "custom_smooth_stone_layer_top": {
+      "textures": "textures/nonax/blocks/custom_smooth_stone_layer_top"
+    },
+    "custom_smooth_stone_layer_side": {
+      "textures": "textures/nonax/blocks/custom_smooth_stone_layer_side"
+    },
+    "custom_clay_layer": {
+      "textures": "textures/nonax/blocks/custom_clay_layer"
+    },
+    "custom_red_sand_layer": {
+      "textures": "textures/nonax/blocks/custom_red_sand_layer"
+    },
+    "custom_red_sandstone_layer_top": {
+      "textures": "textures/nonax/blocks/custom_red_sandstone_layer_top"
+    },
+    "custom_red_sandstone_layer_side": {
+      "textures": "textures/nonax/blocks/custom_red_sandstone_layer_side"
+    },
+    "custom_red_sandstone_layer_bottom": {
+      "textures": "textures/nonax/blocks/custom_red_sandstone_layer_bottom"
+    },
+    "custom_tuff_layer": {
+      "textures": "textures/nonax/blocks/custom_tuff_layer"
+    },
+    "custom_deepslate_layer_top": {
+      "textures": "textures/nonax/blocks/custom_deepslate_layer_top"
+    },
+    "custom_deepslate_layer_side": {
+      "textures": "textures/nonax/blocks/custom_deepslate_layer_side"
+    },
+    "custom_calcite_layer": {
+      "textures": "textures/nonax/blocks/custom_calcite_layer"
+    },
+    "custom_rooted_dirt_layer": {
+      "textures": "textures/nonax/blocks/custom_rooted_dirt_layer"
+    },
+    "custom_coarse_dirt_layer": {
+      "textures": "textures/nonax/blocks/custom_coarse_dirt_layer"
+    },
+    "custom_podzol_layer_top": {
+      "textures": "textures/nonax/blocks/custom_podzol_layer_top"
+    },
+    "custom_podzol_layer_side": {
+      "textures": "textures/nonax/blocks/custom_podzol_layer_side"
+    },
+    "custom_mycelium_layer_top": {
+      "textures": "textures/nonax/blocks/custom_mycelium_layer_top"
+    },
+    "custom_mycelium_layer_side": {
+      "textures": "textures/nonax/blocks/custom_mycelium_layer_side"
     }
   }
 }

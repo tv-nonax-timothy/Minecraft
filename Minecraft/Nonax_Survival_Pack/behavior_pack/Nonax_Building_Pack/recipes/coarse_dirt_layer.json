@@ -1,0 +1,25 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:recipe_coarse_dirt_layer"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:coarse_dirt"
+      }
+    ],
+    "result": {
+      "item": "nonax:coarse_dirt_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:coarse_dirt"
+      }
+    ]
+  }
+}

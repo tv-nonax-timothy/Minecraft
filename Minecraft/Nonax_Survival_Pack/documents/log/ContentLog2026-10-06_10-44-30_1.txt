@@ -1,0 +1,22 @@
+10:45:07[Scripting][verbose]-Plugin Discovered [Nonax Building Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+10:45:07[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server] from [2.1.0] to [2.10.0] requested by [Nonax Building Pack (Behavior) - 1.0.0].
+
+10:45:07[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server-bindings] from [2.1.0] to [2.10.0] requested by [@minecraft/server - 2.1.0].
+
+10:45:08[Recipes][error]-recipes/rooted_dirt_layer.json | nonax:recipe_rooted_dirt_layer | The Item: minecraft:rooted_dirt is missing or invalid, can't make the recipe
+
+
+10:45:08[Recipes][error]-recipes/rooted_dirt_layer.json | nonax:recipe_rooted_dirt_layer | Recipe: nonax:recipe_rooted_dirt_layer has an invalid unlock ingredient
+
+
+10:45:08[Recipes][error]-recipes/rooted_dirt_layer.json | nonax:recipe_rooted_dirt_layer | The Item: minecraft:rooted_dirt is missing or invalid, can't make the recipe
+
+
+10:45:08[Recipes][error]-recipes/rooted_dirt_layer.json | nonax:recipe_rooted_dirt_layer | Recipe result malformed
+
+
+10:45:19[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+10:45:45[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+

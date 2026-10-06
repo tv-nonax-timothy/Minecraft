@@ -3,6 +3,27 @@ import { world, system, BlockPermutation, ItemStack, Direction } from "@minecraf
 const DIRT_SLAB_ID = "nonax:dirt_slab";
 const GRASS_SLAB_ID = "nonax:grass_slab";
 const GRASS_LAYER_ID = "nonax:grass_layer";
+const STACKABLE_LAYER_IDS = new Set([
+  "nonax:cobblestone_layer",
+  "nonax:mossy_cobblestone_layer",
+  "nonax:sandstone_layer",
+  "nonax:granite_layer",
+  "nonax:diorite_layer",
+  "nonax:andesite_layer",
+  "nonax:gravel_layer",
+  "nonax:sand_layer",
+  "nonax:smooth_stone_layer",
+  "nonax:clay_layer",
+  "nonax:red_sand_layer",
+  "nonax:red_sandstone_layer",
+  "nonax:tuff_layer",
+  "nonax:deepslate_layer",
+  "nonax:calcite_layer",
+  "nonax:rooted_dirt_layer",
+  "nonax:coarse_dirt_layer",
+  "nonax:podzol_layer",
+  "nonax:mycelium_layer"
+]);
 const GLASS_SLAB_ID = "nonax:glass_slab";
 const WALL_IDS = new Set([
   "nonax:acacia_wall",
@@ -349,7 +370,8 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
   if (!block || !itemStack || !player) return;
 
   const targetId = block.typeId;
-  if (targetId === GRASS_LAYER_ID && itemStack.typeId === GRASS_LAYER_ID) {
+  const maxLayers = targetId === GRASS_LAYER_ID ? 3 : STACKABLE_LAYER_IDS.has(targetId) ? 7 : 0;
+  if (maxLayers > 0 && itemStack.typeId === targetId) {
     const faceStr = typeof blockFace === "string" ? blockFace : blockFace?.toString();
     if (faceStr === "Up" || blockFace === Direction?.Up) {
       event.cancel = true;
@@ -358,13 +380,13 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
       system.run(() => {
         try {
           const targetBlock = player.dimension.getBlock(blockPos);
-          if (!targetBlock || targetBlock.typeId !== GRASS_LAYER_ID) return;
+          if (!targetBlock || targetBlock.typeId !== targetId) return;
 
           const currentLayers = targetBlock.permutation.getState("nonax:layers");
           if (typeof currentLayers !== "number") {
             throw new Error("草レイヤーブロックの層数 state が不正です。");
           }
-          if (currentLayers >= 3) return;
+          if (currentLayers >= maxLayers) return;
 
           let inventory;
           let slot;
@@ -373,13 +395,13 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
             inventory = player.getComponent("minecraft:inventory");
             slot = player.selectedSlotIndex;
             currentItem = inventory?.container?.getItem(slot);
-            if (!currentItem || currentItem.typeId !== GRASS_LAYER_ID) {
-              throw new Error("手持ちの草レイヤーブロックを確認できません。");
+            if (!currentItem || currentItem.typeId !== targetId) {
+              throw new Error("手持ちのレイヤーブロックを確認できません。");
             }
           }
 
           const previousPermutation = targetBlock.permutation;
-          targetBlock.setPermutation(BlockPermutation.resolve(GRASS_LAYER_ID, {
+          targetBlock.setPermutation(BlockPermutation.resolve(targetId, {
             "nonax:layers": currentLayers + 1
           }));
 
