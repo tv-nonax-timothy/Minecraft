@@ -2,7 +2,7 @@
   "format_version": "1.20.10",
   "minecraft:recipe_shapeless": {
     "description": {
-      "identifier": "nonax:stonecutter_grass_layer"
+      "identifier": "nonax:stonecutter_grass_path_layer"
     },
     "tags": ["stonecutter"],
     "priority": 0,
@@ -12,7 +12,7 @@
       }
     ],
     "result": {
-      "item": "nonax:grass_layer",
+      "item": "nonax:grass_path_layer",
       "count": 8
     },
     "unlock": [

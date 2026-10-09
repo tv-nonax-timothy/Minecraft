@@ -23,6 +23,7 @@ tile.nonax:rooted_dirt_layer.name=根付いた土のレイヤーブロック
 tile.nonax:coarse_dirt_layer.name=粗い土のレイヤーブロック
 tile.nonax:podzol_layer.name=ポドゾルのレイヤーブロック
 tile.nonax:mycelium_layer.name=菌糸のレイヤーブロック
+tile.nonax:grass_path_layer.name=土の道のレイヤーブロック
 tile.nonax:acacia_wall.name=アカシアの塀
 tile.nonax:owk_wall.name=オークの塀
 tile.nonax:jungle_wall.name=ジャングルの塀

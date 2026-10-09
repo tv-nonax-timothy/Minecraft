@@ -145,6 +145,12 @@
     },
     "custom_mycelium_layer_side": {
       "textures": "textures/nonax/blocks/custom_mycelium_layer_side"
+    },
+    "custom_grass_path_layer_top": {
+      "textures": "textures/nonax/blocks/custom_grass_path_layer_top"
+    },
+    "custom_grass_path_layer_side": {
+      "textures": "textures/nonax/blocks/custom_grass_path_layer_side"
     }
   }
 }

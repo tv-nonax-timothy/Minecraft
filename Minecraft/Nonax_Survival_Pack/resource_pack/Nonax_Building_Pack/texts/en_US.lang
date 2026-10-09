@@ -23,6 +23,7 @@ tile.nonax:rooted_dirt_layer.name=Rooted Dirt Layer
 tile.nonax:coarse_dirt_layer.name=Coarse Dirt Layer
 tile.nonax:podzol_layer.name=Podzol Layer
 tile.nonax:mycelium_layer.name=Mycelium Layer
+tile.nonax:grass_path_layer.name=Grass Path Layer
 tile.nonax:acacia_wall.name=Acacia Wall
 tile.nonax:owk_wall.name=Oak Wall
 tile.nonax:jungle_wall.name=Jungle Wall

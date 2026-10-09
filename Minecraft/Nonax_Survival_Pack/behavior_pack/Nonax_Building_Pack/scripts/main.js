@@ -22,7 +22,8 @@ const STACKABLE_LAYER_IDS = new Set([
   "nonax:rooted_dirt_layer",
   "nonax:coarse_dirt_layer",
   "nonax:podzol_layer",
-  "nonax:mycelium_layer"
+  "nonax:mycelium_layer",
+  "nonax:grass_path_layer"
 ]);
 const GLASS_SLAB_ID = "nonax:glass_slab";
 const WALL_IDS = new Set([
