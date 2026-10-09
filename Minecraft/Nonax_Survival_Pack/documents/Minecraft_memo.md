@@ -70,6 +70,9 @@
 - 破壊時に何も落とさないよう、共有空loot table `loot_tables/blocks/layers_no_drop.json` を参照する。
 - 重ね設置は `playerInteractWithBlock` で上面クリックを捕捉し、state更新後にサバイバルの手持ちを1個消費する。最大層到達時は設置をキャンセルしてアイテムを消費しない。
 
+### 塀の接続除外リスト（WALL_CONNECTION_EXCLUDED_TYPES）
+- 塀が接続しない対象に、全レイヤーブロック（`nonax:grass_layer` と `STACKABLE_LAYER_IDS` の全種類。今後 `STACKABLE_LAYER_IDS` に追加したレイヤーは自動で対象）、松明（通常・壁掛け・ソウル・レッドストーン・消灯・水中・銅）、ランタン（通常・ソウル・銅の各酸化段階とワックス掛け）を追加。
+
 ### 石レイヤーブロック
 - `nonax:stone_layer`（石のレイヤーブロック）を追加。丸石レイヤーと同じ構成（`nonax:layers` 1〜7、2〜14ピクセル、nature、破壊時ドロップなし、`STACKABLE_LAYER_IDS` に登録）。
 - バニラの `stone.png` を `custom_stone_layer.png` として複製し、terrain atlasへ登録。作業台で `minecraft:stone` 1個から8個作成し、石でアンロック。

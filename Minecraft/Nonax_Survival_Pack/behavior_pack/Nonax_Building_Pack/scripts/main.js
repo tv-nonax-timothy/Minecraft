@@ -105,8 +105,23 @@ const WALL_CONNECTION_EXCLUDED_TYPES = new Set([
   "minecraft:redstone_wall_torch",
   "minecraft:soul_torch",
   "minecraft:soul_wall_torch",
+  "minecraft:unlit_redstone_torch",
+  "minecraft:underwater_torch",
+  "minecraft:copper_torch",
+  "minecraft:copper_wall_torch",
+  "minecraft:lantern",
+  "minecraft:soul_lantern",
+  "minecraft:copper_lantern",
+  "minecraft:exposed_copper_lantern",
+  "minecraft:weathered_copper_lantern",
+  "minecraft:oxidized_copper_lantern",
+  "minecraft:waxed_copper_lantern",
+  "minecraft:waxed_exposed_copper_lantern",
+  "minecraft:waxed_weathered_copper_lantern",
+  "minecraft:waxed_oxidized_copper_lantern",
   "minecraft:flower_pot",
-  "nonax:grass_layer"
+  "nonax:grass_layer",
+  ...STACKABLE_LAYER_IDS
 ]);
 
 // スキャン範囲の設定
