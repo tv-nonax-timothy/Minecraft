@@ -1,0 +1,20 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:recipe_mixed_iron_ore"
+    },
+    "tags": ["crafting_table"],
+    "ingredients": [
+      { "item": "minecraft:charcoal" },
+      { "item": "minecraft:raw_iron" }
+    ],
+    "result": {
+      "item": "nonax:mixed_iron_ore",
+      "count": 1
+    },
+    "unlock": [
+      { "item": "minecraft:raw_iron" }
+    ]
+  }
+}

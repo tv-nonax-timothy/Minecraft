@@ -1,0 +1,12 @@
+{
+  "resource_pack_name": "nonax_survival_rp",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "steel_ingot": {
+      "textures": "textures/nonax/items/custom_steel_ingot"
+    },
+    "mixed_iron_ore": {
+      "textures": "textures/nonax/items/custom_mixed_iron_ore"
+    }
+  }
+}

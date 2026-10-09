@@ -1,0 +1,24 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "nonax:recipe_steel_block"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      "###",
+      "###",
+      "###"
+    ],
+    "key": {
+      "#": { "item": "nonax:steel_ingot" }
+    },
+    "result": {
+      "item": "nonax:steel_block",
+      "count": 1
+    },
+    "unlock": [
+      { "item": "minecraft:raw_iron" }
+    ]
+  }
+}

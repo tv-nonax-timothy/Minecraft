@@ -1,0 +1,15 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_furnace": {
+    "description": {
+      "identifier": "nonax:recipe_steel_ingot"
+    },
+    "unlock": [
+      { "item": "nonax:mixed_iron_ore" }
+    ],
+    "tags": ["furnace", "blast_furnace"],
+    "input": "nonax:mixed_iron_ore",
+    "output": "nonax:steel_ingot",
+    "priority": 0
+  }
+}

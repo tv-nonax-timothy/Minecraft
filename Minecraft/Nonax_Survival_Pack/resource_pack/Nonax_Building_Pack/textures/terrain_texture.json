@@ -154,6 +154,9 @@
     },
     "custom_grass_path_layer_side": {
       "textures": "textures/nonax/blocks/custom_grass_path_layer_side"
+    },
+    "custom_steel_block": {
+      "textures": "textures/nonax/blocks/custom_steel_block"
     }
   }
 }

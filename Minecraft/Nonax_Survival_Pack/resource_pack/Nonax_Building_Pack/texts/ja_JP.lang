@@ -38,3 +38,6 @@ tile.nonax:poplar_wall.name=ポプラの塀
 tile.nonax:glass_wall.name=ガラスの塀
 tile.nonax:glass_slab.name=ガラスのハーフブロック
 tile.nonax:glass_stairs.name=ガラスの階段
+tile.nonax:steel_block.name=鋼鉄のブロック
+item.nonax:steel_ingot=鋼鉄のインゴット
+item.nonax:mixed_iron_ore=木炭と鉄の原石
