@@ -68,6 +68,9 @@
     "custom_cobblestone_layer": {
       "textures": "textures/nonax/blocks/custom_cobblestone_layer"
     },
+    "custom_stone_layer": {
+      "textures": "textures/nonax/blocks/custom_stone_layer"
+    },
     "custom_mossy_cobblestone_layer": {
       "textures": "textures/nonax/blocks/custom_mossy_cobblestone_layer"
     },

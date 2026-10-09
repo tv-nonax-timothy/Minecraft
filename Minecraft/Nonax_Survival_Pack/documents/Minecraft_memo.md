@@ -70,6 +70,11 @@
 - 破壊時に何も落とさないよう、共有空loot table `loot_tables/blocks/layers_no_drop.json` を参照する。
 - 重ね設置は `playerInteractWithBlock` で上面クリックを捕捉し、state更新後にサバイバルの手持ちを1個消費する。最大層到達時は設置をキャンセルしてアイテムを消費しない。
 
+### 石レイヤーブロック
+- `nonax:stone_layer`（石のレイヤーブロック）を追加。丸石レイヤーと同じ構成（`nonax:layers` 1〜7、2〜14ピクセル、nature、破壊時ドロップなし、`STACKABLE_LAYER_IDS` に登録）。
+- バニラの `stone.png` を `custom_stone_layer.png` として複製し、terrain atlasへ登録。作業台で `minecraft:stone` 1個から8個作成し、石でアンロック。
+- 実機確認済み: 石のレイヤーブロックが正常に追加され、動作した。
+
 ### 土の道レイヤーブロックとストーンカッターレシピ
 - `nonax:grass_path_layer`（土の道のレイヤーブロック）を追加。`nonax:layers` 1〜7 に対応し、バニラの土の道が1ピクセル低い（15ピクセル）ため、厚さは 1 / 3 / 5 / 7 / 9 / 11 / 13ピクセルとする（1層目だけ1ピクセル、以降2ピクセルずつ。バニラの土の道を重ねたときの3ピクセル段差を避ける）。専用ジオメトリ `geometry.nonax_path_layer_{1,3,...,13}`（`models/blocks/path_layer.geo.json`）を使う。重ね設置は他のレイヤーと同じ処理（`STACKABLE_LAYER_IDS` に登録）で、7層が上限。
 - バニラの `grass_path_top` / `grass_path_side` を `custom_grass_path_layer_top` / `custom_grass_path_layer_side` として複製し、terrain atlasへ登録。破壊時は何も落とさない。
