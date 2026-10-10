@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:jungle_planks_layer_to_jungle_planks"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:plank_layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:jungle_planks_layer"
+      },
+      {
+        "item": "nonax:jungle_planks_layer"
+      },
+      {
+        "item": "nonax:jungle_planks_layer"
+      },
+      {
+        "item": "nonax:jungle_planks_layer"
+      },
+      {
+        "item": "nonax:jungle_planks_layer"
+      },
+      {
+        "item": "nonax:jungle_planks_layer"
+      },
+      {
+        "item": "nonax:jungle_planks_layer"
+      },
+      {
+        "item": "nonax:jungle_planks_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:jungle_planks",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:jungle_planks_layer"
+      }
+    ]
+  }
+}

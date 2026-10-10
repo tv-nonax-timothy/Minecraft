@@ -1,0 +1,26 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:recipe_dark_oak_planks_layer"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:plank_layer_blocks",
+    "ingredients": [
+      {
+        "item": "minecraft:dark_oak_planks"
+      }
+    ],
+    "result": {
+      "item": "nonax:dark_oak_planks_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:dark_oak_planks"
+      }
+    ]
+  }
+}

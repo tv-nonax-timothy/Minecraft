@@ -116,6 +116,27 @@
               "nonax:poplar_wall",
               "nonax:glass_wall"
             ]
+          },
+          {
+            "group_identifier": {
+              "icon": "nonax:oak_planks_layer",
+              "name": "nonax:plank_layer_blocks_group"
+            },
+            "items": [
+              "nonax:oak_planks_layer",
+              "nonax:spruce_planks_layer",
+              "nonax:birch_planks_layer",
+              "nonax:jungle_planks_layer",
+              "nonax:acacia_planks_layer",
+              "nonax:dark_oak_planks_layer",
+              "nonax:mangrove_planks_layer",
+              "nonax:cherry_planks_layer",
+              "nonax:bamboo_planks_layer",
+              "nonax:crimson_planks_layer",
+              "nonax:warped_planks_layer",
+              "nonax:pale_oak_planks_layer",
+              "nonax:poplar_planks_layer"
+            ]
           }
         ]
       }

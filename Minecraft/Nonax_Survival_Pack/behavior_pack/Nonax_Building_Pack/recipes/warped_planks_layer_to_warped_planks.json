@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:warped_planks_layer_to_warped_planks"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:plank_layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:warped_planks_layer"
+      },
+      {
+        "item": "nonax:warped_planks_layer"
+      },
+      {
+        "item": "nonax:warped_planks_layer"
+      },
+      {
+        "item": "nonax:warped_planks_layer"
+      },
+      {
+        "item": "nonax:warped_planks_layer"
+      },
+      {
+        "item": "nonax:warped_planks_layer"
+      },
+      {
+        "item": "nonax:warped_planks_layer"
+      },
+      {
+        "item": "nonax:warped_planks_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:warped_planks",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:warped_planks_layer"
+      }
+    ]
+  }
+}

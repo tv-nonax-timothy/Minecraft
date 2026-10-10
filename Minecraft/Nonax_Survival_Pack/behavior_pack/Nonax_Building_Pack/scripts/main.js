@@ -74,7 +74,20 @@ const STACKABLE_LAYER_IDS = new Set([
   "nonax:pale_oak_log_layer",
   "nonax:stripped_pale_oak_log_layer",
   "nonax:poplar_log_layer",
-  "nonax:stripped_poplar_log_layer"
+  "nonax:stripped_poplar_log_layer",
+  "nonax:oak_planks_layer",
+  "nonax:spruce_planks_layer",
+  "nonax:birch_planks_layer",
+  "nonax:jungle_planks_layer",
+  "nonax:acacia_planks_layer",
+  "nonax:dark_oak_planks_layer",
+  "nonax:mangrove_planks_layer",
+  "nonax:cherry_planks_layer",
+  "nonax:bamboo_planks_layer",
+  "nonax:crimson_planks_layer",
+  "nonax:warped_planks_layer",
+  "nonax:pale_oak_planks_layer",
+  "nonax:poplar_planks_layer"
 ]);
 const LOG_LAYER_IDS = new Set([
   "nonax:oak_log_layer",
@@ -96,7 +109,20 @@ const LOG_LAYER_IDS = new Set([
   "nonax:pale_oak_log_layer",
   "nonax:stripped_pale_oak_log_layer",
   "nonax:poplar_log_layer",
-  "nonax:stripped_poplar_log_layer"
+  "nonax:stripped_poplar_log_layer",
+  "nonax:oak_planks_layer",
+  "nonax:spruce_planks_layer",
+  "nonax:birch_planks_layer",
+  "nonax:jungle_planks_layer",
+  "nonax:acacia_planks_layer",
+  "nonax:dark_oak_planks_layer",
+  "nonax:mangrove_planks_layer",
+  "nonax:cherry_planks_layer",
+  "nonax:bamboo_planks_layer",
+  "nonax:crimson_planks_layer",
+  "nonax:warped_planks_layer",
+  "nonax:pale_oak_planks_layer",
+  "nonax:poplar_planks_layer"
 ]);
 const DIRECTIONAL_LAYER_EXCLUDED_IDS = new Set([
   "nonax:dirt_layer",

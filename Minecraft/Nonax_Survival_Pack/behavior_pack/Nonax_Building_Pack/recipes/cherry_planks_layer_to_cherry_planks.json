@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:cherry_planks_layer_to_cherry_planks"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:plank_layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:cherry_planks_layer"
+      },
+      {
+        "item": "nonax:cherry_planks_layer"
+      },
+      {
+        "item": "nonax:cherry_planks_layer"
+      },
+      {
+        "item": "nonax:cherry_planks_layer"
+      },
+      {
+        "item": "nonax:cherry_planks_layer"
+      },
+      {
+        "item": "nonax:cherry_planks_layer"
+      },
+      {
+        "item": "nonax:cherry_planks_layer"
+      },
+      {
+        "item": "nonax:cherry_planks_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:cherry_planks",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:cherry_planks_layer"
+      }
+    ]
+  }
+}

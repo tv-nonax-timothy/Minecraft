@@ -373,6 +373,33 @@
     },
     "custom_stripped_poplar_log_top": {
       "textures": "textures/nonax/blocks/custom_stripped_poplar_log_top"
+    },
+    "custom_planks_oak": {
+      "textures": "textures/nonax/blocks/custom_planks_oak"
+    },
+    "custom_planks_spruce": {
+      "textures": "textures/nonax/blocks/custom_planks_spruce"
+    },
+    "custom_planks_birch": {
+      "textures": "textures/nonax/blocks/custom_planks_birch"
+    },
+    "custom_planks_jungle": {
+      "textures": "textures/nonax/blocks/custom_planks_jungle"
+    },
+    "custom_planks_acacia": {
+      "textures": "textures/nonax/blocks/custom_planks_acacia"
+    },
+    "custom_planks_big_oak": {
+      "textures": "textures/nonax/blocks/custom_planks_big_oak"
+    },
+    "custom_bamboo_planks": {
+      "textures": "textures/nonax/blocks/custom_bamboo_planks"
+    },
+    "custom_crimson_planks": {
+      "textures": "textures/nonax/blocks/custom_crimson_planks"
+    },
+    "custom_warped_planks": {
+      "textures": "textures/nonax/blocks/custom_warped_planks"
     }
   }
 }
