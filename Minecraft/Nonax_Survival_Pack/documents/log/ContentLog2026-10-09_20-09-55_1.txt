@@ -1,0 +1,58 @@
+20:10:04[Scripting][verbose]-Plugin Discovered [Nonax Building Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+20:10:05[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server] from [2.1.0] to [2.10.0] requested by [Nonax Building Pack (Behavior) - 1.0.0].
+
+20:10:05[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server-bindings] from [2.1.0] to [2.10.0] requested by [@minecraft/server - 2.1.0].
+
+20:10:36[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:10:37[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:10:45[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:10:52[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:10:53[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:10:54[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:11:01[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:11:48[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:13:09[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:13:23[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:05[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:08[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:11[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:24[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:26[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:27[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:31[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:31[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:35[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:37[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:38[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:44[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:14:55[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:17:04[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+20:17:11[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+

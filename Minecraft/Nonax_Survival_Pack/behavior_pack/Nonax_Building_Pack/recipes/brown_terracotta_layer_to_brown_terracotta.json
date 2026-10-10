@@ -1,0 +1,47 @@
+{
+    "format_version":  "1.20.10",
+    "minecraft:recipe_shapeless":  {
+                                       "description":  {
+                                                           "identifier":  "nonax:brown_terracotta_layer_to_brown_terracotta"
+                                                       },
+                                       "tags":  [
+                                                    "crafting_table"
+                                                ],
+                                       "group":  "nonax:layer_blocks",
+                                       "ingredients":  [
+                                                           {
+                                                               "item":  "nonax:brown_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brown_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brown_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brown_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brown_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brown_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brown_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brown_terracotta_layer"
+                                                           }
+                                                       ],
+                                       "result":  {
+                                                      "item":  "minecraft:brown_terracotta",
+                                                      "count":  1
+                                                  },
+                                       "unlock":  [
+                                                      {
+                                                          "item":  "nonax:brown_terracotta_layer"
+                                                      }
+                                                  ]
+                                   }
+}

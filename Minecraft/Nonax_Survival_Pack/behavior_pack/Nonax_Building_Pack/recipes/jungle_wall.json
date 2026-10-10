@@ -3,6 +3,7 @@
   "minecraft:recipe_shaped": {
     "description": { "identifier": "nonax:recipe_jungle_wall" },
     "tags": ["crafting_table"],
+    "group": "nonax:walls",
     "pattern": ["###", " # ", "###"],
     "key": { "#": { "item": "minecraft:jungle_planks" } },
     "result": { "item": "nonax:jungle_wall", "count": 6 },

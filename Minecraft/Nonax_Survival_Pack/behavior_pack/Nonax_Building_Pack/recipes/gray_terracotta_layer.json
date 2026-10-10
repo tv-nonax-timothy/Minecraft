@@ -1,0 +1,26 @@
+{
+    "format_version":  "1.20.10",
+    "minecraft:recipe_shapeless":  {
+                                       "description":  {
+                                                           "identifier":  "nonax:recipe_gray_terracotta_layer"
+                                                       },
+                                       "tags":  [
+                                                    "crafting_table"
+                                                ],
+                                       "group":  "nonax:layer_blocks",
+                                       "ingredients":  [
+                                                           {
+                                                               "item":  "minecraft:gray_terracotta"
+                                                           }
+                                                       ],
+                                       "result":  {
+                                                      "item":  "nonax:gray_terracotta_layer",
+                                                      "count":  8
+                                                  },
+                                       "unlock":  [
+                                                      {
+                                                          "item":  "minecraft:gray_terracotta"
+                                                      }
+                                                  ]
+                                   }
+}

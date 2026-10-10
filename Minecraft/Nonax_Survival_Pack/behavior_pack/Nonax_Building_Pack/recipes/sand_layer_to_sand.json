@@ -1,0 +1,20 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": { "identifier": "nonax:sand_layer_to_sand" },
+    "tags": ["crafting_table"],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      { "item": "nonax:sand_layer" },
+      { "item": "nonax:sand_layer" },
+      { "item": "nonax:sand_layer" },
+      { "item": "nonax:sand_layer" },
+      { "item": "nonax:sand_layer" },
+      { "item": "nonax:sand_layer" },
+      { "item": "nonax:sand_layer" },
+      { "item": "nonax:sand_layer" }
+    ],
+    "result": { "item": "minecraft:sand", "count": 1 },
+    "unlock": [{ "item": "nonax:sand_layer" }]
+  }
+}

@@ -1,0 +1,47 @@
+{
+    "format_version":  "1.20.10",
+    "minecraft:recipe_shapeless":  {
+                                       "description":  {
+                                                           "identifier":  "nonax:mud_bricks_layer_to_mud_bricks"
+                                                       },
+                                       "tags":  [
+                                                    "crafting_table"
+                                                ],
+                                       "group":  "nonax:layer_blocks",
+                                       "ingredients":  [
+                                                           {
+                                                               "item":  "nonax:mud_bricks_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:mud_bricks_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:mud_bricks_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:mud_bricks_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:mud_bricks_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:mud_bricks_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:mud_bricks_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:mud_bricks_layer"
+                                                           }
+                                                       ],
+                                       "result":  {
+                                                      "item":  "minecraft:mud_bricks",
+                                                      "count":  1
+                                                  },
+                                       "unlock":  [
+                                                      {
+                                                          "item":  "nonax:mud_bricks_layer"
+                                                      }
+                                                  ]
+                                   }
+}

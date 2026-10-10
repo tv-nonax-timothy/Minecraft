@@ -1,0 +1,96 @@
+{
+    "format_version":  "1.21.60",
+    "minecraft:crafting_items_catalog":  {
+                                             "categories":  [
+                                                                {
+                                                                    "category_name":  "nature",
+                                                                    "groups":  [
+                                                                                   {
+                                                                                       "group_identifier":  {
+                                                                                                                "icon":  "nonax:stone_layer",
+                                                                                                                "name":  "nonax:layer_blocks_group"
+                                                                                                            },
+                                                                                       "items":  [
+                                                                                                     "nonax:grass_layer",
+                                                                                                     "nonax:cobblestone_layer",
+                                                                                                     "nonax:mossy_cobblestone_layer",
+                                                                                                     "nonax:sandstone_layer",
+                                                                                                     "nonax:granite_layer",
+                                                                                                     "nonax:diorite_layer",
+                                                                                                     "nonax:andesite_layer",
+                                                                                                     "nonax:gravel_layer",
+                                                                                                     "nonax:sand_layer",
+                                                                                                     "nonax:smooth_stone_layer",
+                                                                                                     "nonax:clay_layer",
+                                                                                                     "nonax:red_sand_layer",
+                                                                                                     "nonax:red_sandstone_layer",
+                                                                                                     "nonax:tuff_layer",
+                                                                                                     "nonax:deepslate_layer",
+                                                                                                     "nonax:calcite_layer",
+                                                                                                     "nonax:rooted_dirt_layer",
+                                                                                                     "nonax:coarse_dirt_layer",
+                                                                                                     "nonax:podzol_layer",
+                                                                                                     "nonax:mycelium_layer",
+                                                                                                     "nonax:grass_path_layer",
+                                                                                                     "nonax:stone_layer",
+                                                                                                     "nonax:packed_mud_layer",
+                                                                                                     "nonax:mud_bricks_layer",
+                                                                                                     "nonax:chiseled_tuff_bricks_layer",
+                                                                                                     "nonax:brick_block_layer",
+                                                                                                     "nonax:chiseled_stone_bricks_layer",
+                                                                                                     "nonax:cracked_stone_bricks_layer",
+                                                                                                     "nonax:mossy_stone_bricks_layer",
+                                                                                                     "nonax:stone_bricks_layer",
+                                                                                                     "nonax:tuff_bricks_layer",
+                                                                                                     "nonax:cracked_deepslate_bricks_layer",
+                                                                                                     "nonax:cracked_deepslate_tiles_layer",
+                                                                                                     "nonax:deepslate_bricks_layer",
+                                                                                                     "nonax:deepslate_tiles_layer",
+                                                                                                     "nonax:black_terracotta_layer",
+                                                                                                     "nonax:blue_terracotta_layer",
+                                                                                                     "nonax:brown_terracotta_layer",
+                                                                                                     "nonax:cyan_terracotta_layer",
+                                                                                                     "nonax:gray_terracotta_layer",
+                                                                                                     "nonax:green_terracotta_layer",
+                                                                                                     "nonax:light_blue_terracotta_layer",
+                                                                                                     "nonax:lime_terracotta_layer",
+                                                                                                     "nonax:magenta_terracotta_layer",
+                                                                                                     "nonax:orange_terracotta_layer",
+                                                                                                     "nonax:pink_terracotta_layer",
+                                                                                                     "nonax:purple_terracotta_layer",
+                                                                                                     "nonax:red_terracotta_layer",
+                                                                                                     "nonax:silver_terracotta_layer",
+                                                                                                     "nonax:white_terracotta_layer",
+                                                                                                     "nonax:yellow_terracotta_layer",
+                                                                                                     "nonax:terracotta_layer"
+                                                                                                 ]
+                                                                                   }
+                                                                               ]
+                                                                },
+                                                                {
+                                                                    "category_name":  "construction",
+                                                                    "groups":  [
+                                                                                   {
+                                                                                       "group_identifier":  {
+                                                                                                                "icon":  "nonax:owk_wall",
+                                                                                                                "name":  "nonax:wall_blocks_group"
+                                                                                                            },
+                                                                                       "items":  [
+                                                                                                     "nonax:acacia_wall",
+                                                                                                     "nonax:owk_wall",
+                                                                                                     "nonax:jungle_wall",
+                                                                                                     "nonax:birch_wall",
+                                                                                                     "nonax:dark_owk_wall",
+                                                                                                     "nonax:spruce_wall",
+                                                                                                     "nonax:mangrove_wall",
+                                                                                                     "nonax:cherry_wall",
+                                                                                                     "nonax:pale_oak_wall",
+                                                                                                     "nonax:poplar_wall",
+                                                                                                     "nonax:glass_wall"
+                                                                                                 ]
+                                                                                   }
+                                                                               ]
+                                                                }
+                                                            ]
+                                         }
+}

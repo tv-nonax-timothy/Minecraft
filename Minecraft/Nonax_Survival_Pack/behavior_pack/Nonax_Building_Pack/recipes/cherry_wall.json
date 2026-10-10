@@ -3,6 +3,7 @@
   "minecraft:recipe_shaped": {
     "description": { "identifier": "nonax:recipe_cherry_wall" },
     "tags": ["crafting_table"],
+    "group": "nonax:walls",
     "pattern": ["###", " # ", "###"],
     "key": { "#": { "item": "minecraft:cherry_planks" } },
     "result": { "item": "nonax:cherry_wall", "count": 6 },

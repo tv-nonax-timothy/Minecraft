@@ -1,0 +1,20 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": { "identifier": "nonax:clay_layer_to_clay" },
+    "tags": ["crafting_table"],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      { "item": "nonax:clay_layer" },
+      { "item": "nonax:clay_layer" },
+      { "item": "nonax:clay_layer" },
+      { "item": "nonax:clay_layer" },
+      { "item": "nonax:clay_layer" },
+      { "item": "nonax:clay_layer" },
+      { "item": "nonax:clay_layer" },
+      { "item": "nonax:clay_layer" }
+    ],
+    "result": { "item": "minecraft:clay", "count": 1 },
+    "unlock": [{ "item": "nonax:clay_layer" }]
+  }
+}

@@ -1,0 +1,26 @@
+{
+    "format_version":  "1.20.10",
+    "minecraft:recipe_shapeless":  {
+                                       "description":  {
+                                                           "identifier":  "nonax:recipe_chiseled_tuff_bricks_layer"
+                                                       },
+                                       "tags":  [
+                                                    "crafting_table"
+                                                ],
+                                       "group":  "nonax:layer_blocks",
+                                       "ingredients":  [
+                                                           {
+                                                               "item":  "minecraft:chiseled_tuff_bricks"
+                                                           }
+                                                       ],
+                                       "result":  {
+                                                      "item":  "nonax:chiseled_tuff_bricks_layer",
+                                                      "count":  8
+                                                  },
+                                       "unlock":  [
+                                                      {
+                                                          "item":  "minecraft:chiseled_tuff_bricks"
+                                                      }
+                                                  ]
+                                   }
+}

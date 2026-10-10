@@ -3,6 +3,7 @@
   "minecraft:recipe_shaped": {
     "description": { "identifier": "nonax:recipe_birch_wall" },
     "tags": ["crafting_table"],
+    "group": "nonax:walls",
     "pattern": ["###", " # ", "###"],
     "key": { "#": { "item": "minecraft:birch_planks" } },
     "result": { "item": "nonax:birch_wall", "count": 6 },

@@ -1,0 +1,20 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": { "identifier": "nonax:mossy_cobblestone_layer_to_mossy_cobblestone" },
+    "tags": ["crafting_table"],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      { "item": "nonax:mossy_cobblestone_layer" },
+      { "item": "nonax:mossy_cobblestone_layer" },
+      { "item": "nonax:mossy_cobblestone_layer" },
+      { "item": "nonax:mossy_cobblestone_layer" },
+      { "item": "nonax:mossy_cobblestone_layer" },
+      { "item": "nonax:mossy_cobblestone_layer" },
+      { "item": "nonax:mossy_cobblestone_layer" },
+      { "item": "nonax:mossy_cobblestone_layer" }
+    ],
+    "result": { "item": "minecraft:mossy_cobblestone", "count": 1 },
+    "unlock": [{ "item": "nonax:mossy_cobblestone_layer" }]
+  }
+}

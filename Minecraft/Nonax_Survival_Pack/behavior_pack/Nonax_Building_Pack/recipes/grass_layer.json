@@ -5,6 +5,7 @@
       "identifier": "nonax:stonecutter_grass_layer"
     },
     "tags": ["stonecutter"],
+    "group": "nonax:layer_blocks",
     "priority": 0,
     "ingredients": [
       {

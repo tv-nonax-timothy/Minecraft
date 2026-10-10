@@ -1,0 +1,20 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": { "identifier": "nonax:stone_layer_to_stone" },
+    "tags": ["crafting_table"],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      { "item": "nonax:stone_layer" },
+      { "item": "nonax:stone_layer" },
+      { "item": "nonax:stone_layer" },
+      { "item": "nonax:stone_layer" },
+      { "item": "nonax:stone_layer" },
+      { "item": "nonax:stone_layer" },
+      { "item": "nonax:stone_layer" },
+      { "item": "nonax:stone_layer" }
+    ],
+    "result": { "item": "minecraft:stone", "count": 1 },
+    "unlock": [{ "item": "nonax:stone_layer" }]
+  }
+}

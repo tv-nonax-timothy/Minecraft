@@ -1,0 +1,20 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": { "identifier": "nonax:smooth_stone_layer_to_smooth_stone" },
+    "tags": ["crafting_table"],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      { "item": "nonax:smooth_stone_layer" },
+      { "item": "nonax:smooth_stone_layer" },
+      { "item": "nonax:smooth_stone_layer" },
+      { "item": "nonax:smooth_stone_layer" },
+      { "item": "nonax:smooth_stone_layer" },
+      { "item": "nonax:smooth_stone_layer" },
+      { "item": "nonax:smooth_stone_layer" },
+      { "item": "nonax:smooth_stone_layer" }
+    ],
+    "result": { "item": "minecraft:smooth_stone", "count": 1 },
+    "unlock": [{ "item": "nonax:smooth_stone_layer" }]
+  }
+}

@@ -1,0 +1,28 @@
+09:30:18[Scripting][verbose]-Plugin Discovered [Nonax Building Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+09:30:18[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server] from [2.1.0] to [2.10.0] requested by [Nonax Building Pack (Behavior) - 1.0.0].
+
+09:30:18[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server-bindings] from [2.1.0] to [2.10.0] requested by [@minecraft/server - 2.1.0].
+
+09:30:19[Recipes][error]-recipes/silver_terracotta_layer.json | nonax:recipe_silver_terracotta_layer | The Item: minecraft:silver_terracotta is missing or invalid, can't make the recipe
+
+
+09:30:19[Recipes][error]-recipes/silver_terracotta_layer.json | nonax:recipe_silver_terracotta_layer | Recipe: nonax:recipe_silver_terracotta_layer has an invalid unlock ingredient
+
+
+09:30:19[Recipes][error]-recipes/silver_terracotta_layer.json | nonax:recipe_silver_terracotta_layer | The Item: minecraft:silver_terracotta is missing or invalid, can't make the recipe
+
+
+09:30:19[Recipes][error]-recipes/silver_terracotta_layer.json | nonax:recipe_silver_terracotta_layer | Recipe result malformed
+
+
+09:30:19[Recipes][error]-recipes/silver_terracotta_layer_to_silver_terracotta.json | nonax:silver_terracotta_layer_to_silver_terracotta | The Item: minecraft:silver_terracotta is missing or invalid, can't make the recipe
+
+
+09:30:19[Recipes][error]-recipes/silver_terracotta_layer_to_silver_terracotta.json | nonax:silver_terracotta_layer_to_silver_terracotta | Recipe result malformed
+
+
+09:30:19[Recipes][warning]-recipes/smooth_stone_layer.json | nonax:recipe_smooth_stone_layer | Recipe "nonax:recipe_smooth_stone_layer" has the same ingredients as nonax:smooth_stone_bricks_layer's recipe but outputs nonax:smooth_stone_layer instead. Adding duplicate crafting_table recipe.
+
+09:30:21[Recipes][warning]-Recipe "nonax:recipe_smooth_stone_layer" has the same ingredients as nonax:smooth_stone_bricks_layer's recipe but outputs nonax:smooth_stone_layer instead. Adding duplicate crafting_table recipe.
+

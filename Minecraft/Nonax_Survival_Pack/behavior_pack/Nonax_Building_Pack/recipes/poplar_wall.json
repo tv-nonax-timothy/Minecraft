@@ -3,6 +3,7 @@
   "minecraft:recipe_shaped": {
     "description": { "identifier": "nonax:recipe_poplar_wall" },
     "tags": ["crafting_table"],
+    "group": "nonax:walls",
     "pattern": ["###", " # ", "###"],
     "key": { "#": { "item": "minecraft:poplar_planks" } },
     "result": { "item": "nonax:poplar_wall", "count": 6 },

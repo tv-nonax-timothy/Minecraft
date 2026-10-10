@@ -1,0 +1,47 @@
+{
+    "format_version":  "1.20.10",
+    "minecraft:recipe_shapeless":  {
+                                       "description":  {
+                                                           "identifier":  "nonax:brick_block_layer_to_brick_block"
+                                                       },
+                                       "tags":  [
+                                                    "crafting_table"
+                                                ],
+                                       "group":  "nonax:layer_blocks",
+                                       "ingredients":  [
+                                                           {
+                                                               "item":  "nonax:brick_block_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brick_block_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brick_block_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brick_block_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brick_block_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brick_block_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brick_block_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:brick_block_layer"
+                                                           }
+                                                       ],
+                                       "result":  {
+                                                      "item":  "minecraft:brick_block",
+                                                      "count":  1
+                                                  },
+                                       "unlock":  [
+                                                      {
+                                                          "item":  "nonax:brick_block_layer"
+                                                      }
+                                                  ]
+                                   }
+}

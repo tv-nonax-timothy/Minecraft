@@ -1,0 +1,47 @@
+{
+    "format_version":  "1.20.10",
+    "minecraft:recipe_shapeless":  {
+                                       "description":  {
+                                                           "identifier":  "nonax:cracked_deepslate_tiles_layer_to_cracked_deepslate_tiles"
+                                                       },
+                                       "tags":  [
+                                                    "crafting_table"
+                                                ],
+                                       "group":  "nonax:layer_blocks",
+                                       "ingredients":  [
+                                                           {
+                                                               "item":  "nonax:cracked_deepslate_tiles_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:cracked_deepslate_tiles_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:cracked_deepslate_tiles_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:cracked_deepslate_tiles_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:cracked_deepslate_tiles_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:cracked_deepslate_tiles_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:cracked_deepslate_tiles_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:cracked_deepslate_tiles_layer"
+                                                           }
+                                                       ],
+                                       "result":  {
+                                                      "item":  "minecraft:cracked_deepslate_tiles",
+                                                      "count":  1
+                                                  },
+                                       "unlock":  [
+                                                      {
+                                                          "item":  "nonax:cracked_deepslate_tiles_layer"
+                                                      }
+                                                  ]
+                                   }
+}

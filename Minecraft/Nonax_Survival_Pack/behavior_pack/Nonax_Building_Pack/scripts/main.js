@@ -24,7 +24,37 @@ const STACKABLE_LAYER_IDS = new Set([
   "nonax:podzol_layer",
   "nonax:mycelium_layer",
   "nonax:grass_path_layer",
-  "nonax:stone_layer"
+  "nonax:stone_layer",
+  "nonax:packed_mud_layer",
+  "nonax:mud_bricks_layer",
+  "nonax:chiseled_tuff_bricks_layer",
+  "nonax:brick_block_layer",
+  "nonax:chiseled_stone_bricks_layer",
+  "nonax:cracked_stone_bricks_layer",
+  "nonax:mossy_stone_bricks_layer",
+  "nonax:stone_bricks_layer",
+  "nonax:tuff_bricks_layer",
+  "nonax:cracked_deepslate_bricks_layer",
+  "nonax:cracked_deepslate_tiles_layer",
+  "nonax:deepslate_bricks_layer",
+  "nonax:deepslate_tiles_layer",
+  "nonax:black_terracotta_layer",
+  "nonax:blue_terracotta_layer",
+  "nonax:brown_terracotta_layer",
+  "nonax:cyan_terracotta_layer",
+  "nonax:gray_terracotta_layer",
+  "nonax:green_terracotta_layer",
+  "nonax:light_blue_terracotta_layer",
+  "nonax:lime_terracotta_layer",
+  "nonax:magenta_terracotta_layer",
+  "nonax:orange_terracotta_layer",
+  "nonax:pink_terracotta_layer",
+  "nonax:purple_terracotta_layer",
+  "nonax:red_terracotta_layer",
+  "nonax:silver_terracotta_layer",
+  "nonax:white_terracotta_layer",
+  "nonax:yellow_terracotta_layer",
+  "nonax:terracotta_layer"
 ]);
 const GLASS_SLAB_ID = "nonax:glass_slab";
 const WALL_IDS = new Set([
@@ -357,6 +387,29 @@ world.afterEvents.playerBreakBlock.subscribe((event) => {
     (typeof brokenBlockPermutation.matches === "function" && brokenBlockPermutation.matches(GLASS_SLAB_ID)) ||
     brokenBlockPermutation.type?.id === GLASS_SLAB_ID;
 
+  const brokenTypeId = brokenBlockPermutation.type?.id;
+  if (brokenTypeId === GRASS_LAYER_ID || STACKABLE_LAYER_IDS.has(brokenTypeId)) {
+    if (isPlayerCreative(player)) return;
+    const layerCount = brokenBlockPermutation.getState("nonax:layers");
+    if (typeof layerCount !== "number" || layerCount < 1 || layerCount > 7) {
+      console.warn(`レイヤーブロックの層数 state が不正です: ${brokenTypeId} (${layerCount})`);
+      return;
+    }
+    const dropLocation = {
+      x: block.location.x + 0.5,
+      y: block.location.y + 0.2,
+      z: block.location.z + 0.5
+    };
+    system.run(() => {
+      try {
+        dimension.spawnItem(new ItemStack(brokenTypeId, layerCount), dropLocation);
+      } catch (err) {
+        console.warn(`レイヤーブロックのドロップに失敗しました: ${err}`);
+      }
+    });
+    return;
+  }
+
   if (!isGrassSlab && !isGlassSlab) return;
 
   // クリエイティブモードの場合はドロップしない
@@ -387,23 +440,66 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
   if (!block || !itemStack || !player) return;
 
   const targetId = block.typeId;
-  const maxLayers = targetId === GRASS_LAYER_ID ? 3 : STACKABLE_LAYER_IDS.has(targetId) ? 7 : 0;
-  if (maxLayers > 0 && itemStack.typeId === targetId) {
+  if (itemStack.typeId === GRASS_LAYER_ID || STACKABLE_LAYER_IDS.has(itemStack.typeId)) {
     const faceStr = typeof blockFace === "string" ? blockFace : blockFace?.toString();
-    if (faceStr === "Up" || blockFace === Direction?.Up) {
+    const faceName = ["North", "South", "East", "West", "Up", "Down"].find(
+      (name) => faceStr?.toLowerCase() === name.toLowerCase() || blockFace === Direction?.[name]
+    );
+    const faceOffsets = {
+      North: { x: 0, y: 0, z: -1 },
+      South: { x: 0, y: 0, z: 1 },
+      East: { x: 1, y: 0, z: 0 },
+      West: { x: -1, y: 0, z: 0 },
+      Up: { x: 0, y: 1, z: 0 },
+      Down: { x: 0, y: -1, z: 0 }
+    };
+    const directTopClick = targetId === itemStack.typeId && faceName === "Up";
+    let stackBlock = directTopClick ? block : undefined;
+
+    if (!stackBlock && targetId !== itemStack.typeId && faceName) {
+      const offset = faceOffsets[faceName];
+      const adjacentPos = {
+        x: block.location.x + offset.x,
+        y: block.location.y + offset.y,
+        z: block.location.z + offset.z
+      };
+      const adjacentBlock = player.dimension.getBlock(adjacentPos);
+      if (adjacentBlock?.typeId === itemStack.typeId) {
+        stackBlock = adjacentBlock;
+      } else if (faceName !== "Up" && faceName !== "Down" && faceLocation?.y >= 0.5) {
+        const layerBelow = player.dimension.getBlock({
+          x: adjacentPos.x,
+          y: adjacentPos.y - 1,
+          z: adjacentPos.z
+        });
+        if (layerBelow?.typeId === itemStack.typeId) {
+          stackBlock = layerBelow;
+        }
+      }
+    }
+
+    if (stackBlock) {
       event.cancel = true;
-      const blockPos = { x: block.location.x, y: block.location.y, z: block.location.z };
+      const stackId = itemStack.typeId;
+      const blockPos = {
+        x: stackBlock.location.x,
+        y: stackBlock.location.y,
+        z: stackBlock.location.z
+      };
+      const currentLayers = stackBlock.permutation.getState("nonax:layers");
+      if (typeof currentLayers !== "number") {
+        throw new Error("草レイヤーブロックの層数 state が不正です。");
+      }
+      const stackMax = stackId === GRASS_LAYER_ID ? 7 : STACKABLE_LAYER_IDS.has(stackId) ? 7 : 0;
+      if (currentLayers >= stackMax) return;
 
       system.run(() => {
         try {
           const targetBlock = player.dimension.getBlock(blockPos);
-          if (!targetBlock || targetBlock.typeId !== targetId) return;
+          if (!targetBlock || targetBlock.typeId !== stackId) return;
 
-          const currentLayers = targetBlock.permutation.getState("nonax:layers");
-          if (typeof currentLayers !== "number") {
-            throw new Error("草レイヤーブロックの層数 state が不正です。");
-          }
-          if (currentLayers >= maxLayers) return;
+          const latestLayers = targetBlock.permutation.getState("nonax:layers");
+          if (latestLayers !== currentLayers || latestLayers >= stackMax) return;
 
           let inventory;
           let slot;
@@ -412,13 +508,13 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
             inventory = player.getComponent("minecraft:inventory");
             slot = player.selectedSlotIndex;
             currentItem = inventory?.container?.getItem(slot);
-            if (!currentItem || currentItem.typeId !== targetId) {
+            if (!currentItem || currentItem.typeId !== stackId) {
               throw new Error("手持ちのレイヤーブロックを確認できません。");
             }
           }
 
           const previousPermutation = targetBlock.permutation;
-          targetBlock.setPermutation(BlockPermutation.resolve(targetId, {
+          targetBlock.setPermutation(BlockPermutation.resolve(stackId, {
             "nonax:layers": currentLayers + 1
           }));
 

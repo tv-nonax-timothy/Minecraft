@@ -1,0 +1,47 @@
+{
+    "format_version":  "1.20.10",
+    "minecraft:recipe_shapeless":  {
+                                       "description":  {
+                                                           "identifier":  "nonax:silver_terracotta_layer_to_light_gray_terracotta"
+                                                       },
+                                       "tags":  [
+                                                    "crafting_table"
+                                                ],
+                                       "group":  "nonax:layer_blocks",
+                                       "ingredients":  [
+                                                           {
+                                                               "item":  "nonax:silver_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:silver_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:silver_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:silver_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:silver_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:silver_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:silver_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:silver_terracotta_layer"
+                                                           }
+                                                       ],
+                                       "result":  {
+                                                      "item":  "minecraft:light_gray_terracotta",
+                                                      "count":  1
+                                                  },
+                                       "unlock":  [
+                                                      {
+                                                          "item":  "nonax:silver_terracotta_layer"
+                                                      }
+                                                  ]
+                                   }
+}

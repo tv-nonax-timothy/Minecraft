@@ -3,6 +3,7 @@
   "minecraft:recipe_shaped": {
     "description": { "identifier": "nonax:recipe_mangrove_wall" },
     "tags": ["crafting_table"],
+    "group": "nonax:walls",
     "pattern": ["###", " # ", "###"],
     "key": { "#": { "item": "minecraft:mangrove_planks" } },
     "result": { "item": "nonax:mangrove_wall", "count": 6 },

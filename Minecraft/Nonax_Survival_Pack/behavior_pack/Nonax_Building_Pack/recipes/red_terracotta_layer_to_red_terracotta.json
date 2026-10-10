@@ -1,0 +1,47 @@
+{
+    "format_version":  "1.20.10",
+    "minecraft:recipe_shapeless":  {
+                                       "description":  {
+                                                           "identifier":  "nonax:red_terracotta_layer_to_red_terracotta"
+                                                       },
+                                       "tags":  [
+                                                    "crafting_table"
+                                                ],
+                                       "group":  "nonax:layer_blocks",
+                                       "ingredients":  [
+                                                           {
+                                                               "item":  "nonax:red_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:red_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:red_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:red_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:red_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:red_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:red_terracotta_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:red_terracotta_layer"
+                                                           }
+                                                       ],
+                                       "result":  {
+                                                      "item":  "minecraft:red_terracotta",
+                                                      "count":  1
+                                                  },
+                                       "unlock":  [
+                                                      {
+                                                          "item":  "nonax:red_terracotta_layer"
+                                                      }
+                                                  ]
+                                   }
+}

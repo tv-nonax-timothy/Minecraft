@@ -53,22 +53,26 @@
 - 実機で一覧に出ない場合は、resource packではなくbehavior pack側のブロック定義が読み込まれているかも確認する。
 
 ### 草レイヤーブロック
-- `nonax:grass_layer` は `nonax:layers` state で厚さ2 / 4 / 6ピクセルを切り替える。上面を同じブロックで操作すると、最大3層まで増える。
+- `nonax:grass_layer` は `nonax:layers` state で厚さ2 / 4 / 6 / 8 / 10 / 12 / 14ピクセルを切り替える。上面を同じブロックで操作すると、最大7層まで増える。
 - 草色の自動適用には、草ハーフブロックと同じ `custom_grass_top` / `custom_grass_side_ppl` テクスチャと `tint_method: "grass"` を使う。
-- `minecraft:grass_block` 1個から2個を作成し、草ブロックでレシピをアンロックする。破壊時のドロップを防ぐため、空の loot table を指定する。
+- `minecraft:grass_block` 1個から2個を作成し、草ブロックでレシピをアンロックする。空のloot tableでバニラ側のドロップを抑制し、スクリプトでサバイバル破壊時に破壊時の層数と同数の草レイヤーをドロップする（クリエイティブではドロップなし）。草レイヤー8個から草ブロック1個へ戻す作業台レシピも登録する。
 - クリエイティブ一覧は `menu_category.category: "nature"` に登録する。
 - 実機で確認済みの成功条件:
-  - 同じブロックの上面に重ねると 2 → 4 → 6ピクセルへ増え、ログに `Scripting` のエラーが出ない。
+  - 同じブロックの上面に重ねると 2 → 4 → 6 → 8 → 10 → 12 → 14ピクセルへ増え、最大7層で止まり、ログに `Scripting` のエラーが出ない。
   - サバイバルで手持ちが1個のときもエラーなく消費される。`ItemStack.amount` は 1〜255 のため 0 を設定できず、残り1個は `setItem(slot, undefined)` で空にする。
 
 ### 石材・土砂レイヤーブロック
 - `nonax:cobblestone_layer`、`nonax:mossy_cobblestone_layer`、`nonax:sandstone_layer`、`nonax:granite_layer`、`nonax:diorite_layer`、`nonax:andesite_layer`、`nonax:gravel_layer`、`nonax:sand_layer`、`nonax:smooth_stone_layer`、`nonax:clay_layer`、`nonax:red_sand_layer`、`nonax:red_sandstone_layer`、`nonax:tuff_layer`、`nonax:deepslate_layer`、`nonax:calcite_layer`、`nonax:rooted_dirt_layer`、`nonax:coarse_dirt_layer`、`nonax:podzol_layer`、`nonax:mycelium_layer` の19種類を追加。
-- すべて `nonax:layers` state 1〜7に対応し、厚さはstate×2ピクセル（2〜14ピクセル）。同じ種類のブロックを上面に重ねると1層増え、7層が上限。草レイヤーは従来どおり3層上限。
+- すべて `nonax:layers` state 1〜7に対応し、厚さはstate×2ピクセル（2〜14ピクセル）。同じ種類のブロックを上面に重ねると1層増え、7層が上限。
 - バニラサンプルの各ブロック画像を `textures/nonax/blocks/custom_*_layer*.png` に複製し、terrain atlasへ登録する。面ごとのtop/side画像があるブロックは対応する面へ割り当て、`tint_method` は使わない。
 - 各元ブロック1個を作業台でshapelessレシピに使い、対応レイヤー8個を作成。元ブロックでレシピを解放し、`menu_category` は `nature`。
 - 根付いた土のBedrock item IDは `minecraft:dirt_with_roots`（`minecraft:rooted_dirt` は無効）。レシピ材料とunlockの両方に同じBedrock IDを使う。
-- 破壊時に何も落とさないよう、共有空loot table `loot_tables/blocks/layers_no_drop.json` を参照する。
-- 重ね設置は `playerInteractWithBlock` で上面クリックを捕捉し、state更新後にサバイバルの手持ちを1個消費する。最大層到達時は設置をキャンセルしてアイテムを消費しない。
+- バニラ側の自動ドロップを抑制するため、共有空loot table `loot_tables/blocks/layers_no_drop.json` を参照する。スクリプトでサバイバル破壊時に破壊時の層数（1〜7）と同数のレイヤーブロック自身をドロップし、クリエイティブではドロップしない。対応するレイヤーブロック8個から、各元ブロック1個に戻すshapeless作業台レシピを用意する。
+- 実機確認済み: 積層数に対応したドロップ、作業台でのレイヤーブロックのグループ表示、レイヤーブロック8個から元ブロックへ戻すレシピが正常に動作する。
+- 重ね設置は `playerInteractWithBlock` で上面クリックを捕捉する。側面では、クリック面の隣接位置および上半分をクリックした場合はその直下に同種レイヤーがあるかを確認し、該当レイヤーを積み上げる。非同期処理はクリック時の層数と実行時の層数が一致する場合だけ適用して、同一状態から予約された重複処理による飛び積みを防ぐ。state更新後にサバイバルの手持ちを1個消費する。最大層到達時は設置をキャンセルしてアイテムを消費しない。
+- 建築材・テラコッタレイヤー30種類を追加: 固めた泥、泥レンガ、模様入りの凝灰岩レンガ、レンガ、模様入りの石レンガ、ひび割れた石レンガ、苔むした石レンガ、石レンガ、凝灰岩レンガ、ひび割れた深層岩レンガ/タイル、深層岩レンガ/タイル、通常のテラコッタ、16色のテラコッタ。いずれも2〜14ピクセル（1〜7層）、natureカテゴリ、元ブロック1個から8個の作業台レシピ、8個から元ブロック1個への作業台レシピ、グループカタログ登録、層数と同数のドロップを使う。
+- 薄灰色のテラコッタはバニラの正式ID `minecraft:light_gray_terracotta` をレシピに使用する。テクスチャファイル名はバニラ由来の既存名 `hardened_clay_stained_silver.png` を使用する。
+- 通常のテラコッタのバニラBedrock IDは `minecraft:hardened_clay`。レイヤー作成・復元レシピにこのIDを使う（`minecraft:terracotta` は無効）。
 
 ### 塀の接続除外リスト（WALL_CONNECTION_EXCLUDED_TYPES）
 - 塀が接続しない対象に、全レイヤーブロック（`nonax:grass_layer` と `STACKABLE_LAYER_IDS` の全種類。今後 `STACKABLE_LAYER_IDS` に追加したレイヤーは自動で対象）、松明（通常・壁掛け・ソウル・レッドストーン・消灯・水中・銅）、ランタン（通常・ソウル・銅の各酸化段階とワックス掛け）を追加。
@@ -80,7 +84,7 @@
 
 ### 土の道レイヤーブロックとストーンカッターレシピ
 - `nonax:grass_path_layer`（土の道のレイヤーブロック）を追加。`nonax:layers` 1〜7 に対応し、バニラの土の道が1ピクセル低い（15ピクセル）ため、厚さは 1 / 3 / 5 / 7 / 9 / 11 / 13ピクセルとする（1層目だけ1ピクセル、以降2ピクセルずつ。バニラの土の道を重ねたときの3ピクセル段差を避ける）。専用ジオメトリ `geometry.nonax_path_layer_{1,3,...,13}`（`models/blocks/path_layer.geo.json`）を使う。重ね設置は他のレイヤーと同じ処理（`STACKABLE_LAYER_IDS` に登録）で、7層が上限。
-- バニラの `grass_path_top` / `grass_path_side` を `custom_grass_path_layer_top` / `custom_grass_path_layer_side` として複製し、terrain atlasへ登録。破壊時は何も落とさない。
+- バニラの `grass_path_top` / `grass_path_side` を `custom_grass_path_layer_top` / `custom_grass_path_layer_side` として複製し、terrain atlasへ登録。破壊時は草の道レイヤーブロック自身をドロップし、8個から草ブロック1個へ戻す。
 - 草ブロック1個から、`stonecutter` タグのレシピで `grass_layer` 8個と `grass_path_layer` 8個をそれぞれ作成（石切機で選択）。草ブロックでアンロック。`grass_layer` の旧作業台レシピ（2個）は石切機の8個へ置き換えた。
 - 石切機レシピはバニラ同様に `format_version: 1.20.10` と `priority: 0` を指定する。
 - 実機確認済みの成功条件: 土の道のレイヤーブロックを1 → 3 → 5 → … → 13ピクセルの順に7層まで重ねられ、バニラの土の道の横に置いても段差が出ないこと。
@@ -107,6 +111,7 @@
 - 各レシピは指定の `###` / ` # ` / `###` の形で、対応する板材6枚から塀6個を作成し、板材を `unlock` 条件に設定。
 - 表示名は resource pack の `texts/ja_JP.lang` と `texts/en_US.lang` に登録。
 - ポプラ塀のレシピは `minecraft:poplar_planks` のみで解放し、完成数6。建築タブには `description.menu_category.category: "construction"` を指定し、接続スクリプトの `WALL_IDS` にもIDを登録する。
+- `item_catalog/crafting_item_catalog.json` でレイヤーブロック22種を自然カテゴリの「レイヤーブロック」グループ（代表アイコン `nonax:stone_layer`）、塀11種を建築カテゴリの「塀」グループ（代表アイコン `nonax:owk_wall`）にまとめる。対応するレシピにも共通の `group` を指定する。
 - **形状と接続の自動切替:** 各塀に `nonax:north/east/south/west` のboolean block stateを追加し、`minecraft:geometry.bone_visibility` から対応する4方向の腕を表示制御する。設置・破壊後に対象位置と東西南北の隣接塀のstateを再計算し、既存配置もプレイヤー周辺の周期走査で更新する。
 - 上面図に合わせ、モデルは中央8×8pxと、各方向へ伸びる8px幅×4px長の腕で構成。パーツはY=0〜16pxで同じ高さ。`collision_box` / `selection_box` も高さ16px。
 - 接続判定は空気・液体に加えて `WALL_CONNECTION_EXCLUDED_TYPES` の明示ID（`minecraft:leaf_litter` を含む）と `_slab` / `_carpet` / `_pressure_plate` / `_button` / `_trapdoor` / `_leaves` / `_flower` のsuffixを除外する。自動寸法判定ではなく、低いブロックが追加されたらこのリストへ追記する。

@@ -1,0 +1,40 @@
+08:34:15[Scripting][verbose]-Plugin Discovered [Nonax Building Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+08:34:15[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server] from [2.1.0] to [2.10.0] requested by [Nonax Building Pack (Behavior) - 1.0.0].
+
+08:34:15[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server-bindings] from [2.1.0] to [2.10.0] requested by [@minecraft/server - 2.1.0].
+
+08:34:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:36:08[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:36:54[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:37:05[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:37:33[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:38:01[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:38:36[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:38:51[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:38:52[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:38:55[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:38:56[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:38:58[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:39:06[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:39:06[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:39:07[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:39:11[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+08:39:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+

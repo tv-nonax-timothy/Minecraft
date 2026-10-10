@@ -1,0 +1,47 @@
+{
+    "format_version":  "1.20.10",
+    "minecraft:recipe_shapeless":  {
+                                       "description":  {
+                                                           "identifier":  "nonax:packed_mud_layer_to_packed_mud"
+                                                       },
+                                       "tags":  [
+                                                    "crafting_table"
+                                                ],
+                                       "group":  "nonax:layer_blocks",
+                                       "ingredients":  [
+                                                           {
+                                                               "item":  "nonax:packed_mud_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:packed_mud_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:packed_mud_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:packed_mud_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:packed_mud_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:packed_mud_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:packed_mud_layer"
+                                                           },
+                                                           {
+                                                               "item":  "nonax:packed_mud_layer"
+                                                           }
+                                                       ],
+                                       "result":  {
+                                                      "item":  "minecraft:packed_mud",
+                                                      "count":  1
+                                                  },
+                                       "unlock":  [
+                                                      {
+                                                          "item":  "nonax:packed_mud_layer"
+                                                      }
+                                                  ]
+                                   }
+}

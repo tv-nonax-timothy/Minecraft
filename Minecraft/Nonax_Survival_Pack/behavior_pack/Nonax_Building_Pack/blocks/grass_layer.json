@@ -6,7 +6,7 @@
       "menu_category": { "category": "nature" },
       "is_experimental": false,
       "states": {
-        "nonax:layers": [1, 2, 3]
+        "nonax:layers": [1, 2, 3, 4, 5, 6, 7]
       }
     },
     "components": {
@@ -24,25 +24,25 @@
           "render_method": "opaque"
         },
         "north": {
-          "texture": "custom_grass_top",
+          "texture": "custom_grass_side_block_ppl",
           "tint_method": "grass",
           "alpha_masked_tint": true,
           "render_method": "opaque"
         },
         "south": {
-          "texture": "custom_grass_top",
+          "texture": "custom_grass_side_block_ppl",
           "tint_method": "grass",
           "alpha_masked_tint": true,
           "render_method": "opaque"
         },
         "west": {
-          "texture": "custom_grass_top",
+          "texture": "custom_grass_side_block_ppl",
           "tint_method": "grass",
           "alpha_masked_tint": true,
           "render_method": "opaque"
         },
         "east": {
-          "texture": "custom_grass_top",
+          "texture": "custom_grass_side_block_ppl",
           "tint_method": "grass",
           "alpha_masked_tint": true,
           "render_method": "opaque"
@@ -88,6 +88,62 @@
           "minecraft:selection_box": {
             "origin": [-8, 0, -8],
             "size": [16, 6, 16]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layers') == 4",
+        "components": {
+          "minecraft:geometry": "geometry.custom_grass_layer_8",
+          "minecraft:collision_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 8, 16]
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 8, 16]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layers') == 5",
+        "components": {
+          "minecraft:geometry": "geometry.custom_grass_layer_10",
+          "minecraft:collision_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 10, 16]
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 10, 16]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layers') == 6",
+        "components": {
+          "minecraft:geometry": "geometry.custom_grass_layer_12",
+          "minecraft:collision_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 12, 16]
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 12, 16]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layers') == 7",
+        "components": {
+          "minecraft:geometry": "geometry.custom_grass_layer_14",
+          "minecraft:collision_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 14, 16]
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 0, -8],
+            "size": [16, 14, 16]
           }
         }
       }

@@ -1,0 +1,20 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": { "identifier": "nonax:grass_layer_to_grass_block" },
+    "tags": ["crafting_table"],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      { "item": "nonax:grass_layer" },
+      { "item": "nonax:grass_layer" },
+      { "item": "nonax:grass_layer" },
+      { "item": "nonax:grass_layer" },
+      { "item": "nonax:grass_layer" },
+      { "item": "nonax:grass_layer" },
+      { "item": "nonax:grass_layer" },
+      { "item": "nonax:grass_layer" }
+    ],
+    "result": { "item": "minecraft:grass_block", "count": 1 },
+    "unlock": [{ "item": "nonax:grass_layer" }]
+  }
+}

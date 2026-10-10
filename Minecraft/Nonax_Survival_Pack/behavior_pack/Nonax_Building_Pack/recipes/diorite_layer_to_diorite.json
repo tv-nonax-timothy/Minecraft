@@ -1,0 +1,20 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": { "identifier": "nonax:diorite_layer_to_diorite" },
+    "tags": ["crafting_table"],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      { "item": "nonax:diorite_layer" },
+      { "item": "nonax:diorite_layer" },
+      { "item": "nonax:diorite_layer" },
+      { "item": "nonax:diorite_layer" },
+      { "item": "nonax:diorite_layer" },
+      { "item": "nonax:diorite_layer" },
+      { "item": "nonax:diorite_layer" },
+      { "item": "nonax:diorite_layer" }
+    ],
+    "result": { "item": "minecraft:diorite", "count": 1 },
+    "unlock": [{ "item": "nonax:diorite_layer" }]
+  }
+}

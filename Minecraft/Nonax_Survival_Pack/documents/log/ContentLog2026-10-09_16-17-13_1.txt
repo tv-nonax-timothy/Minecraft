@@ -1,0 +1,14 @@
+16:17:28[Scripting][verbose]-Plugin Discovered [Nonax Building Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+16:17:29[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server] from [2.1.0] to [2.10.0] requested by [Nonax Building Pack (Behavior) - 1.0.0].
+
+16:17:29[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server-bindings] from [2.1.0] to [2.10.0] requested by [@minecraft/server - 2.1.0].
+
+16:18:20[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+16:18:50[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+16:18:51[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+16:19:13[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
