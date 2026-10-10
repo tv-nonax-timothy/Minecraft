@@ -1,262 +1,1350 @@
 {
-    "format_version":  "1.21.120",
-    "minecraft:block":  {
-                            "description":  {
-                                                "identifier":  "nonax:yellow_terracotta_layer",
-                                                "menu_category":  {
-                                                                      "category":  "nature"
-                                                                  },
-                                                "is_experimental":  false,
-                                                "states":  {
-                                                               "nonax:layers":  [
-                                                                                    1,
-                                                                                    2,
-                                                                                    3,
-                                                                                    4,
-                                                                                    5,
-                                                                                    6,
-                                                                                    7
-                                                                                ]
-                                                           }
-                                            },
-                            "components":  {
-                                               "minecraft:loot":  "loot_tables/blocks/layers_no_drop.json",
-                                               "minecraft:geometry":  "geometry.nonax_layer_2",
-                                               "minecraft:material_instances":  {
-                                                                                    "up":  {
-                                                                                               "texture":  "custom_yellow_terracotta_layer",
-                                                                                               "render_method":  "opaque"
-                                                                                           },
-                                                                                    "down":  {
-                                                                                                 "texture":  "custom_yellow_terracotta_layer",
-                                                                                                 "render_method":  "opaque"
-                                                                                             },
-                                                                                    "north":  {
-                                                                                                  "texture":  "custom_yellow_terracotta_layer",
-                                                                                                  "render_method":  "opaque"
-                                                                                              },
-                                                                                    "south":  {
-                                                                                                  "texture":  "custom_yellow_terracotta_layer",
-                                                                                                  "render_method":  "opaque"
-                                                                                              },
-                                                                                    "east":  {
-                                                                                                 "texture":  "custom_yellow_terracotta_layer",
-                                                                                                 "render_method":  "opaque"
-                                                                                             },
-                                                                                    "west":  {
-                                                                                                 "texture":  "custom_yellow_terracotta_layer",
-                                                                                                 "render_method":  "opaque"
-                                                                                             }
-                                                                                },
-                                               "minecraft:destructible_by_mining":  {
-                                                                                        "seconds_to_destroy":  0.2
-                                                                                    },
-                                               "minecraft:collision_box":  {
-                                                                               "origin":  [
-                                                                                              -8,
-                                                                                              0,
-                                                                                              -8
-                                                                                          ],
-                                                                               "size":  [
-                                                                                            16,
-                                                                                            2,
-                                                                                            16
-                                                                                        ]
-                                                                           },
-                                               "minecraft:selection_box":  {
-                                                                               "origin":  [
-                                                                                              -8,
-                                                                                              0,
-                                                                                              -8
-                                                                                          ],
-                                                                               "size":  [
-                                                                                            16,
-                                                                                            2,
-                                                                                            16
-                                                                                        ]
-                                                                           }
-                                           },
-                            "permutations":  [
-                                                 {
-                                                     "condition":  "q.block_state(\u0027nonax:layers\u0027) == 2",
-                                                     "components":  {
-                                                                        "minecraft:geometry":  "geometry.nonax_layer_4",
-                                                                        "minecraft:collision_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     4,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    },
-                                                                        "minecraft:selection_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     4,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    }
-                                                                    }
-                                                 },
-                                                 {
-                                                     "condition":  "q.block_state(\u0027nonax:layers\u0027) == 3",
-                                                     "components":  {
-                                                                        "minecraft:geometry":  "geometry.nonax_layer_6",
-                                                                        "minecraft:collision_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     6,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    },
-                                                                        "minecraft:selection_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     6,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    }
-                                                                    }
-                                                 },
-                                                 {
-                                                     "condition":  "q.block_state(\u0027nonax:layers\u0027) == 4",
-                                                     "components":  {
-                                                                        "minecraft:geometry":  "geometry.nonax_layer_8",
-                                                                        "minecraft:collision_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     8,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    },
-                                                                        "minecraft:selection_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     8,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    }
-                                                                    }
-                                                 },
-                                                 {
-                                                     "condition":  "q.block_state(\u0027nonax:layers\u0027) == 5",
-                                                     "components":  {
-                                                                        "minecraft:geometry":  "geometry.nonax_layer_10",
-                                                                        "minecraft:collision_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     10,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    },
-                                                                        "minecraft:selection_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     10,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    }
-                                                                    }
-                                                 },
-                                                 {
-                                                     "condition":  "q.block_state(\u0027nonax:layers\u0027) == 6",
-                                                     "components":  {
-                                                                        "minecraft:geometry":  "geometry.nonax_layer_12",
-                                                                        "minecraft:collision_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     12,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    },
-                                                                        "minecraft:selection_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     12,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    }
-                                                                    }
-                                                 },
-                                                 {
-                                                     "condition":  "q.block_state(\u0027nonax:layers\u0027) == 7",
-                                                     "components":  {
-                                                                        "minecraft:geometry":  "geometry.nonax_layer_14",
-                                                                        "minecraft:collision_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     14,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    },
-                                                                        "minecraft:selection_box":  {
-                                                                                                        "origin":  [
-                                                                                                                       -8,
-                                                                                                                       0,
-                                                                                                                       -8
-                                                                                                                   ],
-                                                                                                        "size":  [
-                                                                                                                     16,
-                                                                                                                     14,
-                                                                                                                     16
-                                                                                                                 ]
-                                                                                                    }
-                                                                    }
-                                                 }
-                                             ]
-                        }
+  "format_version": "1.21.120",
+  "minecraft:block": {
+    "description": {
+      "identifier": "nonax:yellow_terracotta_layer",
+      "menu_category": {
+        "category": "nature"
+      },
+      "is_experimental": false,
+      "states": {
+        "nonax:layers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "nonax:layer_facing": [
+          4,
+          0,
+          1,
+          2,
+          3,
+          5
+        ]
+      }
+    },
+    "components": {
+      "minecraft:loot": "loot_tables/blocks/layers_no_drop.json",
+      "minecraft:geometry": "geometry.nonax_layer_up_2",
+      "minecraft:material_instances": {
+        "up": {
+          "texture": "custom_yellow_terracotta_layer",
+          "render_method": "opaque"
+        },
+        "down": {
+          "texture": "custom_yellow_terracotta_layer",
+          "render_method": "opaque"
+        },
+        "north": {
+          "texture": "custom_yellow_terracotta_layer",
+          "render_method": "opaque"
+        },
+        "south": {
+          "texture": "custom_yellow_terracotta_layer",
+          "render_method": "opaque"
+        },
+        "east": {
+          "texture": "custom_yellow_terracotta_layer",
+          "render_method": "opaque"
+        },
+        "west": {
+          "texture": "custom_yellow_terracotta_layer",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0.2
+      },
+      "minecraft:collision_box": {
+        "origin": [
+          -8,
+          0,
+          -8
+        ],
+        "size": [
+          16,
+          2,
+          16
+        ]
+      },
+      "minecraft:selection_box": {
+        "origin": [
+          -8,
+          0,
+          -8
+        ],
+        "size": [
+          16,
+          2,
+          16
+        ]
+      }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 0 && q.block_state('nonax:layers') == 1",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_north_2",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              6
+            ],
+            "size": [
+              16,
+              16,
+              2
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              6
+            ],
+            "size": [
+              16,
+              16,
+              2
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 0 && q.block_state('nonax:layers') == 2",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_north_4",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              4
+            ],
+            "size": [
+              16,
+              16,
+              4
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              4
+            ],
+            "size": [
+              16,
+              16,
+              4
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 0 && q.block_state('nonax:layers') == 3",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_north_6",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              2
+            ],
+            "size": [
+              16,
+              16,
+              6
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              2
+            ],
+            "size": [
+              16,
+              16,
+              6
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 0 && q.block_state('nonax:layers') == 4",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_north_8",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              0
+            ],
+            "size": [
+              16,
+              16,
+              8
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              0
+            ],
+            "size": [
+              16,
+              16,
+              8
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 0 && q.block_state('nonax:layers') == 5",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_north_10",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -2
+            ],
+            "size": [
+              16,
+              16,
+              10
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -2
+            ],
+            "size": [
+              16,
+              16,
+              10
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 0 && q.block_state('nonax:layers') == 6",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_north_12",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -4
+            ],
+            "size": [
+              16,
+              16,
+              12
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -4
+            ],
+            "size": [
+              16,
+              16,
+              12
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 0 && q.block_state('nonax:layers') == 7",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_north_14",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -6
+            ],
+            "size": [
+              16,
+              16,
+              14
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -6
+            ],
+            "size": [
+              16,
+              16,
+              14
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 1 && q.block_state('nonax:layers') == 1",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_east_2",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              2,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              2,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 1 && q.block_state('nonax:layers') == 2",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_east_4",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              4,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              4,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 1 && q.block_state('nonax:layers') == 3",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_east_6",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              6,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              6,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 1 && q.block_state('nonax:layers') == 4",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_east_8",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              8,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              8,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 1 && q.block_state('nonax:layers') == 5",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_east_10",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              10,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              10,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 1 && q.block_state('nonax:layers') == 6",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_east_12",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              12,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              12,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 1 && q.block_state('nonax:layers') == 7",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_east_14",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              14,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              14,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 2 && q.block_state('nonax:layers') == 1",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_south_2",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              2
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              2
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 2 && q.block_state('nonax:layers') == 2",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_south_4",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              4
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              4
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 2 && q.block_state('nonax:layers') == 3",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_south_6",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              6
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              6
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 2 && q.block_state('nonax:layers') == 4",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_south_8",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              8
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              8
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 2 && q.block_state('nonax:layers') == 5",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_south_10",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              10
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              10
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 2 && q.block_state('nonax:layers') == 6",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_south_12",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              12
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              12
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 2 && q.block_state('nonax:layers') == 7",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_south_14",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              14
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              16,
+              14
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 3 && q.block_state('nonax:layers') == 1",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_west_2",
+          "minecraft:collision_box": {
+            "origin": [
+              6,
+              0,
+              -8
+            ],
+            "size": [
+              2,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              6,
+              0,
+              -8
+            ],
+            "size": [
+              2,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 3 && q.block_state('nonax:layers') == 2",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_west_4",
+          "minecraft:collision_box": {
+            "origin": [
+              4,
+              0,
+              -8
+            ],
+            "size": [
+              4,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              4,
+              0,
+              -8
+            ],
+            "size": [
+              4,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 3 && q.block_state('nonax:layers') == 3",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_west_6",
+          "minecraft:collision_box": {
+            "origin": [
+              2,
+              0,
+              -8
+            ],
+            "size": [
+              6,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              2,
+              0,
+              -8
+            ],
+            "size": [
+              6,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 3 && q.block_state('nonax:layers') == 4",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_west_8",
+          "minecraft:collision_box": {
+            "origin": [
+              0,
+              0,
+              -8
+            ],
+            "size": [
+              8,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              0,
+              0,
+              -8
+            ],
+            "size": [
+              8,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 3 && q.block_state('nonax:layers') == 5",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_west_10",
+          "minecraft:collision_box": {
+            "origin": [
+              -2,
+              0,
+              -8
+            ],
+            "size": [
+              10,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -2,
+              0,
+              -8
+            ],
+            "size": [
+              10,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 3 && q.block_state('nonax:layers') == 6",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_west_12",
+          "minecraft:collision_box": {
+            "origin": [
+              -4,
+              0,
+              -8
+            ],
+            "size": [
+              12,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -4,
+              0,
+              -8
+            ],
+            "size": [
+              12,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 3 && q.block_state('nonax:layers') == 7",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_west_14",
+          "minecraft:collision_box": {
+            "origin": [
+              -6,
+              0,
+              -8
+            ],
+            "size": [
+              14,
+              16,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -6,
+              0,
+              -8
+            ],
+            "size": [
+              14,
+              16,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 4 && q.block_state('nonax:layers') == 1",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_up_2",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              2,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              2,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 4 && q.block_state('nonax:layers') == 2",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_up_4",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              4,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              4,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 4 && q.block_state('nonax:layers') == 3",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_up_6",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              6,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              6,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 4 && q.block_state('nonax:layers') == 4",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_up_8",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              8,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              8,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 4 && q.block_state('nonax:layers') == 5",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_up_10",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              10,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              10,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 4 && q.block_state('nonax:layers') == 6",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_up_12",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              12,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              12,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 4 && q.block_state('nonax:layers') == 7",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_up_14",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              14,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              0,
+              -8
+            ],
+            "size": [
+              16,
+              14,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 5 && q.block_state('nonax:layers') == 1",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_down_2",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              14,
+              -8
+            ],
+            "size": [
+              16,
+              2,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              14,
+              -8
+            ],
+            "size": [
+              16,
+              2,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 5 && q.block_state('nonax:layers') == 2",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_down_4",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              12,
+              -8
+            ],
+            "size": [
+              16,
+              4,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              12,
+              -8
+            ],
+            "size": [
+              16,
+              4,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 5 && q.block_state('nonax:layers') == 3",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_down_6",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              10,
+              -8
+            ],
+            "size": [
+              16,
+              6,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              10,
+              -8
+            ],
+            "size": [
+              16,
+              6,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 5 && q.block_state('nonax:layers') == 4",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_down_8",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              8,
+              -8
+            ],
+            "size": [
+              16,
+              8,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              8,
+              -8
+            ],
+            "size": [
+              16,
+              8,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 5 && q.block_state('nonax:layers') == 5",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_down_10",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              6,
+              -8
+            ],
+            "size": [
+              16,
+              10,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              6,
+              -8
+            ],
+            "size": [
+              16,
+              10,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 5 && q.block_state('nonax:layers') == 6",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_down_12",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              4,
+              -8
+            ],
+            "size": [
+              16,
+              12,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              4,
+              -8
+            ],
+            "size": [
+              16,
+              12,
+              16
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('nonax:layer_facing') == 5 && q.block_state('nonax:layers') == 7",
+        "components": {
+          "minecraft:geometry": "geometry.nonax_layer_down_14",
+          "minecraft:collision_box": {
+            "origin": [
+              -8,
+              2,
+              -8
+            ],
+            "size": [
+              16,
+              14,
+              16
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              2,
+              -8
+            ],
+            "size": [
+              16,
+              14,
+              16
+            ]
+          }
+        }
+      }
+    ]
+  }
 }

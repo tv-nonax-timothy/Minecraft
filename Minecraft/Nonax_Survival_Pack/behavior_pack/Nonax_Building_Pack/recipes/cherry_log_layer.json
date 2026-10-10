@@ -1,0 +1,26 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:recipe_cherry_log_layer"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:log_layer_blocks",
+    "ingredients": [
+      {
+        "item": "minecraft:cherry_log"
+      }
+    ],
+    "result": {
+      "item": "nonax:cherry_log_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:cherry_log"
+      }
+    ]
+  }
+}

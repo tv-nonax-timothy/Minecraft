@@ -1,0 +1,26 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:recipe_poplar_log_layer"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:log_layer_blocks",
+    "ingredients": [
+      {
+        "item": "minecraft:poplar_log"
+      }
+    ],
+    "result": {
+      "item": "nonax:poplar_log_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:poplar_log"
+      }
+    ]
+  }
+}

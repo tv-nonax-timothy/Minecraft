@@ -4,17 +4,23 @@
     "description": {
       "identifier": "nonax:recipe_oak_log_layer"
     },
-    "tags": ["crafting_table"],
-    "group": "nonax:layer_blocks",
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:log_layer_blocks",
     "ingredients": [
-      { "item": "minecraft:oak_log" }
+      {
+        "item": "minecraft:oak_log"
+      }
     ],
     "result": {
       "item": "nonax:oak_log_layer",
       "count": 8
     },
     "unlock": [
-      { "item": "minecraft:oak_log" }
+      {
+        "item": "minecraft:oak_log"
+      }
     ]
   }
 }

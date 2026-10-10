@@ -1,0 +1,26 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:recipe_dark_oak_log_layer"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:log_layer_blocks",
+    "ingredients": [
+      {
+        "item": "minecraft:dark_oak_log"
+      }
+    ],
+    "result": {
+      "item": "nonax:dark_oak_log_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:dark_oak_log"
+      }
+    ]
+  }
+}

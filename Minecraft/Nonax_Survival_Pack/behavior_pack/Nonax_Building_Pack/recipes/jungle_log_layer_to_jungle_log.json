@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:jungle_log_layer_to_jungle_log"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:log_layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:jungle_log_layer"
+      },
+      {
+        "item": "nonax:jungle_log_layer"
+      },
+      {
+        "item": "nonax:jungle_log_layer"
+      },
+      {
+        "item": "nonax:jungle_log_layer"
+      },
+      {
+        "item": "nonax:jungle_log_layer"
+      },
+      {
+        "item": "nonax:jungle_log_layer"
+      },
+      {
+        "item": "nonax:jungle_log_layer"
+      },
+      {
+        "item": "nonax:jungle_log_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:jungle_log",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:jungle_log_layer"
+      }
+    ]
+  }
+}

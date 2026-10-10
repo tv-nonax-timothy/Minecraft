@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:stripped_poplar_log_layer_to_stripped_poplar_log"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:log_layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:stripped_poplar_log_layer"
+      },
+      {
+        "item": "nonax:stripped_poplar_log_layer"
+      },
+      {
+        "item": "nonax:stripped_poplar_log_layer"
+      },
+      {
+        "item": "nonax:stripped_poplar_log_layer"
+      },
+      {
+        "item": "nonax:stripped_poplar_log_layer"
+      },
+      {
+        "item": "nonax:stripped_poplar_log_layer"
+      },
+      {
+        "item": "nonax:stripped_poplar_log_layer"
+      },
+      {
+        "item": "nonax:stripped_poplar_log_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:stripped_poplar_log",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:stripped_poplar_log_layer"
+      }
+    ]
+  }
+}
