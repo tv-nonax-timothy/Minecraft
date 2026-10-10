@@ -35,6 +35,12 @@
                          "custom_oak_planks":  {
                                                    "textures":  "textures/nonax/blocks/custom_oak_planks"
                                                },
+                         "custom_oak_log_layer_side":  {
+                                                          "textures":  "textures/nonax/blocks/custom_oak_log_layer_side"
+                                                      },
+                         "custom_oak_log_layer_top":  {
+                                                         "textures":  "textures/nonax/blocks/custom_oak_log_layer_top"
+                                                     },
                          "custom_jungle_planks":  {
                                                       "textures":  "textures/nonax/blocks/custom_jungle_planks"
                                                   },

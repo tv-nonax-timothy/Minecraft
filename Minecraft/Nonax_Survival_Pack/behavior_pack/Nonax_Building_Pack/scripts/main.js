@@ -54,7 +54,8 @@ const STACKABLE_LAYER_IDS = new Set([
   "nonax:silver_terracotta_layer",
   "nonax:white_terracotta_layer",
   "nonax:yellow_terracotta_layer",
-  "nonax:terracotta_layer"
+  "nonax:terracotta_layer",
+  "nonax:oak_log_layer"
 ]);
 const GLASS_SLAB_ID = "nonax:glass_slab";
 const WALL_IDS = new Set([
@@ -440,6 +441,107 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
   if (!block || !itemStack || !player) return;
 
   const targetId = block.typeId;
+  if (itemStack.typeId === "nonax:oak_log_layer") {
+    const faceStr = typeof blockFace === "string" ? blockFace : blockFace?.toString();
+    const faceName = ["North", "East", "South", "West", "Up", "Down"].find(
+      (name) => faceStr?.toLowerCase() === name.toLowerCase() || blockFace === Direction?.[name]
+    );
+
+    if (targetId === itemStack.typeId || faceName) {
+      event.cancel = true;
+      const directionByFace = { North: 0, East: 3, South: 2, West: 1, Up: 4, Down: 5 };
+      const faceOffsets = {
+        North: { x: 0, y: 0, z: -1 },
+        East: { x: 1, y: 0, z: 0 },
+        South: { x: 0, y: 0, z: 1 },
+        West: { x: -1, y: 0, z: 0 },
+        Up: { x: 0, y: 1, z: 0 },
+        Down: { x: 0, y: -1, z: 0 }
+      };
+      const targetPos = targetId === itemStack.typeId
+        ? { x: block.location.x, y: block.location.y, z: block.location.z }
+        : {
+            x: block.location.x + faceOffsets[faceName].x,
+            y: block.location.y + faceOffsets[faceName].y,
+            z: block.location.z + faceOffsets[faceName].z
+          };
+      const adjacentBlock = player.dimension.getBlock(targetPos);
+      if (targetId !== itemStack.typeId && adjacentBlock?.typeId !== itemStack.typeId &&
+          !adjacentBlock?.isAir && adjacentBlock?.typeId !== "minecraft:air") return;
+
+      const stacking = adjacentBlock?.typeId === itemStack.typeId;
+      const stackDirection = stacking
+        ? adjacentBlock.permutation.getState("nonax:log_facing")
+        : directionByFace[faceName];
+      const currentLayers = stacking
+        ? adjacentBlock.permutation.getState("nonax:layers")
+        : 0;
+      if (stacking && (typeof currentLayers !== "number" || currentLayers >= 7)) return;
+      const blockPos = { ...targetPos };
+      const selectedSlot = player.selectedSlotIndex;
+      const eventItemAmount = itemStack.amount;
+
+      system.run(() => {
+        try {
+          const destination = player.dimension.getBlock(blockPos);
+          if (!destination) return;
+          if (stacking) {
+            if (destination.typeId !== itemStack.typeId ||
+                destination.permutation.getState("nonax:layers") !== currentLayers) return;
+          } else if (!destination.isAir && destination.typeId !== "minecraft:air") {
+            return;
+          }
+
+          let inventory;
+          let currentItem;
+          let consumeHeldItem = false;
+          if (!isPlayerCreative(player)) {
+            inventory = player.getComponent("minecraft:inventory");
+            currentItem = inventory?.container?.getItem(selectedSlot);
+            if (player.selectedSlotIndex !== selectedSlot) {
+              throw new Error("手持ちのオークの丸太レイヤーブロックを確認できません。");
+            }
+            if (currentItem?.typeId === itemStack.typeId && currentItem.amount === eventItemAmount) {
+              consumeHeldItem = true;
+            } else if (
+              (currentItem?.typeId === itemStack.typeId && currentItem.amount === eventItemAmount - 1) ||
+              (!currentItem && eventItemAmount === 1)
+            ) {
+              // The interaction consumed the stack item before this deferred placement ran.
+            } else {
+              throw new Error("手持ちのオークの丸太レイヤーブロックが設置中に変更されました。");
+            }
+          }
+
+          const previousPermutation = destination.permutation;
+          const layers = stacking ? currentLayers + 1 : 1;
+          destination.setPermutation(BlockPermutation.resolve(itemStack.typeId, {
+            "nonax:layers": layers,
+            "nonax:log_facing": stackDirection
+          }));
+
+          if (consumeHeldItem && currentItem) {
+            try {
+              if (currentItem.amount > 1) {
+                const nextItem = currentItem.clone();
+                nextItem.amount -= 1;
+                inventory.container.setItem(selectedSlot, nextItem);
+              } else {
+                inventory.container.setItem(selectedSlot, undefined);
+              }
+            } catch (err) {
+              destination.setPermutation(previousPermutation);
+              throw err;
+            }
+          }
+        } catch (err) {
+          console.warn(`オークの丸太レイヤーブロックの設置に失敗しました: ${err}`);
+        }
+      });
+      return;
+    }
+  }
+
   if (itemStack.typeId === GRASS_LAYER_ID || STACKABLE_LAYER_IDS.has(itemStack.typeId)) {
     const faceStr = typeof blockFace === "string" ? blockFace : blockFace?.toString();
     const faceName = ["North", "South", "East", "West", "Up", "Down"].find(

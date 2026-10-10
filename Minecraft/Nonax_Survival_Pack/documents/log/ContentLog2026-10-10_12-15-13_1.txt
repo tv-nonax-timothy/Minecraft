@@ -1,0 +1,68 @@
+12:15:23[Scripting][verbose]-Plugin Discovered [Nonax Building Pack (Behavior)] PackId [75932c3b-e3c9-4ccb-890d-fcf8b7ad9668_1.0.0] ModuleId [d3f0a1d6-f6af-4b12-9a73-c6d07e50dcb1]
+
+12:15:24[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server] from [2.1.0] to [2.10.0] requested by [Nonax Building Pack (Behavior) - 1.0.0].
+
+12:15:24[Scripting][verbose]-Plugin [Nonax Building Pack (Behavior)] - promoted [@minecraft/server-bindings] from [2.1.0] to [2.10.0] requested by [@minecraft/server - 2.1.0].
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:collision_box: min can't be below (-8, 0, -8) and max can't be more than (8, 24, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin with added size can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:collision_box: min can't be below (-8, 0, -8) and max can't be more than (8, 24, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin with added size can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:collision_box: min can't be below (-8, 0, -8) and max can't be more than (8, 24, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin with added size can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:collision_box: min can't be below (-8, 0, -8) and max can't be more than (8, 24, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:collision_box: min can't be below (-8, 0, -8) and max can't be more than (8, 24, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:collision_box: min can't be below (-8, 0, -8) and max can't be more than (8, 24, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:collision_box: min can't be below (-8, 0, -8) and max can't be more than (8, 24, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:collision_box: min can't be below (-8, 0, -8) and max can't be more than (8, 24, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:collision_box: min can't be below (-8, 0, -8) and max can't be more than (8, 24, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:collision_box: min can't be below (-8, 0, -8) and max can't be more than (8, 24, 8)
+
+12:15:24[Blocks][error]-block_definitions | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | %APPDATA%/Minecraft Bedrock/Users/Shared/games/com.mojang/development_behavior_packs/Nonax_Building_Pack | blocks/oak_log_layer.json | nonax:oak_log_layer | components | minecraft:selection_box: origin can't be below (-8, 0, -8) and can't be more than (8, 16, 8)
+
+12:15:28[Blocks][error]-Block name = 'nonax:oak_log_layer' | Schematic 'geometry.nonax_oak_log_layer_up_2' is not included within the unit cube on axis y.
+
+12:15:28[Blocks][error]-Block name = 'nonax:oak_log_layer' | Error with geometry component: cannot find geometry.nonax_oak_log_layer_up_2 geometry JSON.
+
+12:15:28[Blocks][error]-Block name = 'nonax:oak_log_layer' | Schematic 'geometry.nonax_oak_log_layer_up_4' is not included within the unit cube on axis y.
+
+12:15:28[Blocks][error]-Block name = 'nonax:oak_log_layer' | Error with geometry component: cannot find geometry.nonax_oak_log_layer_up_4 geometry JSON.
+
+12:15:28[Blocks][error]-Block name = 'nonax:oak_log_layer' | Schematic 'geometry.nonax_oak_log_layer_up_6' is not included within the unit cube on axis y.
+
+12:15:28[Blocks][error]-Block name = 'nonax:oak_log_layer' | Error with geometry component: cannot find geometry.nonax_oak_log_layer_up_6 geometry JSON.
+
+12:15:28[Blocks][error]-Block name = 'nonax:oak_log_layer' | Schematic 'geometry.nonax_oak_log_layer_up_8' is not included within the unit cube on axis y.
+
+12:15:28[Blocks][error]-Block name = 'nonax:oak_log_layer' | Error with geometry component: cannot find geometry.nonax_oak_log_layer_up_8 geometry JSON.
+

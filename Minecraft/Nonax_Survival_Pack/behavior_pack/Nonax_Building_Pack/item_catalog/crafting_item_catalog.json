@@ -72,6 +72,15 @@
                                                                     "groups":  [
                                                                                    {
                                                                                        "group_identifier":  {
+                                                                                        "icon":  "nonax:oak_log_layer",
+                                                                                        "name":  "nonax:oak_log_layer_group"
+                                                                                    },
+                                                                                       "items":  [
+                                                                             "nonax:oak_log_layer"
+                                                                         ]
+                                                                                   },
+                                                                                   {
+                                                                                       "group_identifier":  {
                                                                                                                 "icon":  "nonax:owk_wall",
                                                                                                                 "name":  "nonax:wall_blocks_group"
                                                                                                             },
