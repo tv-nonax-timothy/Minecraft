@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:chiseled_polished_blackstone_layer_to_chiseled_polished_blackstone"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:chiseled_polished_blackstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_polished_blackstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_polished_blackstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_polished_blackstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_polished_blackstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_polished_blackstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_polished_blackstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_polished_blackstone_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:chiseled_polished_blackstone",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:chiseled_polished_blackstone_layer"
+      }
+    ]
+  }
+}

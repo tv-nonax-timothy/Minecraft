@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:smooth_quartz_layer_to_smooth_quartz"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:smooth_quartz_layer"
+      },
+      {
+        "item": "nonax:smooth_quartz_layer"
+      },
+      {
+        "item": "nonax:smooth_quartz_layer"
+      },
+      {
+        "item": "nonax:smooth_quartz_layer"
+      },
+      {
+        "item": "nonax:smooth_quartz_layer"
+      },
+      {
+        "item": "nonax:smooth_quartz_layer"
+      },
+      {
+        "item": "nonax:smooth_quartz_layer"
+      },
+      {
+        "item": "nonax:smooth_quartz_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:smooth_quartz",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:smooth_quartz_layer"
+      }
+    ]
+  }
+}

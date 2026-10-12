@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:obsidian_layer_to_obsidian"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:obsidian_layer"
+      },
+      {
+        "item": "nonax:obsidian_layer"
+      },
+      {
+        "item": "nonax:obsidian_layer"
+      },
+      {
+        "item": "nonax:obsidian_layer"
+      },
+      {
+        "item": "nonax:obsidian_layer"
+      },
+      {
+        "item": "nonax:obsidian_layer"
+      },
+      {
+        "item": "nonax:obsidian_layer"
+      },
+      {
+        "item": "nonax:obsidian_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:obsidian",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:obsidian_layer"
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:soul_sand_layer_to_soul_sand"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:soul_sand_layer"
+      },
+      {
+        "item": "nonax:soul_sand_layer"
+      },
+      {
+        "item": "nonax:soul_sand_layer"
+      },
+      {
+        "item": "nonax:soul_sand_layer"
+      },
+      {
+        "item": "nonax:soul_sand_layer"
+      },
+      {
+        "item": "nonax:soul_sand_layer"
+      },
+      {
+        "item": "nonax:soul_sand_layer"
+      },
+      {
+        "item": "nonax:soul_sand_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:soul_sand",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:soul_sand_layer"
+      }
+    ]
+  }
+}

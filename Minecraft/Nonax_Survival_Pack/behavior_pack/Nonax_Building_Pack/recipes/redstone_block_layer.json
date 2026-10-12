@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:stonecutter_redstone_block_layer"
+    },
+    "tags": [
+      "stonecutter"
+    ],
+    "group": "nonax:layer_blocks",
+    "priority": 0,
+    "ingredients": [
+      {
+        "item": "minecraft:redstone_block"
+      }
+    ],
+    "result": {
+      "item": "nonax:redstone_block_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:redstone_block"
+      }
+    ]
+  }
+}

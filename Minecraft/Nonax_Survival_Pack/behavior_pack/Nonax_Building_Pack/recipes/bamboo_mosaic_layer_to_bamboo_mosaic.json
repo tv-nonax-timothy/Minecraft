@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:bamboo_mosaic_layer_to_bamboo_mosaic"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:plank_layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:bamboo_mosaic_layer"
+      },
+      {
+        "item": "nonax:bamboo_mosaic_layer"
+      },
+      {
+        "item": "nonax:bamboo_mosaic_layer"
+      },
+      {
+        "item": "nonax:bamboo_mosaic_layer"
+      },
+      {
+        "item": "nonax:bamboo_mosaic_layer"
+      },
+      {
+        "item": "nonax:bamboo_mosaic_layer"
+      },
+      {
+        "item": "nonax:bamboo_mosaic_layer"
+      },
+      {
+        "item": "nonax:bamboo_mosaic_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:bamboo_mosaic",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:bamboo_mosaic_layer"
+      }
+    ]
+  }
+}

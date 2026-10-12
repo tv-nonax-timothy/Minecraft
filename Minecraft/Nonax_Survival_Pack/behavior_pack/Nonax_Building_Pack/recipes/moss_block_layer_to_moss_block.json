@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:moss_block_layer_to_moss_block"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:moss_block_layer"
+      },
+      {
+        "item": "nonax:moss_block_layer"
+      },
+      {
+        "item": "nonax:moss_block_layer"
+      },
+      {
+        "item": "nonax:moss_block_layer"
+      },
+      {
+        "item": "nonax:moss_block_layer"
+      },
+      {
+        "item": "nonax:moss_block_layer"
+      },
+      {
+        "item": "nonax:moss_block_layer"
+      },
+      {
+        "item": "nonax:moss_block_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:moss_block",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:moss_block_layer"
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:polished_andesite_layer_to_polished_andesite"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:polished_andesite_layer"
+      },
+      {
+        "item": "nonax:polished_andesite_layer"
+      },
+      {
+        "item": "nonax:polished_andesite_layer"
+      },
+      {
+        "item": "nonax:polished_andesite_layer"
+      },
+      {
+        "item": "nonax:polished_andesite_layer"
+      },
+      {
+        "item": "nonax:polished_andesite_layer"
+      },
+      {
+        "item": "nonax:polished_andesite_layer"
+      },
+      {
+        "item": "nonax:polished_andesite_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:polished_andesite",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:polished_andesite_layer"
+      }
+    ]
+  }
+}

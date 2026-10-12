@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:blackstone_layer_to_blackstone"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:blackstone_layer"
+      },
+      {
+        "item": "nonax:blackstone_layer"
+      },
+      {
+        "item": "nonax:blackstone_layer"
+      },
+      {
+        "item": "nonax:blackstone_layer"
+      },
+      {
+        "item": "nonax:blackstone_layer"
+      },
+      {
+        "item": "nonax:blackstone_layer"
+      },
+      {
+        "item": "nonax:blackstone_layer"
+      },
+      {
+        "item": "nonax:blackstone_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:blackstone",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:blackstone_layer"
+      }
+    ]
+  }
+}

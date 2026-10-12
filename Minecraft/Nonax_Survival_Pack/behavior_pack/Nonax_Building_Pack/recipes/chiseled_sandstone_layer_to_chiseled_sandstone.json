@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:chiseled_sandstone_layer_to_chiseled_sandstone"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:chiseled_sandstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_sandstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_sandstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_sandstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_sandstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_sandstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_sandstone_layer"
+      },
+      {
+        "item": "nonax:chiseled_sandstone_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:chiseled_sandstone",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:chiseled_sandstone_layer"
+      }
+    ]
+  }
+}

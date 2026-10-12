@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:dark_prismarine_layer_to_dark_prismarine"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:dark_prismarine_layer"
+      },
+      {
+        "item": "nonax:dark_prismarine_layer"
+      },
+      {
+        "item": "nonax:dark_prismarine_layer"
+      },
+      {
+        "item": "nonax:dark_prismarine_layer"
+      },
+      {
+        "item": "nonax:dark_prismarine_layer"
+      },
+      {
+        "item": "nonax:dark_prismarine_layer"
+      },
+      {
+        "item": "nonax:dark_prismarine_layer"
+      },
+      {
+        "item": "nonax:dark_prismarine_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:dark_prismarine",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:dark_prismarine_layer"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:recipe_sea_lantern_layer"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "minecraft:sea_lantern"
+      }
+    ],
+    "result": {
+      "item": "nonax:sea_lantern_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:sea_lantern"
+      }
+    ]
+  }
+}

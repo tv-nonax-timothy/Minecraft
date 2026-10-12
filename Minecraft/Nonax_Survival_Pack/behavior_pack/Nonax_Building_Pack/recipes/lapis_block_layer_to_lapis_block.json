@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:lapis_block_layer_to_lapis_block"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:lapis_block_layer"
+      },
+      {
+        "item": "nonax:lapis_block_layer"
+      },
+      {
+        "item": "nonax:lapis_block_layer"
+      },
+      {
+        "item": "nonax:lapis_block_layer"
+      },
+      {
+        "item": "nonax:lapis_block_layer"
+      },
+      {
+        "item": "nonax:lapis_block_layer"
+      },
+      {
+        "item": "nonax:lapis_block_layer"
+      },
+      {
+        "item": "nonax:lapis_block_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:lapis_block",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:lapis_block_layer"
+      }
+    ]
+  }
+}

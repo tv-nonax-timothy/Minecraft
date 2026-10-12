@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:oak_wood_layer_to_oak_wood"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:log_layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:oak_wood_layer"
+      },
+      {
+        "item": "nonax:oak_wood_layer"
+      },
+      {
+        "item": "nonax:oak_wood_layer"
+      },
+      {
+        "item": "nonax:oak_wood_layer"
+      },
+      {
+        "item": "nonax:oak_wood_layer"
+      },
+      {
+        "item": "nonax:oak_wood_layer"
+      },
+      {
+        "item": "nonax:oak_wood_layer"
+      },
+      {
+        "item": "nonax:oak_wood_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:oak_wood",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:oak_wood_layer"
+      }
+    ]
+  }
+}

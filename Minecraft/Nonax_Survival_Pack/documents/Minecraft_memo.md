@@ -263,6 +263,21 @@
 - 再調整: 実機で横向き4方向すべてが逆さだったため、横向きの spin に一律180°を加えた。現在の spin は 北=0（子ボーンなし）、南=180、東=-90、西=+90。上向きは実機で正常確認済み（Y回転180のまま）。
 - **実機確認済み（最終）:** 上記の再調整後、横向き4方向（北・南・東・西）と上向きのテクスチャの向きが正常になった。裏面も問題なし。横向きの spin は 北=0（子ボーンなし）、南=180、東=-90、西=+90、上向きは bone のY回転180、下向きは変更なしで確定。この値は変更しないこと。
 
+### レイヤーブロック113種の追加（実機確認済み）
+- 追加内容: 建築材系26種（ネザーレンガ系、エンドストーンレンガ、磨かれたブラックストーンレンガ系、樹脂系、光沢テラコッタ16色）、原木系48種（竹ブロック、幹、9樹種の木・樹皮を剥いだ木、菌糸）、板材系1種（竹のモザイク、板材グループへ配置）、石材・鉱物系38種、土系20種（縦向きのみ）。
+- 横向き対応: 石材・建築材・原木・板材は `nonax:layer_facing`（6方向、42 permutation）。土系は `nonax:layers` のみ（geometry は `geometry.nonax_layer_2〜14`）。土系は `DIRECTIONAL_LAYER_EXCLUDED_IDS` に追加。
+- 追加グループ: `nonax:earth_layer_blocks_group`（nature）、`nonax:stone_layer_blocks_group`、`nonax:building_layer_blocks_group`（construction）。原木・竹のモザイクは既存の原木・板材グループへ追加。既存ブロックは移動していない。
+- レシピ: 元ブロック1個→8個、8個→元ブロック1個。作業台に単一素材レシピが既にある39種（金属ブロック、石炭、ネザライト、銅、干草、骨、樹脂、竹ブロック、幹、木、菌糸）は作成を石切台レシピにした。
+- ID: 雪ブロックは `nonax:snow_block_layer`、薄灰色の光沢テラコッタは `nonax:silver_glazed_terracotta_layer`。
+- 配置・配布用 mcpack/mcaddon 更新済み。
+
+### 既存レイヤーブロックの再分類（実機確認済み）
+- 旧グループ `nonax:layer_blocks_group`（レイヤーブロック）の52種を、新しい3グループへ再分類し、空になった旧グループと lang キーを削除した。
+  - 土・地面・堆積物（アイコン `nonax:grass_layer`、自然タブ）: 草、砂利、砂、粘土、赤い砂、根付いた土、粗い土、ポドゾル、菌糸ブロック、土の道、固めた泥（11種）。
+  - 石材・鉱物（アイコン `nonax:cobblestone_layer`、建築タブ）: 丸石、苔むした丸石、砂岩、花崗岩、閃緑岩、安山岩、なめらかな石、赤い砂岩、凝灰岩、深層岩、方解石、石（12種）。
+  - 建築材・レンガ・テラコッタ（アイコン `nonax:brick_block_layer`、建築タブ）: レンガ・タイル系、素のテラコッタ（29種）。
+- カテゴリ移動の注意: グループを nature から construction へ移す場合は、ブロックの `menu_category` も合わせて `construction` に変更する。変えないと ContentLog に「created with the category set to 'nature', and is now being set to 'construction'」の警告が出る（今回は41ブロックで発生し、修正済み。警告0件を確認）。
+
 ## デバッグ時のメモ
 - 失敗時は log の `Scripting` と `Blocks` を優先して確認する
 - `Blocks` の `child 'custom_components' not valid here` は JSON 仕様違反の確認ポイント

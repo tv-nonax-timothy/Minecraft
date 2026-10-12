@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:crying_obsidian_layer_to_crying_obsidian"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:crying_obsidian_layer"
+      },
+      {
+        "item": "nonax:crying_obsidian_layer"
+      },
+      {
+        "item": "nonax:crying_obsidian_layer"
+      },
+      {
+        "item": "nonax:crying_obsidian_layer"
+      },
+      {
+        "item": "nonax:crying_obsidian_layer"
+      },
+      {
+        "item": "nonax:crying_obsidian_layer"
+      },
+      {
+        "item": "nonax:crying_obsidian_layer"
+      },
+      {
+        "item": "nonax:crying_obsidian_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:crying_obsidian",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:crying_obsidian_layer"
+      }
+    ]
+  }
+}

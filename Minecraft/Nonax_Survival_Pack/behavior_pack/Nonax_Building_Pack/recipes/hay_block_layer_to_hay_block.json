@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:hay_block_layer_to_hay_block"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:hay_block_layer"
+      },
+      {
+        "item": "nonax:hay_block_layer"
+      },
+      {
+        "item": "nonax:hay_block_layer"
+      },
+      {
+        "item": "nonax:hay_block_layer"
+      },
+      {
+        "item": "nonax:hay_block_layer"
+      },
+      {
+        "item": "nonax:hay_block_layer"
+      },
+      {
+        "item": "nonax:hay_block_layer"
+      },
+      {
+        "item": "nonax:hay_block_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:hay_block",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:hay_block_layer"
+      }
+    ]
+  }
+}

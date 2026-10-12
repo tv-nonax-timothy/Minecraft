@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:pale_moss_block_layer_to_pale_moss_block"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:pale_moss_block_layer"
+      },
+      {
+        "item": "nonax:pale_moss_block_layer"
+      },
+      {
+        "item": "nonax:pale_moss_block_layer"
+      },
+      {
+        "item": "nonax:pale_moss_block_layer"
+      },
+      {
+        "item": "nonax:pale_moss_block_layer"
+      },
+      {
+        "item": "nonax:pale_moss_block_layer"
+      },
+      {
+        "item": "nonax:pale_moss_block_layer"
+      },
+      {
+        "item": "nonax:pale_moss_block_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:pale_moss_block",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:pale_moss_block_layer"
+      }
+    ]
+  }
+}

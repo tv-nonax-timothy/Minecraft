@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:shroomlight_layer_to_shroomlight"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:shroomlight_layer"
+      },
+      {
+        "item": "nonax:shroomlight_layer"
+      },
+      {
+        "item": "nonax:shroomlight_layer"
+      },
+      {
+        "item": "nonax:shroomlight_layer"
+      },
+      {
+        "item": "nonax:shroomlight_layer"
+      },
+      {
+        "item": "nonax:shroomlight_layer"
+      },
+      {
+        "item": "nonax:shroomlight_layer"
+      },
+      {
+        "item": "nonax:shroomlight_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:shroomlight",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:shroomlight_layer"
+      }
+    ]
+  }
+}

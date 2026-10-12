@@ -1,0 +1,26 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:recipe_polished_granite_layer"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "minecraft:polished_granite"
+      }
+    ],
+    "result": {
+      "item": "nonax:polished_granite_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:polished_granite"
+      }
+    ]
+  }
+}

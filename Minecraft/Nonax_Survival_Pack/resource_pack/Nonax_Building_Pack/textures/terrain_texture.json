@@ -400,6 +400,321 @@
     },
     "custom_warped_planks": {
       "textures": "textures/nonax/blocks/custom_warped_planks"
+    },
+    "custom_nether_brick": {
+      "textures": "textures/nonax/blocks/custom_nether_brick"
+    },
+    "custom_red_nether_brick": {
+      "textures": "textures/nonax/blocks/custom_red_nether_brick"
+    },
+    "custom_cracked_nether_bricks": {
+      "textures": "textures/nonax/blocks/custom_cracked_nether_bricks"
+    },
+    "custom_chiseled_nether_bricks": {
+      "textures": "textures/nonax/blocks/custom_chiseled_nether_bricks"
+    },
+    "custom_end_bricks": {
+      "textures": "textures/nonax/blocks/custom_end_bricks"
+    },
+    "custom_polished_blackstone_bricks": {
+      "textures": "textures/nonax/blocks/custom_polished_blackstone_bricks"
+    },
+    "custom_cracked_polished_blackstone_bricks": {
+      "textures": "textures/nonax/blocks/custom_cracked_polished_blackstone_bricks"
+    },
+    "custom_resin_block": {
+      "textures": "textures/nonax/blocks/custom_resin_block"
+    },
+    "custom_resin_bricks": {
+      "textures": "textures/nonax/blocks/custom_resin_bricks"
+    },
+    "custom_chiseled_resin_bricks": {
+      "textures": "textures/nonax/blocks/custom_chiseled_resin_bricks"
+    },
+    "custom_bamboo_mosaic": {
+      "textures": "textures/nonax/blocks/custom_bamboo_mosaic"
+    },
+    "custom_glazed_terracotta_white": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_white"
+    },
+    "custom_glazed_terracotta_orange": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_orange"
+    },
+    "custom_glazed_terracotta_magenta": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_magenta"
+    },
+    "custom_glazed_terracotta_light_blue": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_light_blue"
+    },
+    "custom_glazed_terracotta_yellow": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_yellow"
+    },
+    "custom_glazed_terracotta_lime": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_lime"
+    },
+    "custom_glazed_terracotta_pink": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_pink"
+    },
+    "custom_glazed_terracotta_gray": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_gray"
+    },
+    "custom_glazed_terracotta_silver": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_silver"
+    },
+    "custom_glazed_terracotta_cyan": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_cyan"
+    },
+    "custom_glazed_terracotta_purple": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_purple"
+    },
+    "custom_glazed_terracotta_blue": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_blue"
+    },
+    "custom_glazed_terracotta_brown": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_brown"
+    },
+    "custom_glazed_terracotta_green": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_green"
+    },
+    "custom_glazed_terracotta_red": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_red"
+    },
+    "custom_glazed_terracotta_black": {
+      "textures": "textures/nonax/blocks/custom_glazed_terracotta_black"
+    },
+    "custom_bamboo_block_top": {
+      "textures": "textures/nonax/blocks/custom_bamboo_block_top"
+    },
+    "custom_bamboo_block": {
+      "textures": "textures/nonax/blocks/custom_bamboo_block"
+    },
+    "custom_stripped_bamboo_block_top": {
+      "textures": "textures/nonax/blocks/custom_stripped_bamboo_block_top"
+    },
+    "custom_stripped_bamboo_block": {
+      "textures": "textures/nonax/blocks/custom_stripped_bamboo_block"
+    },
+    "custom_crimson_log_top": {
+      "textures": "textures/nonax/blocks/custom_crimson_log_top"
+    },
+    "custom_crimson_log_side": {
+      "textures": "textures/nonax/blocks/custom_crimson_log_side"
+    },
+    "custom_stripped_crimson_stem_top": {
+      "textures": "textures/nonax/blocks/custom_stripped_crimson_stem_top"
+    },
+    "custom_stripped_crimson_stem_side": {
+      "textures": "textures/nonax/blocks/custom_stripped_crimson_stem_side"
+    },
+    "custom_warped_stem_top": {
+      "textures": "textures/nonax/blocks/custom_warped_stem_top"
+    },
+    "custom_warped_stem_side": {
+      "textures": "textures/nonax/blocks/custom_warped_stem_side"
+    },
+    "custom_stripped_warped_stem_top": {
+      "textures": "textures/nonax/blocks/custom_stripped_warped_stem_top"
+    },
+    "custom_stripped_warped_stem_side": {
+      "textures": "textures/nonax/blocks/custom_stripped_warped_stem_side"
+    },
+    "custom_log_oak": {
+      "textures": "textures/nonax/blocks/custom_log_oak"
+    },
+    "custom_basalt_top": {
+      "textures": "textures/nonax/blocks/custom_basalt_top"
+    },
+    "custom_basalt_side": {
+      "textures": "textures/nonax/blocks/custom_basalt_side"
+    },
+    "custom_smooth_basalt": {
+      "textures": "textures/nonax/blocks/custom_smooth_basalt"
+    },
+    "custom_polished_basalt_top": {
+      "textures": "textures/nonax/blocks/custom_polished_basalt_top"
+    },
+    "custom_polished_basalt_side": {
+      "textures": "textures/nonax/blocks/custom_polished_basalt_side"
+    },
+    "custom_blackstone_top": {
+      "textures": "textures/nonax/blocks/custom_blackstone_top"
+    },
+    "custom_blackstone": {
+      "textures": "textures/nonax/blocks/custom_blackstone"
+    },
+    "custom_polished_blackstone": {
+      "textures": "textures/nonax/blocks/custom_polished_blackstone"
+    },
+    "custom_stone_granite_smooth": {
+      "textures": "textures/nonax/blocks/custom_stone_granite_smooth"
+    },
+    "custom_stone_diorite_smooth": {
+      "textures": "textures/nonax/blocks/custom_stone_diorite_smooth"
+    },
+    "custom_stone_andesite_smooth": {
+      "textures": "textures/nonax/blocks/custom_stone_andesite_smooth"
+    },
+    "custom_polished_tuff": {
+      "textures": "textures/nonax/blocks/custom_polished_tuff"
+    },
+    "custom_polished_deepslate": {
+      "textures": "textures/nonax/blocks/custom_polished_deepslate"
+    },
+    "custom_cobbled_deepslate": {
+      "textures": "textures/nonax/blocks/custom_cobbled_deepslate"
+    },
+    "custom_obsidian": {
+      "textures": "textures/nonax/blocks/custom_obsidian"
+    },
+    "custom_crying_obsidian": {
+      "textures": "textures/nonax/blocks/custom_crying_obsidian"
+    },
+    "custom_prismarine_rough": {
+      "textures": "textures/nonax/blocks/custom_prismarine_rough"
+    },
+    "custom_prismarine_dark": {
+      "textures": "textures/nonax/blocks/custom_prismarine_dark"
+    },
+    "custom_sea_lantern": {
+      "textures": "textures/nonax/blocks/custom_sea_lantern"
+    },
+    "custom_sandstone_top": {
+      "textures": "textures/nonax/blocks/custom_sandstone_top"
+    },
+    "custom_sandstone_carved": {
+      "textures": "textures/nonax/blocks/custom_sandstone_carved"
+    },
+    "custom_sandstone_smooth": {
+      "textures": "textures/nonax/blocks/custom_sandstone_smooth"
+    },
+    "custom_red_sandstone_top": {
+      "textures": "textures/nonax/blocks/custom_red_sandstone_top"
+    },
+    "custom_red_sandstone_carved": {
+      "textures": "textures/nonax/blocks/custom_red_sandstone_carved"
+    },
+    "custom_red_sandstone_smooth": {
+      "textures": "textures/nonax/blocks/custom_red_sandstone_smooth"
+    },
+    "custom_chiseled_deepslate": {
+      "textures": "textures/nonax/blocks/custom_chiseled_deepslate"
+    },
+    "custom_chiseled_polished_blackstone": {
+      "textures": "textures/nonax/blocks/custom_chiseled_polished_blackstone"
+    },
+    "custom_coal_block": {
+      "textures": "textures/nonax/blocks/custom_coal_block"
+    },
+    "custom_iron_block": {
+      "textures": "textures/nonax/blocks/custom_iron_block"
+    },
+    "custom_gold_block": {
+      "textures": "textures/nonax/blocks/custom_gold_block"
+    },
+    "custom_copper_block": {
+      "textures": "textures/nonax/blocks/custom_copper_block"
+    },
+    "custom_diamond_block": {
+      "textures": "textures/nonax/blocks/custom_diamond_block"
+    },
+    "custom_emerald_block": {
+      "textures": "textures/nonax/blocks/custom_emerald_block"
+    },
+    "custom_lapis_block": {
+      "textures": "textures/nonax/blocks/custom_lapis_block"
+    },
+    "custom_redstone_block": {
+      "textures": "textures/nonax/blocks/custom_redstone_block"
+    },
+    "custom_netherite_block": {
+      "textures": "textures/nonax/blocks/custom_netherite_block"
+    },
+    "custom_quartz_block_top": {
+      "textures": "textures/nonax/blocks/custom_quartz_block_top"
+    },
+    "custom_quartz_block_side": {
+      "textures": "textures/nonax/blocks/custom_quartz_block_side"
+    },
+    "custom_quartz_block_chiseled_top": {
+      "textures": "textures/nonax/blocks/custom_quartz_block_chiseled_top"
+    },
+    "custom_quartz_block_chiseled": {
+      "textures": "textures/nonax/blocks/custom_quartz_block_chiseled"
+    },
+    "custom_quartz_block_bottom": {
+      "textures": "textures/nonax/blocks/custom_quartz_block_bottom"
+    },
+    "custom_quartz_bricks": {
+      "textures": "textures/nonax/blocks/custom_quartz_bricks"
+    },
+    "custom_purpur_block": {
+      "textures": "textures/nonax/blocks/custom_purpur_block"
+    },
+    "custom_dirt": {
+      "textures": "textures/nonax/blocks/custom_dirt"
+    },
+    "custom_soul_sand": {
+      "textures": "textures/nonax/blocks/custom_soul_sand"
+    },
+    "custom_soul_soil": {
+      "textures": "textures/nonax/blocks/custom_soul_soil"
+    },
+    "custom_netherrack": {
+      "textures": "textures/nonax/blocks/custom_netherrack"
+    },
+    "custom_mud": {
+      "textures": "textures/nonax/blocks/custom_mud"
+    },
+    "custom_moss_block": {
+      "textures": "textures/nonax/blocks/custom_moss_block"
+    },
+    "custom_pale_moss_block": {
+      "textures": "textures/nonax/blocks/custom_pale_moss_block"
+    },
+    "custom_snow": {
+      "textures": "textures/nonax/blocks/custom_snow"
+    },
+    "custom_ice": {
+      "textures": "textures/nonax/blocks/custom_ice"
+    },
+    "custom_ice_packed": {
+      "textures": "textures/nonax/blocks/custom_ice_packed"
+    },
+    "custom_blue_ice": {
+      "textures": "textures/nonax/blocks/custom_blue_ice"
+    },
+    "custom_dripstone_block": {
+      "textures": "textures/nonax/blocks/custom_dripstone_block"
+    },
+    "custom_magma": {
+      "textures": "textures/nonax/blocks/custom_magma"
+    },
+    "custom_end_stone": {
+      "textures": "textures/nonax/blocks/custom_end_stone"
+    },
+    "custom_nether_wart_block": {
+      "textures": "textures/nonax/blocks/custom_nether_wart_block"
+    },
+    "custom_warped_wart_block": {
+      "textures": "textures/nonax/blocks/custom_warped_wart_block"
+    },
+    "custom_shroomlight": {
+      "textures": "textures/nonax/blocks/custom_shroomlight"
+    },
+    "custom_sponge": {
+      "textures": "textures/nonax/blocks/custom_sponge"
+    },
+    "custom_hay_block_top": {
+      "textures": "textures/nonax/blocks/custom_hay_block_top"
+    },
+    "custom_hay_block_side": {
+      "textures": "textures/nonax/blocks/custom_hay_block_side"
+    },
+    "custom_bone_block_top": {
+      "textures": "textures/nonax/blocks/custom_bone_block_top"
+    },
+    "custom_bone_block_side": {
+      "textures": "textures/nonax/blocks/custom_bone_block_side"
     }
   }
 }

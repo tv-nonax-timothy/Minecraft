@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:stonecutter_oak_wood_layer"
+    },
+    "tags": [
+      "stonecutter"
+    ],
+    "group": "nonax:log_layer_blocks",
+    "priority": 0,
+    "ingredients": [
+      {
+        "item": "minecraft:oak_wood"
+      }
+    ],
+    "result": {
+      "item": "nonax:oak_wood_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:oak_wood"
+      }
+    ]
+  }
+}

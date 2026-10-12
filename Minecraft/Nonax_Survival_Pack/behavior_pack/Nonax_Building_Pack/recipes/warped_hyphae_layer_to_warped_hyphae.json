@@ -1,0 +1,47 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:warped_hyphae_layer_to_warped_hyphae"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:log_layer_blocks",
+    "ingredients": [
+      {
+        "item": "nonax:warped_hyphae_layer"
+      },
+      {
+        "item": "nonax:warped_hyphae_layer"
+      },
+      {
+        "item": "nonax:warped_hyphae_layer"
+      },
+      {
+        "item": "nonax:warped_hyphae_layer"
+      },
+      {
+        "item": "nonax:warped_hyphae_layer"
+      },
+      {
+        "item": "nonax:warped_hyphae_layer"
+      },
+      {
+        "item": "nonax:warped_hyphae_layer"
+      },
+      {
+        "item": "nonax:warped_hyphae_layer"
+      }
+    ],
+    "result": {
+      "item": "minecraft:warped_hyphae",
+      "count": 1
+    },
+    "unlock": [
+      {
+        "item": "nonax:warped_hyphae_layer"
+      }
+    ]
+  }
+}

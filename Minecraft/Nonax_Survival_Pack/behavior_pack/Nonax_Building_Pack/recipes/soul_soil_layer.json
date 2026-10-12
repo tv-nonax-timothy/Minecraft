@@ -1,0 +1,26 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "nonax:recipe_soul_soil_layer"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "group": "nonax:layer_blocks",
+    "ingredients": [
+      {
+        "item": "minecraft:soul_soil"
+      }
+    ],
+    "result": {
+      "item": "nonax:soul_soil_layer",
+      "count": 8
+    },
+    "unlock": [
+      {
+        "item": "minecraft:soul_soil"
+      }
+    ]
+  }
+}
