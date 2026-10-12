@@ -510,12 +510,34 @@ world.afterEvents.playerBreakBlock.subscribe((event) => {
   });
 });
 
+const INTERACTIVE_BLOCK_IDS = new Set([
+  "crafting_table", "furnace", "lit_furnace", "blast_furnace", "lit_blast_furnace", "smoker", "lit_smoker",
+  "chest", "trapped_chest", "ender_chest", "barrel", "hopper", "dispenser", "dropper", "crafter",
+  "anvil", "chipped_anvil", "damaged_anvil", "enchanting_table", "brewing_stand", "cauldron",
+  "lectern", "loom", "cartography_table", "fletching_table", "smithing_table", "grindstone", "stonecutter_block",
+  "composter", "jukebox", "note_block", "lever", "daylight_detector", "unpowered_repeater", "powered_repeater",
+  "unpowered_comparator", "powered_comparator", "command_block", "repeating_command_block", "chain_command_block",
+  "structure_block", "beacon", "bell", "campfire", "soul_campfire", "respawn_anchor", "decorated_pot",
+  "cake", "flower_pot", "chiseled_bookshelf", "vault", "trial_spawner", "end_portal_frame",
+  "iron_door", "iron_trapdoor", "conduit", "bed"
+]);
+const INTERACTIVE_BLOCK_PATTERN =
+  /(_door|_trapdoor|_fence_gate|_button|_sign|_hanging_sign|_shulker_box|_bed|_candle_cake|_shelf)$|^(standing|wall)_sign$|^shulker_box$|^fence_gate$|^wooden_(door|button)$|^trapdoor$/;
+
+function isInteractiveBlock(typeId) {
+  if (typeof typeId !== "string" || !typeId.startsWith("minecraft:")) return false;
+  const name = typeId.slice("minecraft:".length);
+  return INTERACTIVE_BLOCK_IDS.has(name) || INTERACTIVE_BLOCK_PATTERN.test(name);
+}
+
 // 2. ハーフブロックへの重ね置き時の即時土ブロック化（設置前イベントで横取り＆即一体化）
 world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
   const { block, blockFace, faceLocation, itemStack, player } = event;
   if (!block || !itemStack || !player) return;
 
   const targetId = block.typeId;
+  // 機能ブロックは通常操作(GUI等)を優先し、しゃがみ時のみ張り付き設置を許可
+  if (STACKABLE_LAYER_IDS.has(itemStack.typeId) && !player.isSneaking && isInteractiveBlock(targetId)) return;
   if (DIRECTIONAL_LAYER_IDS.has(itemStack.typeId)) {
     const faceStr = typeof blockFace === "string" ? blockFace : blockFace?.toString();
     const faceName = ["North", "East", "South", "West", "Up", "Down"].find(

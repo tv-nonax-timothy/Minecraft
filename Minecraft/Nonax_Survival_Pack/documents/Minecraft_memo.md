@@ -243,6 +243,13 @@
   - スクリプト側（`scripts/main.js`）：
     - 土ハーフから草ハーフへの成長時（`tryGrowDirtSlab`）、`block.permutation.getState("minecraft:vertical_half")` を取得し、上付き・下付きの姿勢を維持したまま草ハーフブロックに変換。
 
+### レイヤーブロックの機能ブロック除外（実機確認済み）
+- 作業台などの機能ブロックにレイヤーを持ってクリックすると、画面が開かずレイヤーが張り付く問題があった。
+- `main.js` の `playerInteractWithBlock` 先頭で、`isInteractiveBlock(targetId)` を判定する。除外リストの機能ブロックなら設置処理を行わず、通常の操作（GUIなど）を優先する。
+- しゃがみ中（`player.isSneaking`）は除外リストを無視し、従来どおり張り付けて設置できる。
+- 除外リストは `INTERACTIVE_BLOCK_IDS`（作業台、かまど類、チェスト類、樽、ホッパー、金床、エンチャント台、醸造台、各種作業台、ジュークボックス、ノートブロック、レバー、コマンドブロックなど）と `INTERACTIVE_BLOCK_PATTERN`（ドア、トラップドア、フェンスゲート、ボタン、看板、シュルカーボックス、ベッドなど）で管理する。追加する場合はここに追記する。
+- 対象は積層レイヤー全般（`STACKABLE_LAYER_IDS`）。実機テストで問題なしを確認済み。
+
 ## デバッグ時のメモ
 - 失敗時は log の `Scripting` と `Blocks` を優先して確認する
 - `Blocks` の `child 'custom_components' not valid here` は JSON 仕様違反の確認ポイント
