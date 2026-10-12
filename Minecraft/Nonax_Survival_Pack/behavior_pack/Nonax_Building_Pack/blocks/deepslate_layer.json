@@ -112,32 +112,6 @@
               16,
               2
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -168,32 +142,6 @@
               16,
               4
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -224,32 +172,6 @@
               16,
               6
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -280,32 +202,6 @@
               16,
               8
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -336,32 +232,6 @@
               16,
               10
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -392,32 +262,6 @@
               16,
               12
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -448,32 +292,6 @@
               16,
               14
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -504,32 +322,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -560,32 +352,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -616,32 +382,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -672,32 +412,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -728,32 +442,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -784,32 +472,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -840,32 +502,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -896,32 +532,6 @@
               16,
               2
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -952,32 +562,6 @@
               16,
               4
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1008,32 +592,6 @@
               16,
               6
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1064,32 +622,6 @@
               16,
               8
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1120,32 +652,6 @@
               16,
               10
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1176,32 +682,6 @@
               16,
               12
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1232,32 +712,6 @@
               16,
               14
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1288,32 +742,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1344,32 +772,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1400,32 +802,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1456,32 +832,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1512,32 +862,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1568,32 +892,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
@@ -1624,32 +922,6 @@
               16,
               16
             ]
-          },
-          "minecraft:material_instances": {
-            "up": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "down": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "north": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "south": {
-              "texture": "custom_deepslate_layer_side",
-              "render_method": "opaque"
-            },
-            "east": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            },
-            "west": {
-              "texture": "custom_deepslate_layer_top",
-              "render_method": "opaque"
-            }
           }
         }
       },
