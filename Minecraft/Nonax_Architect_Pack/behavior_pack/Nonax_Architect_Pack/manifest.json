@@ -9,12 +9,6 @@
     },
     "modules": [
         {
-            "description": "Data module for villager professions and trades",
-            "type": "data",
-            "uuid": "83ff3fdf-a79b-4109-8d63-2a9281bc6ebf",
-            "version": [0, 0, 1]
-        },
-        {
             "description": "Client data module for villager models and textures",
             "type": "client_data",
             "uuid": "3f369a55-9b1e-4db9-8651-6e7af0473f11",

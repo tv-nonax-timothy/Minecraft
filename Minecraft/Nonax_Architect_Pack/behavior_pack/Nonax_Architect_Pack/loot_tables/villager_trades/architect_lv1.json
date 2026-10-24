@@ -1,0 +1,99 @@
+{
+    "format_version": "1.18.10",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:emerald",
+                    "count": {
+                        "min": 3,
+                        "max": 6
+                    }
+                },
+                {
+                    "type": "item",
+                    "name": "architect_blueprint_lv1",
+                    "count": 1,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": 1,
+                            "enchantment": "minecraft:infinity"
+                        }
+                    ]
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "player",
+                    "data": {
+                        "has_name": true
+                    }
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:oak_planks",
+                    "count": {
+                        "min": 24,
+                        "max": 32
+                    }
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:spruce_planks",
+                    "count": {
+                        "min": 16,
+                        "max": 24
+                    }
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:birch_planks",
+                    "count": {
+                        "min": 12,
+                        "max": 18
+                    }
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:jungle_planks",
+                    "count": {
+                        "min": 8,
+                        "max": 16
+                    }
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:acacia_planks",
+                    "count": {
+                        "min": 4,
+                        "max": 8
+                    }
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:dark_oak_planks",
+                    "count": {
+                        "min": 2,
+                        "max": 4
+                    }
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "player",
+                    "data": {
+                        "has_name": true
+                    }
+                }
+            ]
+        }
+    ]
+}

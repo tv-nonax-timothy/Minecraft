@@ -1,0 +1,22 @@
+{
+    "format_version": 2,
+    "minecraft_block": {
+        "description": {
+            "identifier": "architect_workbench",
+            "is_transparent": false,
+            "menu_category": {
+                "category": "functional"
+            }
+        },
+        "components": {
+            "block_entity": {
+                "type": "poi_type",
+                "point_of_interest_type": "minecraft:architect"
+            },
+            "minecraft:display_name": {
+                "text": "棟梁の作業台",
+                "color": "#ffffff"
+            }
+        }
+    }
+}

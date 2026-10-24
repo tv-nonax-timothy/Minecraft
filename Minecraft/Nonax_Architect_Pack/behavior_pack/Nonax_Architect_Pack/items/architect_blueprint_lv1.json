@@ -1,0 +1,17 @@
+{
+    "format_version": "1.26.0",
+    "minecraft:item": {
+        "description": {
+            "identifier": "architect_blueprint_lv1",
+            "name": "見習い棟梁の設計図"
+        },
+        "components": {
+            "minecraft:stack_size": 64,
+            "minecraft:food": {},
+            "minecraft:display_name": {
+                "text": "見習い棟梁の設計図",
+                "color": "#ffffff"
+            }
+        }
+    }
+}

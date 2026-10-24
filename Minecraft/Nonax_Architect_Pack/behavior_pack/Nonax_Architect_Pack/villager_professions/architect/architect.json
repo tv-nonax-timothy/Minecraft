@@ -1,0 +1,32 @@
+{
+    "format_version": "1.21.0",
+    "minecraft_villager": {
+        "description": {
+            "identifier": "architect",
+            "is_spawnable": true,
+            "is_summonable": true
+        },
+        "events": [
+            {
+                "function": "set_profession",
+                "data": {
+                    "profession": "minecraft:architect"
+                }
+            }
+        ],
+        "components": {
+            "minecraft:villager_v2": {
+                "type": "villager_v2",
+                "max_population": 1,
+                "breedable": false,
+                "can_breed_with_trades": true,
+                "trade_cooldown": 5.0,
+                "profession_type": "minecraft:architect"
+            },
+            "minecraft:point_of_interest_type": {
+                "type": "point_of_interest_type",
+                "identifier": "architect_workbench"
+            }
+        }
+    }
+}
