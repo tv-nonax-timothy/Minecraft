@@ -2,3 +2,6 @@
 ## Nonax_Survival_Pack 
  - update 2026/9/28  dirt & grass slab blocks.
  
+
+## Nonax_Architect_Pack
+ - New 2026/9/28   アイデアだしをします。
