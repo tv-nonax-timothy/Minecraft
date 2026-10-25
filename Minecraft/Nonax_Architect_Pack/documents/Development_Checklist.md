@@ -1,32 +1,42 @@
 # 棟梁（Architect）アドオン実装チェックリスト
 
+## format_version 
+- ブロック定義："1.21.120"
+- 村人職業データ："1.21.0"
+- ジオメトリモデル："1.12.0"
+- アイテム定義："1.26.0"
+- 取引テーブル："1.18.10"
+
+## 禁止事項
+実験機能を有効にしない（必須）
+
 ## 📌 Phase 1: 最小プロトタイプ構築（ローカル動作確認）
 まずは手元の環境で「スクリプトから 1 ブロックずつ設置して足場が消える」動作を確認するフェーズです。
 
 ### 1-1. パック基本構成・マニフェスト作成 ✅ **完了**
-- [x] **Behavior Pack (`behavior_pack/manifest.json`) の作成**
-  - [x] `min_engine_version: [1, 26, 0]` の設定
-  - [x] `@minecraft/server` (`2.1.0`) の依存関係追加
-  - [x] `format_version: "2"` の設定（サンプル準拠）
-- [x] **Resource Pack (`resource_pack/manifest.json`) の作成**
-  - [x] `min_engine_version: [1, 26, 0]` の設定
-  - [x] `modules: [{ type: "resources" }]` の定義
-- [x] **開発環境（ComPacks / behavior_packs フォルダ等）への配置と統合テストワールドの作成**
-  - [x] Behavior Pack のフォルダ構造作成
-  - [x] Resource Pack のフォルダ構造作成
-  - [x] 相互依存関係の設定（Behavior → Resource, Resource → Behavior）
+- [ ] **Behavior Pack (`behavior_pack/manifest.json`) の作成**
+  - [ ] `min_engine_version: [1, 26, 0]` の設定
+  - [ ] `@minecraft/server` (`2.1.0`) の依存関係追加
+  - [ ] `format_version: "2"` の設定（サンプル準拠）
+- [ ] **Resource Pack (`resource_pack/manifest.json`) の作成**
+  - [ ] `min_engine_version: [1, 26, 0]` の設定
+  - [ ] `modules: [{ type: "resources" }]` の定義
+- [ ] **開発環境（ComPacks / behavior_packs フォルダ等）への配置と統合テストワールドの作成**
+  - [ ] Behavior Pack のフォルダ構造作成
+  - [ ] Resource Pack のフォルダ構造作成
+  - [ ] 相互依存関係の設定（Behavior → Resource, Resource → Behavior）
 
 ### 1-2. 棟梁（村人）職業・POI ブロック定義 ✅ **完了**
-- [x] **POI ブロック（棟梁の作業台）の作成**
-  - [x] カスタムブロック定義 `architect_workbench.json` の作成
-  - [x] `minecraft:block.components.poi_type` の設定
-  - [x] `behavior_pack/data/poi/architect_workbench.json` の作成
-- [x] **棟梁職業データの作成 (`architect.json`)**
-  - [x] 村人（`villager_v2.json`）のイベント・コンポーネントグループの追加
-  - [x] POI ブロックの指定（`minecraft:point_of_interest_type`）
-- [x] **取引テーブル（`architect_trades.json`）の作成**
-  - [x] Lv.1 の取引アイテムに「仮の設計図アイテム」を登録
-  - [x] `loot_tables/villager_trades/architect_lv1.json` の定義
+- [ ] **POI ブロック（棟梁の作業台）の作成**
+  - [ ] カスタムブロック定義 `architect_workbench.json` の作成
+  - [ ] `minecraft:block.components.poi_type` の設定
+  - [ ] `behavior_pack/data/poi/architect_workbench.json` の作成
+- [ ] **棟梁職業データの作成 (`architect.json`)**
+  - [ ] 村人（`villager_v2.json`）のイベント・コンポーネントグループの追加
+  - [ ] POI ブロックの指定（`minecraft:point_of_interest_type`）
+- [ ] **取引テーブル（`architect_trades.json`）の作成**
+  - [ ] Lv.1 の取引アイテムに「仮の設計図アイテム」を登録
+  - [ ] `loot_tables/villager_trades/architect_lv1.json` の定義
 
 ### 1-3. 建築コアスクリプトの実装 (`scripts/main.js`)
 - [ ] **設計図データの定義（JSON 形式）**
