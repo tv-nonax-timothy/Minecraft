@@ -2,9 +2,20 @@
   "format_version": "1.8.0",
   "render_controllers": {
     "controller.render.nonax_architect": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [
+            "Texture.rank1",
+            "Texture.rank2",
+            "Texture.rank3",
+            "Texture.rank4",
+            "Texture.rank5"
+          ]
+        }
+      },
       "geometry": "Geometry.default",
       "materials": [ { "*": "Material.default" } ],
-      "textures": [ "Texture.default" ]
+      "textures": [ "Array.skins[math.clamp(query.variant - 1, 0, 4)]" ]
     }
   }
 }

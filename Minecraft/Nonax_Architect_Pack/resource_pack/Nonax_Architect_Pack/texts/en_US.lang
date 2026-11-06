@@ -1,3 +1,13 @@
 item.nonax:blueprint_lv1=Apprentice Architect's Blueprint
+item.nonax:blueprint_lv2=Journeyman Architect's Blueprint
+item.nonax:blueprint_lv3=Expert Architect's Blueprint
+item.nonax:blueprint_lv4=Master Architect's Blueprint
+item.nonax:blueprint_lv5=Grandmaster Architect's Blueprint
+tile.nonax:architect_workbench.name=Master Builder's Workbench
 entity.nonax:architect.name=Master Builder
+entity.nonax:architect.rank_1.name=Apprentice Builder
+entity.nonax:architect.rank_2.name=Journeyman Builder
+entity.nonax:architect.rank_3.name=Expert Builder
+entity.nonax:architect.rank_4.name=Master Builder (Rank 4)
+entity.nonax:architect.rank_5.name=Grandmaster Builder
 item.spawn_egg.entity.nonax:architect.name=Master Builder Spawn Egg

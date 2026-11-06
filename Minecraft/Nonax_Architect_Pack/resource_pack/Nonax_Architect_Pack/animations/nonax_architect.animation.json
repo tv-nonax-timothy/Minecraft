@@ -1,0 +1,18 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.nonax_architect.work": {
+      "loop": true,
+      "animation_length": 0.8,
+      "bones": {
+        "arms": {
+          "rotation": [
+            "-35.0 + Math.sin(query.anim_time * 450.0) * 30.0",
+            0.0,
+            0.0
+          ]
+        }
+      }
+    }
+  }
+}

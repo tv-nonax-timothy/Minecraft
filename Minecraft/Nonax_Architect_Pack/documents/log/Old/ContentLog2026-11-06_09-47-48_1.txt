@@ -1,0 +1,20 @@
+09:47:54[Scripting][verbose]-Plugin Discovered [Nonax Architect Pack (Behavior)] PackId [fc1930a5-3aeb-4de0-a20d-9f61476e9fb7_0.1.0] ModuleId [49818f7d-74d7-45c0-aebb-c7baca5b012a]
+
+09:47:54[Scripting][warning]-[nonax:architect] script loaded
+
+09:47:57[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:47:59[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:48:01[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:48:02[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:48:03[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:48:04[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:48:04[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+
+09:48:07[Sound][verbose]-No sound found for block type 'normal' and event type 'fly'
+

@@ -1,3 +1,13 @@
 item.nonax:blueprint_lv1=見習い棟梁の設計図
+item.nonax:blueprint_lv2=一人前棟梁の設計図
+item.nonax:blueprint_lv3=熟練棟梁の設計図
+item.nonax:blueprint_lv4=名人棟梁の設計図
+item.nonax:blueprint_lv5=達人棟梁の設計図
+tile.nonax:architect_workbench.name=棟梁の作業台
 entity.nonax:architect.name=棟梁
+entity.nonax:architect.rank_1.name=見習いの棟梁
+entity.nonax:architect.rank_2.name=一人前の棟梁
+entity.nonax:architect.rank_3.name=熟練の棟梁
+entity.nonax:architect.rank_4.name=名人の棟梁
+entity.nonax:architect.rank_5.name=達人の棟梁
 item.spawn_egg.entity.nonax:architect.name=棟梁のスポーンエッグ

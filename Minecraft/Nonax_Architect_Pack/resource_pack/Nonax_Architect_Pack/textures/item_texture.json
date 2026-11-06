@@ -4,6 +4,18 @@
   "texture_data": {
     "nonax_blueprint_lv1": {
       "textures": "textures/items/nonax_blueprint_lv1"
+    },
+    "nonax_blueprint_lv2": {
+      "textures": "textures/items/nonax_blueprint_lv2"
+    },
+    "nonax_blueprint_lv3": {
+      "textures": "textures/items/nonax_blueprint_lv3"
+    },
+    "nonax_blueprint_lv4": {
+      "textures": "textures/items/nonax_blueprint_lv4"
+    },
+    "nonax_blueprint_lv5": {
+      "textures": "textures/items/nonax_blueprint_lv5"
     }
   }
 }

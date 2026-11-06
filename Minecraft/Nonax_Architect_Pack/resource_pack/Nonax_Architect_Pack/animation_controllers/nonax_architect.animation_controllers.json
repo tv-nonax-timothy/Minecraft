@@ -1,0 +1,21 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.nonax_architect.work": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "transitions": [
+            { "working": "query.mark_variant == 1" }
+          ]
+        },
+        "working": {
+          "animations": [ "work" ],
+          "transitions": [
+            { "idle": "query.mark_variant != 1" }
+          ]
+        }
+      }
+    }
+  }
+}

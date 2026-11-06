@@ -7,6 +7,66 @@
       "is_spawnable": true,
       "spawn_category": "creature"
     },
+    "component_groups": {
+      "nonax:rank_1": {
+        "minecraft:economy_trade_table": {
+          "display_name": "entity.nonax:architect.rank_1.name",
+          "new_screen": true,
+          "table": "trading/economy_trades/nonax_architect_trades_lv1.json"
+        },
+        "minecraft:variant": {
+          "value": 1
+        }
+      },
+      "nonax:rank_2": {
+        "minecraft:economy_trade_table": {
+          "display_name": "entity.nonax:architect.rank_2.name",
+          "new_screen": true,
+          "table": "trading/economy_trades/nonax_architect_trades_lv2.json"
+        },
+        "minecraft:variant": {
+          "value": 2
+        }
+      },
+      "nonax:rank_3": {
+        "minecraft:economy_trade_table": {
+          "display_name": "entity.nonax:architect.rank_3.name",
+          "new_screen": true,
+          "table": "trading/economy_trades/nonax_architect_trades_lv3.json"
+        },
+        "minecraft:variant": {
+          "value": 3
+        }
+      },
+      "nonax:rank_4": {
+        "minecraft:economy_trade_table": {
+          "display_name": "entity.nonax:architect.rank_4.name",
+          "new_screen": true,
+          "table": "trading/economy_trades/nonax_architect_trades_lv4.json"
+        },
+        "minecraft:variant": {
+          "value": 4
+        }
+      },
+      "nonax:rank_5": {
+        "minecraft:economy_trade_table": {
+          "display_name": "entity.nonax:architect.rank_5.name",
+          "new_screen": true,
+          "table": "trading/economy_trades/nonax_architect_trades_lv5.json"
+        },
+        "minecraft:variant": {
+          "value": 5
+        }
+      },
+      "nonax:working": {
+        "minecraft:movement": {
+          "value": 0
+        },
+        "minecraft:mark_variant": {
+          "value": 1
+        }
+      }
+    },
     "components": {
       "minecraft:behavior.float": {
         "priority": 0
@@ -56,11 +116,6 @@
         "width": 0.6
       },
       "minecraft:conditional_bandwidth_optimization": {},
-      "minecraft:economy_trade_table": {
-        "display_name": "entity.nonax:architect.name",
-        "new_screen": true,
-        "table": "trading/economy_trades/nonax_architect_trades.json"
-      },
       "minecraft:health": {
         "max": 20,
         "value": 20
@@ -91,6 +146,104 @@
         "family": [
           "nonax_architect"
         ]
+      }
+    },
+    "events": {
+      "nonax:set_rank_1": {
+        "remove": {
+          "component_groups": [
+            "nonax:rank_2",
+            "nonax:rank_3",
+            "nonax:rank_4",
+            "nonax:rank_5"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "nonax:rank_1"
+          ]
+        }
+      },
+      "nonax:set_rank_2": {
+        "remove": {
+          "component_groups": [
+            "nonax:rank_1",
+            "nonax:rank_3",
+            "nonax:rank_4",
+            "nonax:rank_5"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "nonax:rank_2"
+          ]
+        }
+      },
+      "nonax:set_rank_3": {
+        "remove": {
+          "component_groups": [
+            "nonax:rank_1",
+            "nonax:rank_2",
+            "nonax:rank_4",
+            "nonax:rank_5"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "nonax:rank_3"
+          ]
+        }
+      },
+      "nonax:set_rank_4": {
+        "remove": {
+          "component_groups": [
+            "nonax:rank_1",
+            "nonax:rank_2",
+            "nonax:rank_3",
+            "nonax:rank_5"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "nonax:rank_4"
+          ]
+        }
+      },
+      "nonax:set_rank_5": {
+        "remove": {
+          "component_groups": [
+            "nonax:rank_1",
+            "nonax:rank_2",
+            "nonax:rank_3",
+            "nonax:rank_4"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "nonax:rank_5"
+          ]
+        }
+      },
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": [
+            "nonax:rank_1"
+          ]
+        }
+      },
+      "nonax:start_work": {
+        "add": {
+          "component_groups": [
+            "nonax:working"
+          ]
+        }
+      },
+      "nonax:stop_work": {
+        "remove": {
+          "component_groups": [
+            "nonax:working"
+          ]
+        }
       }
     }
   }
