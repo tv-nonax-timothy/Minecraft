@@ -10,7 +10,7 @@
 # ⚠️ 技術的制約
 - **実行環境**: Minecraft v26.62 / Bedrock Edition
 - **互換基準**: `format_version: [1, 26, 0]`, `min_engine_version: [1, 26, 0]`
-- **安定版 API**: `@minecraft/server` 2.1.0（ログ確認必須、2.10.0 に promote される可能性あり）
+- **安定版 API**: `@minecraft/server` 2.11.0
 - **未定義 API**: 
   - ❌ `world.events.tick` → ✅ `system.runInterval(...)` で代替
   - ❌ `dimension.setBlock()` → ✅ `block.setPermutation(BlockPermutation.resolve(...))` または `dimension.setBlockPermutation()`

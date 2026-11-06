@@ -1,0 +1,24 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "Architect Villager Resource Pack - Adds textures, models, and sounds for the Architect profession",
+        "name": "Nonax Architect Pack(Resource)",
+        "uuid": "442774d1-16bf-4b2b-8ea8-b940692c30ee",
+        "version": [0, 0, 1],
+        "min_engine_version": [1, 26, 0]
+    },
+    "modules": [
+        {
+            "description": "Resources module for textures, models, sounds, and UI",
+            "type": "resources",
+            "uuid": "3352028b-9e86-403a-9b53-5afe2e2665aa",
+            "version": [0, 0, 1]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "fd1951b7-314f-4c58-9b26-3fa97fec8b2b",  // Nonax Architect Pack(Behavior)
+            "version": [0, 0, 1]
+        }
+    ]
+}

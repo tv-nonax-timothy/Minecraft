@@ -1,0 +1,3 @@
+item.nonax:blueprint_lv1=Apprentice Architect's Blueprint
+entity.nonax:architect.name=Master Builder
+item.spawn_egg.entity.nonax:architect.name=Master Builder Spawn Egg

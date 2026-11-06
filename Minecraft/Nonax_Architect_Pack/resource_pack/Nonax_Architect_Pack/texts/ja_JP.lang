@@ -1,0 +1,3 @@
+item.nonax:blueprint_lv1=見習い棟梁の設計図
+entity.nonax:architect.name=棟梁
+item.spawn_egg.entity.nonax:architect.name=棟梁のスポーンエッグ

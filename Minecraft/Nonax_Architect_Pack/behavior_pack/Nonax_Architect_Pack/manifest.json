@@ -1,32 +1,36 @@
 {
-    "format_version": 2,
-    "header": {
-        "description": "Architect Villager Behavior Pack - Adds the Architect profession to villagers",
-        "name": "Nonax Architect Pack(Behavior)",
-        "uuid": "fd1951b7-314f-4c58-9b26-3fa97fec8b2b",
-        "version": [0, 0, 1],
-        "min_engine_version": [1, 26, 0]
+  "format_version": 2,
+  "header": {
+    "name": "Nonax Architect Pack (Behavior)",
+    "description": "Architect NPC and blueprint building system.",
+    "uuid": "fc1930a5-3aeb-4de0-a20d-9f61476e9fb7",
+    "version": [0, 1, 0],
+    "min_engine_version": [1, 26, 0]
+  },
+  "modules": [
+    {
+      "description": "Architect pack data module",
+      "type": "data",
+      "uuid": "d70a15f4-aa08-47fc-86ac-952c4d9af2a6",
+      "version": [0, 1, 0]
     },
-    "modules": [
-        {
-            "description": "Client data module for villager models and textures",
-            "type": "client_data",
-            "uuid": "3f369a55-9b1e-4db9-8651-6e7af0473f11",
-            "version": [0, 0, 1]
-        }
-    ],
-    "dependencies": [
-        {
-            "uuid": "@minecraft/server",
-            "version": ["2", "1", "0"]
-        },
-        {
-            "uuid": "@minecraft/server-net",
-            "version": ["1", "3", "0"]
-        },
-        {
-            "uuid": "442774d1-16bf-4b2b-8ea8-b940692c30ee",  // Nonax Architect Pack(Resource)
-            "version": [0, 0, 1]
-        }
-    ]
+    {
+      "description": "Architect pack script module",
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "49818f7d-74d7-45c0-aebb-c7baca5b012a",
+      "version": [0, 1, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "1ef9cd35-06c5-47df-b721-ac6bea725be7",
+      "version": [0, 1, 0]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.11.0"
+    }
+  ]
 }
