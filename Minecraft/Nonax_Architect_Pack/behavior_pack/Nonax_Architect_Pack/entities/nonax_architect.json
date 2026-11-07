@@ -58,6 +58,14 @@
           "value": 5
         }
       },
+      "nonax:idle": {
+        "minecraft:movement": {
+          "value": 0.5
+        },
+        "minecraft:mark_variant": {
+          "value": 0
+        }
+      },
       "nonax:working": {
         "minecraft:movement": {
           "value": 0
@@ -232,6 +240,11 @@
         }
       },
       "nonax:start_work": {
+        "remove": {
+          "component_groups": [
+            "nonax:idle"
+          ]
+        },
         "add": {
           "component_groups": [
             "nonax:working"
@@ -242,6 +255,11 @@
         "remove": {
           "component_groups": [
             "nonax:working"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "nonax:idle"
           ]
         }
       }

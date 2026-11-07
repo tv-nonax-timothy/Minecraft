@@ -134,7 +134,7 @@ const LEVEL_FILL_DEPTH = 4;
 const LEVEL_MAX_OPS = 800;
 const LEVEL_OPS_PER_STEP = 4;
 const ARRIVE_WAIT_TICKS = 30;
-const ARRIVE_NEAR_DISTANCE = 6;
+const ARCHITECT_LANDING_CLEARANCE = 2;
 
 const PLANT_IDS = new Set([
   "short_grass", "tall_grass", "fern", "large_fern", "dead_bush", "vine", "seagrass", "tall_seagrass",
@@ -208,18 +208,65 @@ function planLeveling(dimension, bp, origin) {
   return { ops };
 }
 
+function findArchitectLanding(dimension, origin, bp, from) {
+  const minX = origin.x - 3;
+  const maxX = origin.x + bp.size.x + 2;
+  const minZ = origin.z - 3;
+  const maxZ = origin.z + bp.size.z + 2;
+  const candidates = [];
+  let checkErrorLogged = false;
+
+  for (let x = minX; x <= maxX; x++) {
+    for (let z = minZ; z <= maxZ; z++) {
+      if (x !== minX && x !== maxX && z !== minZ && z !== maxZ) continue;
+      for (let y = origin.y - LEVEL_FILL_DEPTH; y <= origin.y + 3; y++) {
+        try {
+          const floor = dimension.getBlock({ x, y: y - 1, z });
+          if (!floor || floor.isAir || floor.isLiquid || isPlant(floor.typeId)) continue;
+
+          let clear = true;
+          for (let height = 0; height < ARCHITECT_LANDING_CLEARANCE; height++) {
+            const block = dimension.getBlock({ x, y: y + height, z });
+            if (!block || !block.isAir) {
+              clear = false;
+              break;
+            }
+          }
+          if (!clear) continue;
+
+          const target = { x: x + 0.5, y, z: z + 0.5 };
+          const dx = from.x - target.x, dy = from.y - target.y, dz = from.z - target.z;
+          candidates.push({ target, distance: dx * dx + dy * dy + dz * dz });
+        } catch (e) {
+          if (!checkErrorLogged) {
+            console.warn(`${LOG} landing position check error at ${x},${y},${z}: ${e}`);
+            checkErrorLogged = true;
+          }
+        }
+      }
+    }
+  }
+
+  candidates.sort((a, b) => a.distance - b.distance);
+  return candidates.length > 0 ? candidates[0].target : undefined;
+}
+
 // 棟梁を現場の脇へ呼び寄せる。到着するまで建築は始まらない。
 function summonArchitectToSite(job) {
   const a = job.architect;
   if (!a) {
     job.arriveTick = system.currentTick;
-    return;
+    return true;
   }
   try {
     const { origin, bp, dimension } = job;
-    const target = { x: origin.x - 2.5, y: origin.y + 0.5, z: origin.z + Math.floor(bp.size.z / 2) + 0.5 };
-    const dx = a.location.x - target.x, dz = a.location.z - target.z;
-    if (a.dimension.id !== dimension.id || Math.sqrt(dx * dx + dz * dz) > ARRIVE_NEAR_DISTANCE) {
+    const target = findArchitectLanding(dimension, origin, bp, a.location);
+    if (!target) {
+      console.warn(`${LOG} no safe architect landing position`);
+      return false;
+    }
+    const dx = a.location.x - target.x, dy = a.location.y - target.y, dz = a.location.z - target.z;
+    if (a.dimension.id !== dimension.id || dx * dx + dy * dy + dz * dz > 2.25) {
       dimension.spawnParticle("minecraft:basic_smoke_particle", a.location);
       a.teleport(target, {
         dimension,
@@ -229,10 +276,12 @@ function summonArchitectToSite(job) {
     }
   } catch (e) {
     console.warn(`${LOG} summonArchitectToSite error: ${e}`);
+    return false;
   }
   setArchitectWorking(a, true);
   job.anchor = { x: a.location.x, y: a.location.y, z: a.location.z };
   job.arriveTick = system.currentTick + ARRIVE_WAIT_TICKS;
+  return true;
 }
 
 // 建築中は棟梁を持ち場に留める（押された場合などは元の位置へ戻す）
@@ -303,7 +352,10 @@ function startJob(player, blueprintId, origin) {
   };
   jobs.set(player.id, job);
   job.architect = findNearestArchitect(dimension, queue[0].pos);
-  summonArchitectToSite(job);
+  if (!summonArchitectToSite(job)) {
+    finishJob(job, false, "棟梁が安全に立てる場所がありません");
+    return;
+  }
   console.warn(`${LOG} job start: ${blueprintId} blocks=${queue.length} level=${level.ops.length} architect=${job.architect ? "yes" : "no"} player=${player.name}`);
   notify(player, `§a${bp.name}を使用しました。建築を開始します。`);
   ensureTimer();
@@ -474,6 +526,11 @@ function finishJob(job, ok, reason) {
   console.warn(`${LOG} job end: ok=${ok} placed=${job.index}/${job.queue.length}${reason ? ` reason=${reason}` : ""}`);
   removeTemporaries(job);
   setArchitectWorking(job.architect, false);
+  if (job.architect) {
+    // 取りこぼし対策として、少し後にもう一度停止を指示する
+    const a = job.architect;
+    system.runTimeout(() => setArchitectWorking(a, false), 20);
+  }
   if (ok) {
     notify(job.player, "§a建築が完了しました。");
     completeEffect(job);
