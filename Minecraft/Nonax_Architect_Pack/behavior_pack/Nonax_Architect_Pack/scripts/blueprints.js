@@ -2,13 +2,13 @@
 export const BLUEPRINTS = {
   "nonax:blueprint_lv1": {
     name: "見習い棟梁の設計図",
-    size: { x: 3, y: 3, z: 3 },
-    blocks: buildTestHut()
+    structureSuffix: "nonax_lv1_house",
+    groundOffset: -1
   },
   "nonax:blueprint_lv2": {
     name: "一人前棟梁の設計図",
-    size: { x: 3, y: 6, z: 3 },
-    blocks: buildWatchtower()
+    structureSuffix: "nonax_lv2_house",
+    groundOffset: -1
   },
   "nonax:blueprint_lv3": {
     name: "熟練棟梁の設計図",
@@ -17,8 +17,8 @@ export const BLUEPRINTS = {
   },
   "nonax:blueprint_lv4": {
     name: "名人棟梁の設計図",
-    size: { x: 11, y: 9, z: 9 },
-    blocks: buildMansion()
+    structureSuffix: "nonax_lv4_house",
+    groundOffset: -1
   },
   "nonax:blueprint_lv5": {
     name: "達人棟梁の設計図",
@@ -69,57 +69,6 @@ function buildPagoda() {
   return blocks;
 }
 
-// 11x9x9 の邸宅。土台は全域、母屋は 9x7（x=1〜9, z=1〜7）の 2 階建て。
-// 出入口は z=1 側の中央、四隅の外柱が張り出した屋根を支える。
-// 内部の足場ブロックの柱（x=2, z=2）で 2 階へ上れる。
-function buildMansion() {
-  const blocks = [];
-  const add = (x, y, z, id) => blocks.push({ x, y, z, id });
-  for (let y = 0; y < 9; y++) {
-    for (let x = 0; x < 11; x++) {
-      for (let z = 0; z < 9; z++) {
-        const inBody = x >= 1 && x <= 9 && z >= 1 && z <= 7;
-        const isRing = inBody && (x === 1 || x === 9 || z === 1 || z === 7);
-        const isCorner = (x === 1 || x === 9) && (z === 1 || z === 7);
-        const isOuterPost = (x === 0 || x === 10) && (z === 0 || z === 8);
-        const isStair = x === 2 && z === 2;
-        if (y === 0) {
-          add(x, y, z, "minecraft:stone_bricks");
-        } else if (y >= 1 && y <= 5 && y !== 3) {
-          if (isOuterPost) {
-            add(x, y, z, "minecraft:dark_oak_log");
-          } else if (isCorner) {
-            add(x, y, z, "minecraft:dark_oak_log");
-          } else if (isRing) {
-            const isDoorway = z === 1 && x === 5 && y <= 2;
-            const isWindow = (y === 2 || y === 5) &&
-              (((x === 3 || x === 7) && (z === 1 || z === 7)) || ((z === 3 || z === 5) && (x === 1 || x === 9)));
-            if (isDoorway) continue;
-            add(x, y, z, isWindow ? "minecraft:glass" : "minecraft:white_concrete");
-          } else if (inBody && isStair && y <= 4) {
-            add(x, y, z, "minecraft:scaffolding");
-          }
-        } else if (y === 3) {
-          if (isOuterPost) {
-            add(x, y, z, "minecraft:dark_oak_log");
-          } else if (inBody) {
-            if (isCorner) add(x, y, z, "minecraft:dark_oak_log");
-            else if (isRing) add(x, y, z, "minecraft:white_concrete");
-            else add(x, y, z, isStair ? "minecraft:scaffolding" : "minecraft:dark_oak_planks");
-          }
-        } else if (y === 6) {
-          add(x, y, z, "minecraft:dark_oak_slab");
-        } else if (y === 7) {
-          if (x >= 2 && x <= 8 && z >= 2 && z <= 6) add(x, y, z, "minecraft:dark_oak_slab");
-        } else if (y === 8) {
-          if (x >= 4 && x <= 6 && z >= 3 && z <= 5) add(x, y, z, "minecraft:dark_oak_slab");
-        }
-      }
-    }
-  }
-  return blocks;
-}
-
 // 7x8x7 の 2 階建て民家。母屋は 5x5（オフセット 1〜5）、出入口は z=1 側の中央、
 // 内部の足場ブロックの柱で 2 階へ上れる。
 function buildMinka() {
@@ -151,49 +100,6 @@ function buildMinka() {
           add(x, y, z, "minecraft:dark_oak_slab");
         } else if (y === 7) {
           if (inBody) add(x, y, z, "minecraft:dark_oak_slab");
-        }
-      }
-    }
-  }
-  return blocks;
-}
-
-// 3x3x6 の見張り台（四隅の柵の脚、床、手すり、屋根）
-function buildWatchtower() {
-  const blocks = [];
-  for (let y = 0; y < 6; y++) {
-    for (let x = 0; x < 3; x++) {
-      for (let z = 0; z < 3; z++) {
-        const isCorner = (x === 0 || x === 2) && (z === 0 || z === 2);
-        if (y <= 2 || y === 4) {
-          if (isCorner) blocks.push({ x, y, z, id: "minecraft:oak_fence" });
-        } else if (y === 3) {
-          blocks.push({ x, y, z, id: "minecraft:oak_planks" });
-        } else if (y === 5) {
-          blocks.push({ x, y, z, id: "minecraft:oak_slab" });
-        }
-      }
-    }
-  }
-  return blocks;
-}
-
-// 3x3x3 の小屋（床・壁・屋根、正面中央に出入口）
-function buildTestHut() {
-  const blocks = [];
-  for (let y = 0; y < 3; y++) {
-    for (let x = 0; x < 3; x++) {
-      for (let z = 0; z < 3; z++) {
-        const isFloor = y === 0;
-        const isRoof = y === 2;
-        const isWall = x === 0 || x === 2 || z === 0 || z === 2;
-        const isDoorway = z === 0 && x === 1 && y === 1;
-        if (isFloor) {
-          blocks.push({ x, y, z, id: "minecraft:oak_planks" });
-        } else if (isRoof) {
-          blocks.push({ x, y, z, id: "minecraft:oak_slab" });
-        } else if (isWall && !isDoorway) {
-          blocks.push({ x, y, z, id: "minecraft:spruce_planks" });
         }
       }
     }

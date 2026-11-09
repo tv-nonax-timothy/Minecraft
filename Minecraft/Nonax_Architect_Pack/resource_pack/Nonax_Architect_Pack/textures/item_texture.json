@@ -16,6 +16,9 @@
     },
     "nonax_blueprint_lv5": {
       "textures": "textures/items/nonax_blueprint_lv5"
+    },
+    "nonax_blueprint_hammer": {
+      "textures": "textures/items/wood_axe"
     }
   }
 }

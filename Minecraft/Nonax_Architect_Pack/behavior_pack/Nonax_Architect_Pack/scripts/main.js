@@ -1,4 +1,4 @@
-﻿import { world, system, BlockPermutation } from "@minecraft/server";
+import { world, system, BlockPermutation, StructureSaveMode } from "@minecraft/server";
 import { BLUEPRINTS, validateBlueprint } from "./blueprints.js";
 
 const LOG = "[nonax:architect]";
@@ -14,13 +14,212 @@ const FACE_OFFSETS = {
 
 // プレイヤーIDごとの進行中ジョブ
 const jobs = new Map();
+const structureSelections = new Map();
 let timerId = undefined;
+
+const STRUCTURE_MAX_AXIS = 64;
+const STRUCTURE_MAX_VOLUME = 32768;
+const BLUEPRINT_HAMMER_TYPE = "nonax:blueprint_hammer";
 
 function notify(player, message) {
   try {
     player.sendMessage(message);
   } catch (e) {
     console.warn(`${LOG} sendMessage failed: ${e}`);
+  }
+}
+
+function getStructureNamePart(player) {
+  const name = player.name.toLowerCase().replace(/[^a-z0-9._-]+/g, "_").replace(/^[._-]+|[._-]+$/g, "").slice(0, 32);
+  if (name) return name;
+  let hash = 0;
+  for (const char of player.id) hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+  return `player_${hash.toString(36)}`;
+}
+
+function nextStructureId(player) {
+  const manager = world.structureManager;
+  const existing = new Set([...manager.getWorldStructureIds(), ...manager.getPackStructureIds()]);
+  const prefix = `nonax:${getStructureNamePart(player)}_`;
+  let number = 1;
+  while (existing.has(`${prefix}${number}`)) number++;
+  return `${prefix}${number}`;
+}
+
+function captureSelectedStructure(player, start, end, dimension) {
+  const from = {
+    x: Math.min(start.x, end.x),
+    y: Math.min(start.y, end.y),
+    z: Math.min(start.z, end.z)
+  };
+  const to = {
+    x: Math.max(start.x, end.x),
+    y: Math.max(start.y, end.y),
+    z: Math.max(start.z, end.z)
+  };
+  const size = { x: to.x - from.x + 1, y: to.y - from.y + 1, z: to.z - from.z + 1 };
+  const volume = size.x * size.y * size.z;
+  if (size.x > STRUCTURE_MAX_AXIS || size.y > STRUCTURE_MAX_AXIS || size.z > STRUCTURE_MAX_AXIS) {
+    notify(player, `§c範囲の各辺は最大 ${STRUCTURE_MAX_AXIS} ブロックです。`);
+    return;
+  }
+  if (volume > STRUCTURE_MAX_VOLUME) {
+    notify(player, `§c範囲が大きすぎます（最大 ${STRUCTURE_MAX_VOLUME} ブロック）。`);
+    return;
+  }
+
+  let occupied = 0;
+  try {
+    for (let x = from.x; x <= to.x; x++) {
+      for (let y = from.y; y <= to.y; y++) {
+        for (let z = from.z; z <= to.z; z++) {
+          const block = dimension.getBlock({ x, y, z });
+          if (!block) {
+            notify(player, "§c選択範囲が読み込まれていません。範囲を読み込んでから選び直してください。");
+            return;
+          }
+          if (!block.isAir) occupied++;
+        }
+      }
+    }
+  } catch (e) {
+    console.warn(`${LOG} structure validation error: ${e}`);
+    notify(player, "§c範囲を検証できませんでした。");
+    return;
+  }
+  if (occupied === 0) {
+    notify(player, "§c選択範囲にブロックがありません。");
+    return;
+  }
+
+  try {
+    const id = nextStructureId(player);
+    world.structureManager.createFromWorld(id, dimension, from, to, {
+      includeBlocks: true,
+      includeEntities: false,
+      saveMode: StructureSaveMode.World
+    });
+    console.warn(`${LOG} structure captured: id=${id} size=${size.x}x${size.y}x${size.z} blocks=${occupied}`);
+    notify(player, `§a構造をワールドに保存しました: ${id}`);
+    notify(player, `§7サイズ ${size.x}x${size.y}x${size.z}、ブロック ${occupied} 個。構造ブロックの保存・エクスポートでファイル名「${id.slice(id.indexOf(":") + 1)}」を指定してください。`);
+  } catch (e) {
+    console.warn(`${LOG} structure capture failed: ${e}`);
+    notify(player, "§c構造の保存に失敗しました。Content Log を確認してください。");
+  }
+}
+
+function handleBlueprintHammer(player, point, dimension) {
+  try {
+    if (player.getGameMode() !== "Creative") {
+      structureSelections.delete(player.id);
+      notify(player, "§c設計ハンマーはクリエイティブでのみ使用できます。");
+      return;
+    }
+
+    const current = structureSelections.get(player.id);
+    if (!current || current.dimension.id !== dimension.id) {
+      structureSelections.set(player.id, { point, dimension });
+      notify(player, `§e起点を選択しました: ${point.x}, ${point.y}, ${point.z}。終点を選んでください。`);
+      return;
+    }
+
+    structureSelections.delete(player.id);
+    captureSelectedStructure(player, current.point, point, current.dimension);
+  } catch (e) {
+    structureSelections.delete(player.id);
+    console.warn(`${LOG} blueprint hammer error: ${e}`);
+    notify(player, "§c設計ハンマーの処理に失敗しました。Content Log を確認してください。");
+  }
+}
+
+function isDeferredDecoration(id) {
+  const name = shortId(id);
+  return name === "frame" || name === "glow_frame" ||
+    name === "torch" || name.endsWith("_torch") ||
+    name === "lantern" || name.endsWith("_lantern") ||
+    name === "wooden_door" || name.endsWith("_door") ||
+    name === "trapdoor" || name.endsWith("_trapdoor") ||
+    name.endsWith("_pressure_plate");
+}
+
+function isDoor(id) {
+  const name = shortId(id);
+  return name === "wooden_door" || name.endsWith("_door");
+}
+
+function orderStructureBlocks(blocks) {
+  const byPosition = new Map(blocks.map((block) => [`${block.x},${block.y},${block.z}`, block]));
+  const ordered = [];
+  const pairedUpper = new Set();
+  blocks.sort((a, b) => Number(isDeferredDecoration(a.id)) - Number(isDeferredDecoration(b.id)) || a.y - b.y || a.x - b.x || a.z - b.z);
+  for (const block of blocks) {
+    if (!isDoor(block.id)) {
+      ordered.push(block);
+      continue;
+    }
+
+    const upper = block.states?.upper_block_bit;
+    if (upper !== false && upper !== true && upper !== 0 && upper !== 1) {
+      return { error: `ドアの上下状態が不正です (${block.x}, ${block.y}, ${block.z})` };
+    }
+    if (upper === true || upper === 1) {
+      if (!pairedUpper.has(block)) return { error: `ドアの下半分がありません (${block.x}, ${block.y}, ${block.z})` };
+      continue;
+    }
+    const other = byPosition.get(`${block.x},${block.y + 1},${block.z}`);
+    const otherUpper = other?.states?.upper_block_bit;
+    if (!other || other.id !== block.id || (otherUpper !== true && otherUpper !== 1)) {
+      return { error: `ドアの上半分がありません (${block.x}, ${block.y}, ${block.z})` };
+    }
+    pairedUpper.add(other);
+    ordered.push(block, other);
+  }
+  return { blocks: ordered };
+}
+
+function loadBlueprint(blueprintId) {
+  const definition = BLUEPRINTS[blueprintId];
+  if (!definition) return { error: "設計図が見つかりません。" };
+  if (!definition.structureSuffix) return { blueprint: definition };
+
+  try {
+    const ids = world.structureManager.getPackStructureIds();
+    const suffix = definition.structureSuffix.toLowerCase();
+    const structureId = ids.find((id) => id.toLowerCase() === suffix || id.toLowerCase().endsWith(`:${suffix}`));
+    if (!structureId) {
+      console.warn(`${LOG} pack structure not found: suffix=${suffix} ids=${ids.join(",")}`);
+      return { error: `構造データがパック内にありません (${suffix})` };
+    }
+
+    const structure = world.structureManager.get(structureId);
+    if (!structure || !structure.isValid) return { error: `構造データを読み込めません (${structureId})` };
+    const size = structure.size;
+    const volume = size.x * size.y * size.z;
+    if (![size.x, size.y, size.z].every((axis) => Number.isInteger(axis) && axis > 0 && axis <= STRUCTURE_MAX_AXIS)) {
+      return { error: `構造データの寸法が不正です (${size.x}x${size.y}x${size.z})` };
+    }
+    if (volume > STRUCTURE_MAX_VOLUME) return { error: `構造データが大きすぎます (${volume} ブロック)` };
+
+    const blocks = [];
+    for (let y = 0; y < size.y; y++) {
+      for (let x = 0; x < size.x; x++) {
+        for (let z = 0; z < size.z; z++) {
+          const permutation = structure.getBlockPermutation({ x, y, z });
+          if (!permutation || permutation.type.id === "minecraft:air") continue;
+          const block = { x, y, z, id: permutation.type.id };
+          const states = permutation.getAllStates();
+          if (states && Object.keys(states).length > 0) block.states = states;
+          blocks.push(block);
+        }
+      }
+    }
+    const ordered = orderStructureBlocks(blocks);
+    if (ordered.error) return ordered;
+    const blueprint = { ...definition, size, blocks: ordered.blocks };
+    return { blueprint, structureId };
+  } catch (e) {
+    console.warn(`${LOG} blueprint structure load error (${blueprintId}): ${e}`);
+    return { error: "構造データの読み込みに失敗しました。" };
   }
 }
 
@@ -162,6 +361,7 @@ function isPlant(typeId) {
 
 // 整地で取り除いてよい自然ブロック。建築ブロックや丸太は対象外。
 function isClearable(typeId) {
+  if (!typeId.startsWith("minecraft:")) return false;
   const id = shortId(typeId);
   return PLANT_IDS.has(id) || GROUND_IDS.has(id) || id.endsWith("_leaves") || id.endsWith("_sapling") || id.endsWith("_ore");
 }
@@ -175,9 +375,10 @@ function planLeveling(dimension, bp, origin) {
   for (let x = x0; x <= x1; x++) {
     for (let z = z0; z <= z1; z++) {
       const inner = x > x0 && x < x1 && z > z0 && z < z1;
+      const baseY = inner ? origin.y : origin.y - (bp.groundOffset || 0);
       const height = inner ? bp.size.y : 2;
       for (let dy = height - 1; dy >= 0; dy--) {
-        const pos = { x, y: origin.y + dy, z };
+        const pos = { x, y: baseY + dy, z };
         const b = dimension.getBlock(pos);
         if (!b) return { error: "建築範囲が読み込まれていません。" };
         if (b.isAir) continue;
@@ -190,7 +391,7 @@ function planLeveling(dimension, bp, origin) {
       const fill = [];
       let supported = false;
       for (let d = 0; d < LEVEL_FILL_DEPTH; d++) {
-        const pos = { x, y: origin.y - 1 - d, z };
+        const pos = { x, y: baseY - 1 - d, z };
         const b = dimension.getBlock(pos);
         if (!b) return { error: "建築範囲が読み込まれていません。" };
         if (b.isLiquid) break;
@@ -215,11 +416,13 @@ function findArchitectLanding(dimension, origin, bp, from) {
   const maxZ = origin.z + bp.size.z + 2;
   const candidates = [];
   let checkErrorLogged = false;
+  const heightRange = dimension.heightRange;
 
   for (let x = minX; x <= maxX; x++) {
     for (let z = minZ; z <= maxZ; z++) {
       if (x !== minX && x !== maxX && z !== minZ && z !== maxZ) continue;
       for (let y = origin.y - LEVEL_FILL_DEPTH; y <= origin.y + 3; y++) {
+        if (y - 1 < heightRange.min || y + ARCHITECT_LANDING_CLEARANCE - 1 > heightRange.max) continue;
         try {
           const floor = dimension.getBlock({ x, y: y - 1, z });
           if (!floor || floor.isAir || floor.isLiquid || isPlant(floor.typeId)) continue;
@@ -302,20 +505,28 @@ function stepLeveling(job) {
   for (let i = 0; i < LEVEL_OPS_PER_STEP && job.levelIndex < job.levelOps.length; i++) {
     const op = job.levelOps[job.levelIndex++];
     const b = job.dimension.getBlock(op.pos);
-    if (!b) continue;
+    if (!b) return { error: "整地範囲が読み込まれていません" };
     if (op.id === AIR) {
-      if (b.isAir || !isClearable(b.typeId)) continue;
+      if (b.isAir) continue;
+      if (!isClearable(b.typeId)) return { error: "整地先に撤去できないブロックが置かれました" };
     } else if (!b.isAir && !isPlant(b.typeId)) {
-      continue;
+      return { error: "整地先に別のブロックが置かれました" };
     }
     b.setPermutation(BlockPermutation.resolve(op.id));
     if (i === 0) placeEffect(job.dimension, op.pos);
   }
-  return job.levelIndex >= job.levelOps.length;
+  return { done: job.levelIndex >= job.levelOps.length };
 }
 
 function startJob(player, blueprintId, origin) {
-  const bp = BLUEPRINTS[blueprintId];
+  const loaded = loadBlueprint(blueprintId);
+  if (loaded.error) {
+    console.warn(`${LOG} blueprint load failed (${blueprintId}): ${loaded.error}`);
+    notify(player, `§c${loaded.error}`);
+    return;
+  }
+  const bp = loaded.blueprint;
+  origin = { x: origin.x, y: origin.y + (bp.groundOffset || 0), z: origin.z };
   const dataError = validateBlueprint(bp);
   if (dataError) {
     console.warn(`${LOG} blueprint invalid (${blueprintId}): ${dataError}`);
@@ -336,7 +547,7 @@ function startJob(player, blueprintId, origin) {
       notify(player, "§c建築範囲が読み込まれていません。");
       return;
     }
-    queue.push({ pos, id: b.id });
+    queue.push({ pos, id: b.id, states: b.states, deferred: Boolean(loaded.structureId && isDeferredDecoration(b.id)) });
   }
 
   // 建築範囲の自然ブロックは整地で片付ける。建築物など整地できないブロックがあれば開始しない。
@@ -356,8 +567,9 @@ function startJob(player, blueprintId, origin) {
     finishJob(job, false, "棟梁が安全に立てる場所がありません");
     return;
   }
-  console.warn(`${LOG} job start: ${blueprintId} blocks=${queue.length} level=${level.ops.length} architect=${job.architect ? "yes" : "no"} player=${player.name}`);
+  console.warn(`${LOG} job start: ${blueprintId}${loaded.structureId ? ` structure=${loaded.structureId}` : ""} blocks=${queue.length} level=${level.ops.length} architect=${job.architect ? "yes" : "no"} player=${player.name}`);
   notify(player, `§a${bp.name}を使用しました。建築を開始します。`);
+  if (loaded.structureId) notify(player, "§e構造の額縁の中身・チェストの中身などは現在復元されません。");
   ensureTimer();
 }
 
@@ -559,12 +771,32 @@ function tickJobs() {
       }
       job.nextTick = system.currentTick + PLACE_INTERVAL_TICKS;
       if (job.phase === "level") {
-        if (stepLeveling(job)) {
+        const result = stepLeveling(job);
+        if (result.error) {
+          finishJob(job, false, result.error);
+          continue;
+        }
+        if (result.done) {
           // 整地後の地面に合わせて囲いや足場を作る
-          job.temp = planTemporaries(job.dimension, job.bp, job.origin);
+          const tempOrigin = { ...job.origin, y: job.origin.y - (job.bp.groundOffset || 0) };
+          job.temp = planTemporaries(job.dimension, job.bp, tempOrigin);
           placeTemporaries(job);
           job.phase = "build";
           notify(job.player, `§a${job.bp.name}の建築を開始します。`);
+        }
+        continue;
+      }
+      if (job.phase === "verify") {
+        const missing = job.queue.filter((step) => {
+          if (!step.deferred) return false;
+          const block = job.dimension.getBlock(step.pos);
+          return !block || block.typeId !== step.id;
+        });
+        if (missing.length) {
+          const first = missing[0];
+          finishJob(job, false, `装飾品 ${missing.length} 個を維持できませんでした (${first.pos.x}, ${first.pos.y}, ${first.pos.z})`);
+        } else {
+          finishJob(job, true);
         }
         continue;
       }
@@ -579,11 +811,39 @@ function tickJobs() {
         finishJob(job, false, "設置先に別のブロックが置かれました");
         continue;
       }
-      block.setPermutation(BlockPermutation.resolve(step.id));
-      placeEffect(job.dimension, step.pos);
-      placeScaffolding(job, step.pos.y - job.origin.y);
-      job.index++;
-      if (job.index >= job.queue.length) finishJob(job, true);
+      if (step.deferred && isDoor(step.id)) {
+        const upper = job.queue[job.index + 1];
+        if (!upper || upper.id !== step.id || upper.pos.x !== step.pos.x ||
+            upper.pos.y !== step.pos.y + 1 || upper.pos.z !== step.pos.z) {
+          finishJob(job, false, "ドアの上下の組が不正です");
+          continue;
+        }
+        const upperBlock = job.dimension.getBlock(upper.pos);
+        if (!upperBlock) {
+          finishJob(job, false, "ドアの設置先が読み込まれていません");
+          continue;
+        }
+        if (!upperBlock.isAir) {
+          finishJob(job, false, "ドアの設置先に別のブロックが置かれました");
+          continue;
+        }
+        const lowerPermutation = BlockPermutation.resolve(step.id, step.states);
+        const upperPermutation = BlockPermutation.resolve(upper.id, upper.states);
+        block.setPermutation(lowerPermutation);
+        upperBlock.setPermutation(upperPermutation);
+        placeEffect(job.dimension, step.pos);
+        placeScaffolding(job, upper.pos.y - job.origin.y + (job.bp.groundOffset || 0));
+        job.index += 2;
+      } else {
+        block.setPermutation(BlockPermutation.resolve(step.id, step.states));
+        placeEffect(job.dimension, step.pos);
+        placeScaffolding(job, step.pos.y - job.origin.y + (job.bp.groundOffset || 0));
+        job.index++;
+      }
+      if (job.index >= job.queue.length) {
+        if (job.queue.some((queued) => queued.deferred)) job.phase = "verify";
+        else finishJob(job, true);
+      }
     } catch (e) {
       finishJob(job, false, "エラーが発生しました");
       console.warn(`${LOG} tick error: ${e}`);
@@ -599,6 +859,10 @@ try {
   world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
     const { player, block, itemStack, blockFace } = event;
     if (!player || !block) return;
+    if (itemStack?.typeId === BLUEPRINT_HAMMER_TYPE) {
+      event.cancel = true;
+      return;
+    }
     if (block.typeId === WORKBENCH_TYPE) {
       if (event.isFirstEvent === false) return;
       // 作業台は常に棟梁の召喚に使う（手に持ったアイテムの通常操作は行わせない）
@@ -630,6 +894,22 @@ try {
         notify(player, "§c建築を開始できませんでした。");
       }
     });
+  });
+  world.beforeEvents.itemUse.subscribe((event) => {
+    try {
+      if (event.itemStack.typeId !== BLUEPRINT_HAMMER_TYPE) return;
+      event.cancel = true;
+      const { source } = event;
+      const dimension = source.dimension;
+      const point = {
+        x: Math.floor(source.location.x),
+        y: Math.floor(source.location.y),
+        z: Math.floor(source.location.z)
+      };
+      system.run(() => handleBlueprintHammer(source, point, dimension));
+    } catch (e) {
+      console.warn(`${LOG} blueprint hammer use error: ${e}`);
+    }
   });
   world.afterEvents.entitySpawn.subscribe((event) => {
     try {
