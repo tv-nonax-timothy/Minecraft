@@ -1,5 +1,6 @@
 import { world, system, BlockPermutation, StructureSaveMode } from "@minecraft/server";
 import { BLUEPRINTS, validateBlueprint } from "./blueprints.js";
+import { quarterTurnsFromFacing, rotateBlueprint, placeOriginAhead } from "./rotation.js";
 
 const LOG = "[nonax:architect]";
 const PLACE_INTERVAL_TICKS = 5;
@@ -242,7 +243,8 @@ function planTemporaries(dimension, bp, origin) {
   const y = origin.y;
   const consider = (x, yy, z, id) => {
     const block = dimension.getBlock({ x, y: yy, z });
-    if (block && block.isAir) temp.push({ pos: { x, y: yy, z }, id });
+    if (!block) throw new Error(`仮設物の位置が読み込まれていません (${x}, ${yy}, ${z})`);
+    if (block.isAir) temp.push({ pos: { x, y: yy, z }, id });
   };
   for (let x = x0; x <= x1; x++) {
     for (let z = z0; z <= z1; z++) {
@@ -288,20 +290,85 @@ function placeScaffolding(job, layer) {
   }
 }
 
+function planSign(dimension, bp, origin, facing) {
+  const x0 = origin.x - 1, x1 = origin.x + bp.size.x;
+  const z0 = origin.z - 1, z1 = origin.z + bp.size.z;
+  const y = origin.y;
+  const sides = ["north", "east", "south", "west"];
+  const preferred = Math.abs(facing.x) > Math.abs(facing.z)
+    ? (facing.x > 0 ? "west" : "east")
+    : (facing.z > 0 ? "north" : "south");
+  const directions = { north: 8, east: 12, south: 0, west: 4 };
+  const start = sides.indexOf(preferred);
+  for (let i = 0; i < sides.length; i++) {
+    const side = sides[(start + i) % sides.length];
+    const horizontal = side === "north" || side === "south";
+    const center = horizontal ? Math.floor((x0 + x1) / 2) : Math.floor((z0 + z1) / 2);
+    for (const delta of [0, -1, 1]) {
+      const axis = center + delta;
+      if (axis <= (horizontal ? x0 : z0) || axis >= (horizontal ? x1 : z1)) continue;
+      const pos = horizontal
+        ? { x: axis, y, z: side === "north" ? z0 - 1 : z1 + 1 }
+        : { x: side === "west" ? x0 - 1 : x1 + 1, y, z: axis };
+      const block = dimension.getBlock(pos);
+      const ground = dimension.getBlock({ x: pos.x, y: y - 1, z: pos.z });
+      if (block && block.isAir && ground && !ground.isAir && !ground.isLiquid && !isPlant(ground.typeId)) {
+        return { pos, id: TEMP_SIGN, direction: directions[side], side, preferred, delta };
+      }
+    }
+  }
+  return undefined;
+}
+
 function placeTemporaries(job) {
   for (const t of job.temp) {
     if (t.layer !== undefined) continue;
-    try {
-      const block = job.dimension.getBlock(t.pos);
-      if (!block || !block.isAir) {
-        t.placed = false;
-        continue;
-      }
-      block.setPermutation(BlockPermutation.resolve(t.id));
-      t.placed = true;
-    } catch (e) {
-      t.placed = false;
-      console.warn(`${LOG} temp place error: ${e}`);
+    const block = job.dimension.getBlock(t.pos);
+    if (!block || !block.isAir) throw new Error(`仮設物の設置先が使用できません (${t.pos.x}, ${t.pos.y}, ${t.pos.z})`);
+    block.setPermutation(BlockPermutation.resolve(t.id));
+    t.placed = true;
+    if (block.typeId !== t.id) throw new Error(`仮設物を設置できません (${t.pos.x}, ${t.pos.y}, ${t.pos.z})`);
+  }
+}
+
+function placeSiteSign(job, sign) {
+  const block = job.dimension.getBlock(sign.pos);
+  const ground = job.dimension.getBlock({ x: sign.pos.x, y: sign.pos.y - 1, z: sign.pos.z });
+  if (!block || !block.isAir || !ground || ground.isAir || ground.isLiquid || isPlant(ground.typeId)) {
+    throw new Error(`看板の設置先が使用できません (${sign.pos.x}, ${sign.pos.y}, ${sign.pos.z})`);
+  }
+  job.temp.push(sign);
+  sign.pending = true;
+  block.setPermutation(BlockPermutation.resolve(sign.id, { ground_sign_direction: sign.direction }));
+  sign.placed = true;
+  if (block.typeId !== sign.id) throw new Error("立て看板を設置できません");
+  const component = block.getComponent("minecraft:sign");
+  if (!component) throw new Error("立て看板の文字を設定できません");
+  const text = { rawtext: [{ translate: "nonax.site.building" }, { text: "\n" }, { translate: job.bp.signName }] };
+  component.setText(text);
+  const storedText = component.getRawText();
+  if (!storedText?.rawtext?.some((part) => part.translate === job.bp.signName) ||
+      !storedText.rawtext.some((part) => part.translate === "nonax.site.building")) {
+    throw new Error("立て看板の文字を確認できません");
+  }
+  sign.front = JSON.stringify(storedText);
+  sign.token = `${system.currentTick.toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+  component.setText(sign.token, "Back");
+  if (component.getText("Back") !== sign.token) throw new Error("立て看板の識別情報を確認できません");
+  sign.pending = false;
+}
+
+function signMatches(component, sign) {
+  return component && !component.isWaxed && component.getText("Back") === sign.token &&
+    JSON.stringify(component.getRawText()) === sign.front;
+}
+
+function forgetChangedTemporary(event) {
+  const pos = event.block.location;
+  for (const job of jobs.values()) {
+    if (job.dimension.id !== event.dimension.id) continue;
+    for (const t of job.temp) {
+      if (t.placed && t.pos.x === pos.x && t.pos.y === pos.y && t.pos.z === pos.z) t.placed = false;
     }
   }
 }
@@ -313,11 +380,15 @@ function removeTemporaries(job) {
     if (!t.placed) continue;
     try {
       const block = job.dimension.getBlock(t.pos);
-      if (block && block.typeId === t.id) {
+      const signComponent = t.id === TEMP_SIGN && block?.typeId === TEMP_SIGN
+        ? block.getComponent("minecraft:sign") : undefined;
+      const owned = t.id !== TEMP_SIGN || t.pending || signMatches(signComponent, t);
+      if (block && block.typeId === t.id && owned) {
         block.setPermutation(BlockPermutation.resolve("minecraft:air"));
         removed++;
       } else {
         skipped++;
+        if (t.id === TEMP_SIGN) console.warn(`${LOG} site sign cleanup skipped: pos=${t.pos.x},${t.pos.y},${t.pos.z} actual=${block ? block.typeId : "unloaded"}`);
       }
     } catch (e) {
       skipped++;
@@ -366,8 +437,7 @@ function isClearable(typeId) {
   return PLANT_IDS.has(id) || GROUND_IDS.has(id) || id.endsWith("_leaves") || id.endsWith("_sapling") || id.endsWith("_ore");
 }
 
-// 建築範囲と外周の柵の範囲を平らにする計画を作る。範囲内は建物の高さまで自然ブロックを撤去し、
-// 地面が空洞や植物の場合は土で埋める。整地できないブロックが建築範囲内にあれば error を返す。
+// 囲いの設置位置が既に占有されている列は、既存ブロックを守るため整地しない。
 function planLeveling(dimension, bp, origin) {
   const ops = [];
   const x0 = origin.x - 1, x1 = origin.x + bp.size.x;
@@ -376,6 +446,11 @@ function planLeveling(dimension, bp, origin) {
     for (let z = z0; z <= z1; z++) {
       const inner = x > x0 && x < x1 && z > z0 && z < z1;
       const baseY = inner ? origin.y : origin.y - (bp.groundOffset || 0);
+      if (!inner) {
+        const fencePosition = dimension.getBlock({ x, y: baseY, z });
+        if (!fencePosition) return { error: "囲いの範囲が読み込まれていません。" };
+        if (!fencePosition.isAir) continue;
+      }
       const height = inner ? bp.size.y : 2;
       for (let dy = height - 1; dy >= 0; dy--) {
         const pos = { x, y: baseY + dy, z };
@@ -518,15 +593,23 @@ function stepLeveling(job) {
   return { done: job.levelIndex >= job.levelOps.length };
 }
 
-function startJob(player, blueprintId, origin) {
+function startJob(player, blueprintId, origin, facing) {
   const loaded = loadBlueprint(blueprintId);
   if (loaded.error) {
     console.warn(`${LOG} blueprint load failed (${blueprintId}): ${loaded.error}`);
     notify(player, `§c${loaded.error}`);
     return;
   }
-  const bp = loaded.blueprint;
-  origin = { x: origin.x, y: origin.y + (bp.groundOffset || 0), z: origin.z };
+  const turns = quarterTurnsFromFacing(facing);
+  const rotated = rotateBlueprint(loaded.blueprint, turns);
+  if (rotated.error) {
+    console.warn(`${LOG} blueprint rotation failed (${blueprintId}): ${rotated.error}`);
+    notify(player, `§c設計図を回転できません: ${rotated.error}`);
+    return;
+  }
+  const bp = rotated.blueprint;
+  const ahead = placeOriginAhead(origin, facing, bp.size);
+  origin = { x: ahead.x, y: origin.y + (bp.groundOffset || 0), z: ahead.z };
   const dataError = validateBlueprint(bp);
   if (dataError) {
     console.warn(`${LOG} blueprint invalid (${blueprintId}): ${dataError}`);
@@ -557,19 +640,24 @@ function startJob(player, blueprintId, origin) {
     return;
   }
 
+  const architect = findNearestArchitect(dimension, queue[0].pos);
+  if (!architect) {
+    console.warn(`${LOG} no architect within ${ARCHITECT_SEARCH_RADIUS} blocks: job not started`);
+    notify(player, `§c${ARCHITECT_SEARCH_RADIUS} ブロック以内に棟梁がいません。作業台で棟梁を呼んでください。`);
+    return;
+  }
+
   const job = {
     player, dimension, queue, index: 0, nextTick: 0, blueprintId, temp: [], origin, bp,
-    phase: "arrive", levelOps: level.ops, levelIndex: 0, arriveTick: 0
+    phase: "arrive", levelOps: level.ops, levelIndex: 0, arriveTick: 0, facing
   };
   jobs.set(player.id, job);
-  job.architect = findNearestArchitect(dimension, queue[0].pos);
+  job.architect = architect;
   if (!summonArchitectToSite(job)) {
     finishJob(job, false, "棟梁が安全に立てる場所がありません");
     return;
   }
-  console.warn(`${LOG} job start: ${blueprintId}${loaded.structureId ? ` structure=${loaded.structureId}` : ""} blocks=${queue.length} level=${level.ops.length} architect=${job.architect ? "yes" : "no"} player=${player.name}`);
-  notify(player, `§a${bp.name}を使用しました。建築を開始します。`);
-  if (loaded.structureId) notify(player, "§e構造の額縁の中身・チェストの中身などは現在復元されません。");
+  console.warn(`${LOG} job start: ${blueprintId}${loaded.structureId ? ` structure=${loaded.structureId}` : ""} blocks=${queue.length} rotation=${turns * 90} size=${bp.size.x}x${bp.size.y}x${bp.size.z} level=${level.ops.length} architect=${job.architect ? "yes" : "no"} player=${player.name}`);
   ensureTimer();
 }
 
@@ -582,6 +670,7 @@ const PROP_RANK = "nonax:rank";
 const TEMP_FENCE = "minecraft:oak_fence";
 const TEMP_LANTERN = "minecraft:lantern";
 const TEMP_SCAFFOLD = "minecraft:scaffolding";
+const TEMP_SIGN = "minecraft:standing_sign";
 const SCAFFOLD_MIN_HEIGHT = 5;
 const WORKBENCH_TYPE = "nonax:architect_workbench";
 const SUMMON_CHECK_RADIUS = 16;
@@ -768,22 +857,48 @@ function tickJobs() {
       if (system.currentTick < job.nextTick) continue;
       if (job.phase === "arrive") {
         if (system.currentTick < job.arriveTick) continue;
+        const level = planLeveling(job.dimension, job.bp, job.origin);
+        if (level.error) {
+          finishJob(job, false, level.error);
+          continue;
+        }
+        job.levelOps = level.ops;
+        const tempOrigin = { ...job.origin, y: job.origin.y - (job.bp.groundOffset || 0) };
+        const sign = planSign(job.dimension, job.bp, tempOrigin, job.facing);
+        if (!sign) {
+          finishJob(job, false, "囲いの外側に看板を立てられる場所がありません");
+          continue;
+        }
+        job.temp = planTemporaries(job.dimension, job.bp, tempOrigin);
+        placeTemporaries(job);
+        placeSiteSign(job, sign);
+        notify(job.player, `§a${job.bp.name}の建築を開始します。`);
+        console.warn(`${LOG} site sign: pos=${sign.pos.x},${sign.pos.y},${sign.pos.z} side=${sign.side} preferred=${sign.preferred} offset=${sign.delta}`);
+        if (sign.side !== sign.preferred || sign.delta !== 0) {
+          notify(job.player, `§e看板の設置位置を変更しました: ${sign.pos.x}, ${sign.pos.y}, ${sign.pos.z}`);
+        }
         job.phase = "level";
+        job.nextTick = system.currentTick + PLACE_INTERVAL_TICKS;
+        continue;
       }
       job.nextTick = system.currentTick + PLACE_INTERVAL_TICKS;
       if (job.phase === "level") {
+        if (job.levelIndex === 0) {
+          const sign = job.temp.find((t) => t.id === TEMP_SIGN);
+          const block = sign && job.dimension.getBlock(sign.pos);
+          if (!sign?.placed || !block || block.typeId !== TEMP_SIGN ||
+              !signMatches(block.getComponent("minecraft:sign"), sign)) {
+            finishJob(job, false, "設置した看板を維持できませんでした");
+            continue;
+          }
+        }
         const result = stepLeveling(job);
         if (result.error) {
           finishJob(job, false, result.error);
           continue;
         }
         if (result.done) {
-          // 整地後の地面に合わせて囲いや足場を作る
-          const tempOrigin = { ...job.origin, y: job.origin.y - (job.bp.groundOffset || 0) };
-          job.temp = planTemporaries(job.dimension, job.bp, tempOrigin);
-          placeTemporaries(job);
           job.phase = "build";
-          notify(job.player, `§a${job.bp.name}の建築を開始します。`);
         }
         continue;
       }
@@ -846,8 +961,8 @@ function tickJobs() {
         else finishJob(job, true);
       }
     } catch (e) {
-      finishJob(job, false, "エラーが発生しました");
       console.warn(`${LOG} tick error: ${e}`);
+      finishJob(job, false, `処理に失敗しました: ${e}`);
     }
   }
 }
@@ -857,6 +972,8 @@ function ensureTimer() {
 }
 
 try {
+  world.afterEvents.playerBreakBlock.subscribe(forgetChangedTemporary);
+  world.afterEvents.playerPlaceBlock.subscribe(forgetChangedTemporary);
   world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
     const { player, block, itemStack, blockFace } = event;
     if (!player || !block) return;
@@ -887,9 +1004,18 @@ try {
       z: block.location.z + offset.z
     };
     const blueprintId = itemStack.typeId;
+    let facing;
+    try {
+      const yaw = player.getRotation().y * Math.PI / 180;
+      facing = { x: -Math.sin(yaw), z: Math.cos(yaw) };
+    } catch (e) {
+      console.warn(`${LOG} player direction error: ${e}`);
+      notify(player, "§cプレイヤーの向きを取得できませんでした。");
+      return;
+    }
     system.run(() => {
       try {
-        startJob(player, blueprintId, origin);
+        startJob(player, blueprintId, origin, facing);
       } catch (e) {
         console.warn(`${LOG} startJob error: ${e}`);
         notify(player, "§c建築を開始できませんでした。");

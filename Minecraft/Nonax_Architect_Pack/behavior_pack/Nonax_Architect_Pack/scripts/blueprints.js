@@ -2,26 +2,31 @@
 export const BLUEPRINTS = {
   "nonax:blueprint_lv1": {
     name: "見習い棟梁の設計図",
+    signName: "nonax.structure.nonax_lv1_house",
     structureSuffix: "nonax_lv1_house",
     groundOffset: -1
   },
   "nonax:blueprint_lv2": {
     name: "一人前棟梁の設計図",
+    signName: "nonax.structure.nonax_lv2_house",
     structureSuffix: "nonax_lv2_house",
     groundOffset: -1
   },
   "nonax:blueprint_lv3": {
     name: "熟練棟梁の設計図",
+    signName: "nonax.structure.nonax_lv3_minka",
     size: { x: 7, y: 8, z: 7 },
     blocks: buildMinka()
   },
   "nonax:blueprint_lv4": {
     name: "名人棟梁の設計図",
+    signName: "nonax.structure.nonax_lv4_house",
     structureSuffix: "nonax_lv4_house",
     groundOffset: -1
   },
   "nonax:blueprint_lv5": {
     name: "達人棟梁の設計図",
+    signName: "nonax.structure.nonax_lv5_pagoda",
     size: { x: 9, y: 20, z: 9 },
     blocks: buildPagoda()
   }
