@@ -481,7 +481,7 @@ function summonArchitectToSite(job) {
     console.warn(`${LOG} summonArchitectToSite error: ${e}`);
     return false;
   }
-  setArchitectWorking(a, true);
+  setArchitectWorking(job, true);
   job.anchor = { x: a.location.x, y: a.location.y, z: a.location.z };
   job.arriveTick = system.currentTick + ARRIVE_WAIT_TICKS;
   return true;
@@ -645,10 +645,12 @@ function findNearestArchitect(dimension, from) {
   return nearest;
 }
 
-// 建築中は棟梁を作業状態にする（クライアントの腕を振るアニメーションに使う）
-function setArchitectWorking(architect, working) {
+// 作業状態を切り替え、腕振りとクライアント側のハンマー表示を連動させる
+function setArchitectWorking(job, working) {
   try {
-    if (architect && architect.isValid) architect.triggerEvent(working ? "nonax:start_work" : "nonax:stop_work");
+    const architect = job.architect;
+    if (!architect || !architect.isValid) return;
+    architect.triggerEvent(working ? "nonax:start_work" : "nonax:stop_work");
   } catch (e) {
     console.warn(`${LOG} setArchitectWorking error: ${e}`);
   }
@@ -737,11 +739,10 @@ function finishJob(job, ok, reason) {
   jobs.delete(job.player.id);
   console.warn(`${LOG} job end: ok=${ok} placed=${job.index}/${job.queue.length}${reason ? ` reason=${reason}` : ""}`);
   removeTemporaries(job);
-  setArchitectWorking(job.architect, false);
+  setArchitectWorking(job, false);
   if (job.architect) {
     // 取りこぼし対策として、少し後にもう一度停止を指示する
-    const a = job.architect;
-    system.runTimeout(() => setArchitectWorking(a, false), 20);
+    system.runTimeout(() => setArchitectWorking(job, false), 20);
   }
   if (ok) {
     notify(job.player, "§a建築が完了しました。");

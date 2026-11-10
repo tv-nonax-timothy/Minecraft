@@ -16,6 +16,14 @@
       "geometry": "Geometry.default",
       "materials": [ { "*": "Material.default" } ],
       "textures": [ "Array.skins[math.clamp(query.variant - 1, 0, 4)]" ]
+    },
+    "controller.render.nonax_architect_hammer": {
+      "geometry": "Geometry.hammer",
+      "part_visibility": [
+        { "nonax_hammer": "query.mark_variant == 1" }
+      ],
+      "materials": [ { "*": "Material.hammer" } ],
+      "textures": [ "Texture.hammer" ]
     }
   }
 }

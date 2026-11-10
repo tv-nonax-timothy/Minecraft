@@ -4,40 +4,37 @@
     "description": {
       "identifier": "nonax:architect",
       "materials": {
-        "default": "villager_v2"
+        "default": "entity_alphatest",
+        "hammer": "entity_alphatest"
       },
       "textures": {
-        "rank1": "textures/entity/nonax_architect_lv1",
-        "rank2": "textures/entity/nonax_architect_lv2",
-        "rank3": "textures/entity/nonax_architect_lv3",
-        "rank4": "textures/entity/nonax_architect_lv4",
-        "rank5": "textures/entity/nonax_architect_lv5"
+        "rank1": "textures/entity/nonax_architect_player_lv1",
+        "rank2": "textures/entity/nonax_architect_player_lv2",
+        "rank3": "textures/entity/nonax_architect_player_lv3",
+        "rank4": "textures/entity/nonax_architect_player_lv4",
+        "rank5": "textures/entity/nonax_architect_player_lv5",
+        "hammer": "textures/entity/nonax_architect_hammer"
       },
       "geometry": {
-        "default": "geometry.villager_v2"
+        "default": "geometry.nonax_architect_player",
+        "hammer": "geometry.nonax_architect_player_hammer"
       },
       "scripts": {
         "scale": "0.9375"
       },
       "animations": {
-        "general": "animation.villager.general",
-        "look_at_target": "animation.common.look_at_target",
-        "move": "animation.villager.move",
+        "look": "animation.nonax_architect.look",
+        "move": "animation.nonax_architect.move",
         "work": "animation.nonax_architect.work"
       },
       "animation_controllers": [
-        {
-          "general": "controller.animation.villager.general"
-        },
-        {
-          "move": "controller.animation.villager.move"
-        },
         {
           "work_controller": "controller.animation.nonax_architect.work"
         }
       ],
       "render_controllers": [
-        "controller.render.nonax_architect"
+        "controller.render.nonax_architect",
+        "controller.render.nonax_architect_hammer"
       ],
       "spawn_egg": {
         "base_color": "#8B5A2B",

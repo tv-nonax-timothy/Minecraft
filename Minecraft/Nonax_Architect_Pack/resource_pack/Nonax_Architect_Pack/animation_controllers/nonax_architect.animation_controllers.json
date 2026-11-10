@@ -5,12 +5,13 @@
       "initial_state": "idle",
       "states": {
         "idle": {
+          "animations": [ "look", "move" ],
           "transitions": [
             { "working": "query.mark_variant == 1" }
           ]
         },
         "working": {
-          "animations": [ "work" ],
+          "animations": [ "look", "work" ],
           "transitions": [
             { "idle": "query.mark_variant != 1" }
           ]

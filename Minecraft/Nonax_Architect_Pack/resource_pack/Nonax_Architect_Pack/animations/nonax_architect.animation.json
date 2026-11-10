@@ -1,13 +1,38 @@
 {
   "format_version": "1.8.0",
   "animations": {
+    "animation.nonax_architect.look": {
+      "loop": true,
+      "bones": {
+        "head": {
+          "rotation": ["query.target_x_rotation", "query.target_y_rotation", 0.0]
+        }
+      }
+    },
+    "animation.nonax_architect.move": {
+      "loop": true,
+      "bones": {
+        "rightArm": {
+          "rotation": ["math.cos(query.modified_distance_moved * 38.17) * 40.0 * query.modified_move_speed", 0.0, 0.0]
+        },
+        "leftArm": {
+          "rotation": ["math.cos(query.modified_distance_moved * 38.17 + 180.0) * 40.0 * query.modified_move_speed", 0.0, 0.0]
+        },
+        "rightLeg": {
+          "rotation": ["math.cos(query.modified_distance_moved * 38.17 + 180.0) * 40.0 * query.modified_move_speed", 0.0, 0.0]
+        },
+        "leftLeg": {
+          "rotation": ["math.cos(query.modified_distance_moved * 38.17) * 40.0 * query.modified_move_speed", 0.0, 0.0]
+        }
+      }
+    },
     "animation.nonax_architect.work": {
       "loop": true,
       "animation_length": 0.8,
       "bones": {
-        "arms": {
+        "rightArm": {
           "rotation": [
-            "-35.0 + Math.sin(query.anim_time * 450.0) * 30.0",
+            "-75.0 + math.sin(query.anim_time * 450.0) * 35.0",
             0.0,
             0.0
           ]
