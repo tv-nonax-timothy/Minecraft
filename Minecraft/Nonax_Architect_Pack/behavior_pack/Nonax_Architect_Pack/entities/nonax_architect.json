@@ -73,6 +73,26 @@
         "minecraft:mark_variant": {
           "value": 1
         }
+      },
+      "nonax:traveling": {
+        "minecraft:movement": {
+          "value": 0.5
+        },
+        "minecraft:mark_variant": {
+          "value": 0
+        },
+        "minecraft:behavior.follow_mob": {
+          "priority": 2,
+          "search_range": 80,
+          "speed_multiplier": 1.0,
+          "stop_distance": 1.0,
+          "control_flags": ["move", "look", "jump"],
+          "filters": {
+            "test": "is_family",
+            "subject": "other",
+            "value": "nonax_architect_destination"
+          }
+        }
       }
     },
     "components": {
@@ -242,7 +262,8 @@
       "nonax:start_work": {
         "remove": {
           "component_groups": [
-            "nonax:idle"
+            "nonax:idle",
+            "nonax:traveling"
           ]
         },
         "add": {
@@ -254,12 +275,26 @@
       "nonax:stop_work": {
         "remove": {
           "component_groups": [
-            "nonax:working"
+            "nonax:working",
+            "nonax:traveling"
           ]
         },
         "add": {
           "component_groups": [
             "nonax:idle"
+          ]
+        }
+      },
+      "nonax:start_travel": {
+        "remove": {
+          "component_groups": [
+            "nonax:idle",
+            "nonax:working"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "nonax:traveling"
           ]
         }
       }

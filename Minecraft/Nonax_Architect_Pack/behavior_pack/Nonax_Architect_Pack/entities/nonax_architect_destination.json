@@ -1,0 +1,48 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "nonax:architect_destination",
+      "is_summonable": true,
+      "is_spawnable": false,
+      "spawn_category": "creature"
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": ["nonax_architect_destination", "mob"]
+      },
+      "minecraft:collision_box": {
+        "width": 0.1,
+        "height": 0.1
+      },
+      "minecraft:health": {
+        "value": 1,
+        "max": 1
+      },
+      "minecraft:physics": {
+        "has_collision": false,
+        "has_gravity": false
+      },
+      "minecraft:timer": {
+        "looping": false,
+        "time": 120,
+        "time_down_event": {
+          "event": "nonax:remove",
+          "target": "self"
+        }
+      }
+    },
+    "component_groups": {
+      "nonax:despawn": {
+        "minecraft:instant_despawn": {}
+      }
+    },
+    "events": {
+      "nonax:remove": {
+        "add": {
+          "component_groups": ["nonax:despawn"]
+        }
+      }
+    }
+  }
+}

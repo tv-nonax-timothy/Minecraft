@@ -6,10 +6,22 @@ export const BLUEPRINTS = {
     structureSuffix: "nonax_lv1_house",
     groundOffset: -1
   },
+  "nonax:blueprint_lv1_house_2": {
+    name: "見習い棟梁の設計図（家 2）",
+    signName: "nonax.structure.nonax_lv1_house_2",
+    structureSuffix: "nonax_lv1_House_2",
+    groundOffset: -1
+  },
   "nonax:blueprint_lv2": {
     name: "一人前棟梁の設計図",
     signName: "nonax.structure.nonax_lv2_house",
     structureSuffix: "nonax_lv2_house",
+    groundOffset: -1
+  },
+  "nonax:blueprint_lv2_house_2": {
+    name: "一人前棟梁の設計図（家 2）",
+    signName: "nonax.structure.nonax_lv2_house_2",
+    structureSuffix: "nonax_lv2_house_2",
     groundOffset: -1
   },
   "nonax:blueprint_lv3": {
@@ -22,6 +34,24 @@ export const BLUEPRINTS = {
     name: "名人棟梁の設計図",
     signName: "nonax.structure.nonax_lv4_house",
     structureSuffix: "nonax_lv4_house",
+    groundOffset: -1
+  },
+  "nonax:blueprint_lv4_house_2": {
+    name: "名人棟梁の設計図（家 2）",
+    signName: "nonax.structure.nonax_lv4_house_2",
+    structureSuffix: "nonax_lv4_house_2",
+    groundOffset: -1
+  },
+  "nonax:blueprint_lv4_house_3": {
+    name: "名人棟梁の設計図（家 3）",
+    signName: "nonax.structure.nonax_lv4_house_3",
+    structureSuffix: "nonax_lv4_house_3",
+    groundOffset: -1
+  },
+  "nonax:blueprint_lv4_house_4": {
+    name: "名人棟梁の設計図（家 4）",
+    signName: "nonax.structure.nonax_lv4_house_4",
+    structureSuffix: "nonax_lv4_house_4",
     groundOffset: -1
   },
   "nonax:blueprint_lv5": {

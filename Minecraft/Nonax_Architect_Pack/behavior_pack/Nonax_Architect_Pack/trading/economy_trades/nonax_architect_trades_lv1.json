@@ -69,6 +69,22 @@
                                                                       ],
                                                             "max_uses":  4,
                                                             "trader_exp":  5
+                                                        },
+                                                        {
+                                                            "wants":  [
+                                                                          {
+                                                                              "item":  "minecraft:emerald",
+                                                                              "quantity":  8
+                                                                          }
+                                                                      ],
+                                                            "gives":  [
+                                                                          {
+                                                                              "item":  "nonax:blueprint_lv1_house_2",
+                                                                              "quantity":  1
+                                                                          }
+                                                                      ],
+                                                            "max_uses":  4,
+                                                            "trader_exp":  5
                                                         }
                                                     ]
                                      }

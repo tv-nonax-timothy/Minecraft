@@ -1,0 +1,20 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "nonax:architect_destination",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/nonax_architect_player_lv1"
+      },
+      "geometry": {
+        "default": "geometry.nonax_architect_destination"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}

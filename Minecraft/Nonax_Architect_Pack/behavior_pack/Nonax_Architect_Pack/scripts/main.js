@@ -404,6 +404,8 @@ const LEVEL_FILL_DEPTH = 4;
 const LEVEL_MAX_OPS = 800;
 const LEVEL_OPS_PER_STEP = 4;
 const ARRIVE_WAIT_TICKS = 30;
+const ARCHITECT_TRAVEL_TIMEOUT_TICKS = 600;
+const ARCHITECT_DESTINATION_TYPE = "nonax:architect_destination";
 const ARCHITECT_LANDING_CLEARANCE = 2;
 
 const PLANT_IDS = new Set([
@@ -529,37 +531,83 @@ function findArchitectLanding(dimension, origin, bp, from) {
   return candidates.length > 0 ? candidates[0].target : undefined;
 }
 
-// 棟梁を現場の脇へ呼び寄せる。到着するまで建築は始まらない。
+// 棟梁を現場へ向かわせる。目的地の混同を避けるため、徒歩移動は一度に一件ずつ行う。
 function summonArchitectToSite(job) {
   const a = job.architect;
-  if (!a) {
-    job.arriveTick = system.currentTick;
+  if (!a || !a.isValid) throw new Error("棟梁が見つかりません");
+  if ([...jobs.values()].some((other) => other !== job && other.phase === "travel")) return false;
+
+  const target = findArchitectLanding(job.dimension, job.origin, job.bp, a.location);
+  if (!target) throw new Error("棟梁が安全に立てる場所がありません");
+  job.travelTarget = target;
+  const dx = a.location.x - target.x, dy = a.location.y - target.y, dz = a.location.z - target.z;
+  if (a.dimension.id === job.dimension.id && dx * dx + dy * dy + dz * dz <= 2.25) {
+    arriveArchitect(job);
     return true;
   }
-  try {
-    const { origin, bp, dimension } = job;
-    const target = findArchitectLanding(dimension, origin, bp, a.location);
-    if (!target) {
-      console.warn(`${LOG} no safe architect landing position`);
-      return false;
-    }
-    const dx = a.location.x - target.x, dy = a.location.y - target.y, dz = a.location.z - target.z;
-    if (a.dimension.id !== dimension.id || dx * dx + dy * dy + dz * dz > 2.25) {
-      dimension.spawnParticle("minecraft:basic_smoke_particle", a.location);
-      a.teleport(target, {
-        dimension,
-        facingLocation: { x: origin.x + bp.size.x / 2, y: origin.y + 1, z: origin.z + bp.size.z / 2 }
-      });
-      dimension.spawnParticle("minecraft:basic_smoke_particle", target);
-    }
-  } catch (e) {
-    console.warn(`${LOG} summonArchitectToSite error: ${e}`);
-    return false;
-  }
-  setArchitectWorking(job, true);
-  job.anchor = { x: a.location.x, y: a.location.y, z: a.location.z };
-  job.arriveTick = system.currentTick + ARRIVE_WAIT_TICKS;
+
+  job.destination = job.dimension.spawnEntity(ARCHITECT_DESTINATION_TYPE, target);
+  a.triggerEvent("nonax:start_travel");
+  job.phase = "travel";
+  job.travelStart = { ...a.location };
+  job.travelReportTick = system.currentTick + 100;
+  job.travelDeadline = system.currentTick + ARCHITECT_TRAVEL_TIMEOUT_TICKS;
+  notify(job.player, { rawtext: [
+    { text: `<${a.nameTag || "棟梁"}> ` },
+    { translate: "nonax.architect.en_route" }
+  ] });
+  console.warn(`${LOG} architect travel: start=${job.travelStart.x.toFixed(1)},${job.travelStart.y.toFixed(1)},${job.travelStart.z.toFixed(1)} target=${target.x},${target.y},${target.z}`);
   return true;
+}
+
+function removeArchitectDestination(job) {
+  const destination = job.destination;
+  if (!destination) return;
+  try {
+    if (destination.isValid) destination.remove();
+    else console.warn(`${LOG} architect destination unavailable; timed despawn will remove it when loaded`);
+    job.destination = undefined;
+  } catch (e) {
+    console.warn(`${LOG} architect destination cleanup error: ${e}`);
+  }
+}
+
+function arriveArchitect(job) {
+  const a = job.architect;
+  removeArchitectDestination(job);
+  a.triggerEvent("nonax:start_work");
+  job.anchor = { x: a.location.x, y: a.location.y, z: a.location.z };
+  job.phase = "arrive";
+  job.arriveTick = system.currentTick + ARRIVE_WAIT_TICKS;
+}
+
+function stepArchitectTravel(job) {
+  const a = job.architect;
+  if (!a || !a.isValid) throw new Error("棟梁がいなくなりました");
+  const target = job.travelTarget;
+  const dx = a.location.x - target.x, dy = a.location.y - target.y, dz = a.location.z - target.z;
+  if (a.dimension.id === job.dimension.id && dx * dx + dy * dy + dz * dz <= 2.25) {
+    console.warn(`${LOG} architect arrived on foot`);
+    arriveArchitect(job);
+    return;
+  }
+  if (job.travelReportTick !== undefined && system.currentTick >= job.travelReportTick) {
+    const pos = a.location;
+    const start = job.travelStart;
+    const moved = Math.hypot(pos.x - start.x, pos.y - start.y, pos.z - start.z);
+    console.warn(`${LOG} architect travel progress: moved=${moved.toFixed(1)} remaining=${Math.hypot(dx, dy, dz).toFixed(1)} destination_valid=${!!job.destination?.isValid}`);
+    job.travelReportTick = undefined;
+  }
+  if (system.currentTick < job.travelDeadline) return;
+
+  const safeTarget = findArchitectLanding(job.dimension, job.origin, job.bp, a.location);
+  if (!safeTarget) throw new Error("棟梁が安全に立てる場所がありません");
+  console.warn(`${LOG} architect travel timed out; teleporting to safe position`);
+  a.teleport(safeTarget, {
+    dimension: job.dimension,
+    facingLocation: { x: job.origin.x + job.bp.size.x / 2, y: job.origin.y + 1, z: job.origin.z + job.bp.size.z / 2 }
+  });
+  arriveArchitect(job);
 }
 
 // 建築中は棟梁を持ち場に留める（押された場合などは元の位置へ戻す）
@@ -640,21 +688,30 @@ function startJob(player, blueprintId, origin, facing) {
     return;
   }
 
-  const architect = findNearestArchitect(dimension, queue[0].pos);
+  const architect = findNearestArchitect(dimension, queue[0].pos, true);
   if (!architect) {
-    console.warn(`${LOG} no architect within ${ARCHITECT_SEARCH_RADIUS} blocks: job not started`);
-    notify(player, `§c${ARCHITECT_SEARCH_RADIUS} ブロック以内に棟梁がいません。作業台で棟梁を呼んでください。`);
+    console.warn(`${LOG} no available architect within ${ARCHITECT_SEARCH_RADIUS} blocks: job not started`);
+    if (findNearestArchitect(dimension, queue[0].pos)) {
+      notify(player, "§c近くの棟梁はすでに建築中です。");
+    } else {
+      notify(player, `§c${ARCHITECT_SEARCH_RADIUS} ブロック以内に棟梁がいません。作業台で棟梁を呼んでください。`);
+    }
     return;
   }
 
   const job = {
     player, dimension, queue, index: 0, nextTick: 0, blueprintId, temp: [], origin, bp,
-    phase: "arrive", levelOps: level.ops, levelIndex: 0, arriveTick: 0, facing
+    phase: "travel_pending", levelOps: level.ops, levelIndex: 0, arriveTick: 0, facing
   };
   jobs.set(player.id, job);
   job.architect = architect;
-  if (!summonArchitectToSite(job)) {
-    finishJob(job, false, "棟梁が安全に立てる場所がありません");
+  try {
+    if (!summonArchitectToSite(job)) {
+      notify(player, "§e別の棟梁が現場へ移動中です。移動の順番を待ちます。");
+    }
+  } catch (e) {
+    console.warn(`${LOG} architect travel start error: ${e}`);
+    finishJob(job, false, `棟梁の移動を開始できませんでした: ${e}`);
     return;
   }
   console.warn(`${LOG} job start: ${blueprintId}${loaded.structureId ? ` structure=${loaded.structureId}` : ""} blocks=${queue.length} rotation=${turns * 90} size=${bp.size.x}x${bp.size.y}x${bp.size.z} level=${level.ops.length} architect=${job.architect ? "yes" : "no"} player=${player.name}`);
@@ -718,7 +775,7 @@ function rankFromCount(count) {
   return rank;
 }
 
-function findNearestArchitect(dimension, from) {
+function findNearestArchitect(dimension, from, onlyAvailable = false) {
   const architects = dimension.getEntities({
     type: ARCHITECT_TYPE,
     location: from,
@@ -727,6 +784,7 @@ function findNearestArchitect(dimension, from) {
   let nearest;
   let best = Infinity;
   for (const a of architects) {
+    if (onlyAvailable && [...jobs.values()].some((job) => job.architect?.id === a.id)) continue;
     const dx = a.location.x - from.x, dy = a.location.y - from.y, dz = a.location.z - from.z;
     const d = dx * dx + dy * dy + dz * dz;
     if (d < best) { best = d; nearest = a; }
@@ -747,10 +805,9 @@ function setArchitectWorking(job, working) {
 
 function creditArchitect(job) {
   try {
-    const first = job.queue[0].pos;
-    const nearest = findNearestArchitect(job.dimension, first);
-    if (!nearest) {
-      console.warn(`${LOG} no architect within ${ARCHITECT_SEARCH_RADIUS} blocks`);
+    const nearest = job.architect;
+    if (!nearest || !nearest.isValid) {
+      console.warn(`${LOG} job architect unavailable for credit`);
       return;
     }
     const count = (nearest.getDynamicProperty(PROP_BUILD_COUNT) ?? 0) + 1;
@@ -827,11 +884,16 @@ function completeEffect(job) {
 function finishJob(job, ok, reason) {
   jobs.delete(job.player.id);
   console.warn(`${LOG} job end: ok=${ok} placed=${job.index}/${job.queue.length}${reason ? ` reason=${reason}` : ""}`);
+  removeArchitectDestination(job);
   removeTemporaries(job);
   setArchitectWorking(job, false);
   if (job.architect) {
     // 取りこぼし対策として、少し後にもう一度停止を指示する
-    system.runTimeout(() => setArchitectWorking(job, false), 20);
+    system.runTimeout(() => {
+      if (![...jobs.values()].some((other) => other.architect?.id === job.architect.id)) {
+        setArchitectWorking(job, false);
+      }
+    }, 20);
   }
   if (ok) {
     notify(job.player, "§a建築が完了しました。");
@@ -851,6 +913,14 @@ function tickJobs() {
     try {
       if (!job.player.isValid) {
         finishJob(job, false, "プレイヤーが退出しました");
+        continue;
+      }
+      if (job.phase === "travel_pending") {
+        summonArchitectToSite(job);
+        continue;
+      }
+      if (job.phase === "travel") {
+        stepArchitectTravel(job);
         continue;
       }
       holdArchitect(job);
