@@ -24,7 +24,7 @@
 - [ ] **開発環境（ComPacks / behavior_packs フォルダ等）への配置と統合テストワールドの作成**
   - [ ] Behavior Pack のフォルダ構造作成
   - [ ] Resource Pack のフォルダ構造作成
-  - [ ] 相互依存関係の設定（Behavior → Resource, Resource → Behavior）
+  - [~] 相互依存関係を設定（Behavior → Resource, Resource → Behavior）。2026-11-12 実機検証で相互依存が問題なく扱われることを確認。リソースパック有効化時のビヘイビアパック自動追加の結果は未報告。
 
 ### 1-2. 棟梁（村人）職業・POI ブロック定義 ✅ **完了**
 - [ ] **POI ブロック（棟梁の作業台）の作成**
