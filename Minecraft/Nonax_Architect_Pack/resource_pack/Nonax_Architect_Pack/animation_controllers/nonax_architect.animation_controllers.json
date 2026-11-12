@@ -7,13 +7,22 @@
         "idle": {
           "animations": [ "look", "move" ],
           "transitions": [
-            { "working": "query.mark_variant == 1" }
+            { "working": "query.mark_variant == 1" },
+            { "celebrating": "query.mark_variant == 2" }
           ]
         },
         "working": {
           "animations": [ "look", "work" ],
           "transitions": [
+            { "celebrating": "query.mark_variant == 2" },
             { "idle": "query.mark_variant != 1" }
+          ]
+        },
+        "celebrating": {
+          "animations": [ "celebrate" ],
+          "transitions": [
+            { "working": "query.mark_variant == 1" },
+            { "idle": "query.mark_variant != 2" }
           ]
         }
       }

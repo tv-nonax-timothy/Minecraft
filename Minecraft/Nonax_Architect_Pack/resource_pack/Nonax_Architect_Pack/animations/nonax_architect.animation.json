@@ -26,6 +26,14 @@
         }
       }
     },
+    "animation.nonax_architect.celebrate": {
+      "loop": true,
+      "animation_length": 1.0,
+      "bones": {
+        "rightArm": { "rotation": [-150.0, 0.0, -20.0] },
+        "leftArm": { "rotation": [-150.0, 0.0, 20.0] }
+      }
+    },
     "animation.nonax_architect.work": {
       "loop": true,
       "animation_length": 0.8,

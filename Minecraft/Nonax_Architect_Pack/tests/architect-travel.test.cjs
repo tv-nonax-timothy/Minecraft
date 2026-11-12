@@ -7,13 +7,14 @@ const signal = { subscribe() {} };
 const system = { currentTick: 0, runInterval: () => 1, clearRun() {}, runTimeout() {} };
 const world = {
   getTimeOfDay: () => 6000,
-  beforeEvents: { playerInteractWithBlock: signal, itemUse: signal },
-  afterEvents: { playerBreakBlock: signal, playerPlaceBlock: signal, entitySpawn: signal }
+  beforeEvents: { playerInteractWithBlock: signal, playerBreakBlock: signal, itemUse: signal },
+  afterEvents: { playerBreakBlock: signal, playerPlaceBlock: signal, entitySpawn: signal, entityLoad: signal, entityDie: signal, playerSpawn: signal }
 };
 const warnings = [];
 const context = vm.createContext({
   world, system, console: { warn: (message) => warnings.push(message) },
   BlockPermutation: { resolve: (id, states) => ({ type: { id }, states }) },
+  ItemStack: class {}, createWorkbenchService: () => ({ isActive: () => true }),
   BLUEPRINTS: {}, validateBlueprint() {}, StructureSaveMode: {},
   quarterTurnsFromFacing() {}, rotateBlueprint() {}, placeOriginAhead() {}
 });
@@ -100,14 +101,18 @@ function reset() {
   assert.equal(job.phase, "travel");
   assert.equal(dimension.writes.length, 0);
   assert(warnings.some((message) => message.includes("architect travel progress: moved=0.0") && message.includes("destination_valid=true")));
+  assert(warnings.some((message) => message.includes("architect travel stalled; restarting navigation")));
+  system.currentTick = 101;
+  tickJobs();
+  assert.deepEqual(actor.events, ["nonax:start_travel", "nonax:stop_work", "nonax:start_travel"]);
   actor.location = { ...job.travelTarget };
   tickJobs();
   assert.equal(job.phase, "arrive");
-  assert.equal(job.arriveTick, 130);
+  assert.equal(job.arriveTick, 131);
   assert.equal(dimension.markers[0].isValid, false);
-  assert.deepEqual(actor.events, ["nonax:start_travel", "nonax:start_work"]);
+  assert.deepEqual(actor.events, ["nonax:start_travel", "nonax:stop_work", "nonax:start_travel", "nonax:stop_work"]);
   assert.equal(actor.teleports.length, 0);
-  system.currentTick = 129;
+  system.currentTick = 130;
   tickJobs();
   assert.equal(dimension.writes.length, 0);
 }
@@ -122,7 +127,7 @@ function reset() {
   assert.equal(dimension.markers.length, 0);
   assert.equal(actor.teleports.length, 0);
   assert.equal(job.messages.length, 0);
-  assert.deepEqual(actor.events, ["nonax:start_work"]);
+  assert.deepEqual(actor.events, ["nonax:stop_work"]);
 }
 
 {

@@ -7,13 +7,14 @@ const callbacks = {};
 const signal = (name) => ({ subscribe: (callback) => { callbacks[name] = callback; } });
 const world = {
   getTimeOfDay: () => 6000,
-  beforeEvents: { playerInteractWithBlock: signal("interact"), itemUse: signal("use") },
-  afterEvents: { playerBreakBlock: signal("break"), playerPlaceBlock: signal("place"), entitySpawn: signal("spawn") }
+  beforeEvents: { playerInteractWithBlock: signal("interact"), playerBreakBlock: signal("beforeBreak"), itemUse: signal("use") },
+  afterEvents: { playerBreakBlock: signal("break"), playerPlaceBlock: signal("place"), entitySpawn: signal("spawn"), entityLoad: signal("load"), entityDie: signal("die"), playerSpawn: signal("playerSpawn") }
 };
 const system = { currentTick: 10, runInterval: () => 1, clearRun() {}, runTimeout() {} };
 const context = vm.createContext({
   world, system, console: { warn() {} },
   BlockPermutation: { resolve: (id, states) => ({ type: { id }, states }) },
+  ItemStack: class {}, createWorkbenchService: () => ({ isActive: () => true, placed() {}, capturePlacement() {} }),
   BLUEPRINTS: {}, validateBlueprint() {}, StructureSaveMode: {},
   quarterTurnsFromFacing: () => 0, rotateBlueprint: (bp) => ({ blueprint: bp }),
   placeOriginAhead: (click) => ({ x: click.x, z: click.z })
@@ -284,6 +285,33 @@ function start(dimension) {
   assert(!jobs.has(job.player.id));
   assert(job.messages.some((m) => m.includes("看板")));
   assert(job.temp.filter((t) => t.id === "minecraft:oak_fence").every((t) => dimension.getBlock(t.pos).isAir));
+}
+
+{
+  const dimension = makeDimension();
+  const job = start(dimension);
+  system.currentTick = 15;
+  tickJobs();
+  assert.equal(job.phase, "build");
+  const getBlock = dimension.getBlock.bind(dimension);
+  dimension.getBlock = (pos) => pos.x === 0 && pos.y === 1 && pos.z === 0 ? undefined : getBlock(pos);
+  system.currentTick = 20;
+  tickJobs();
+  assert(!jobs.has(job.player.id));
+  assert(job.messages.includes("§c施主が不在になったので、建築を中断します"));
+  assert(job.temp.filter((t) => t.placed).every((t) => getBlock(t.pos).isAir));
+}
+
+{
+  const dimension = makeDimension();
+  const job = start(dimension);
+  system.currentTick = 15;
+  tickJobs();
+  dimension.getBlock(job.queue[0].pos).typeId = "minecraft:chest";
+  system.currentTick = 20;
+  tickJobs();
+  assert(!jobs.has(job.player.id));
+  assert(job.messages.includes("§c建築を中断しました: 設置先に別のブロックが置かれました"));
 }
 
 {

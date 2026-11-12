@@ -1,0 +1,38 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "nonax:carpenter",
+      "materials": {
+        "default": "entity_alphatest",
+        "hammer": "entity_alphatest"
+      },
+      "textures": {
+        "rank1": "textures/entity/nonax_carpenter_lv1",
+        "rank2": "textures/entity/nonax_carpenter_lv2",
+        "rank3": "textures/entity/nonax_carpenter_lv3",
+        "rank4": "textures/entity/nonax_carpenter_lv4",
+        "rank5": "textures/entity/nonax_carpenter_lv5",
+        "hammer": "textures/entity/nonax_architect_hammer"
+      },
+      "geometry": {
+        "default": "geometry.nonax_architect_player",
+        "hammer": "geometry.nonax_architect_player_hammer"
+      },
+      "scripts": { "scale": "0.9375" },
+      "animations": {
+        "look": "animation.nonax_architect.look",
+        "move": "animation.nonax_architect.move",
+        "work": "animation.nonax_architect.work",
+        "celebrate": "animation.nonax_architect.celebrate"
+      },
+      "animation_controllers": [
+        { "work_controller": "controller.animation.nonax_architect.work" }
+      ],
+      "render_controllers": [
+        "controller.render.nonax_architect",
+        "controller.render.nonax_architect_hammer"
+      ]
+    }
+  }
+}

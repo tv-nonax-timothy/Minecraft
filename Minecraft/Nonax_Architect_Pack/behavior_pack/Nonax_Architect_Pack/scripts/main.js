@@ -1,9 +1,17 @@
-import { world, system, BlockPermutation, StructureSaveMode } from "@minecraft/server";
+import { world, system, BlockPermutation, StructureSaveMode, ItemStack } from "@minecraft/server";
 import { BLUEPRINTS, validateBlueprint } from "./blueprints.js";
 import { quarterTurnsFromFacing, rotateBlueprint, placeOriginAhead } from "./rotation.js";
+import { createWorkbenchService } from "./workbench-service.js";
 
 const LOG = "[nonax:architect]";
 const PLACE_INTERVAL_TICKS = 5;
+const CELEBRATION_TICKS = 60;
+const CELEBRATION_PROPERTY = "nonax:celebrating";
+const CARPENTER_RECOVERY = "nonax:carpenter_recovery";
+const CARPENTER_MARKER = "nonax:carpenter_marker";
+const PENDING_TEMP_CLEANUP = "nonax:pending_temp_cleanup";
+const CARPENTER_TRAVEL_TIMEOUT = 60;
+const CARPENTER_LIMITS = [1, 1, 2, 3, 4];
 const FACE_OFFSETS = {
   North: { x: 0, y: 0, z: -1 },
   East: { x: 1, y: 0, z: 0 },
@@ -277,8 +285,25 @@ function planScaffolding(dimension, bp, origin, temp, xa, xb, za, zb) {
 function placeScaffolding(job, layer) {
   for (const t of job.temp) {
     if (t.layer === undefined || t.layer > layer || t.tried) continue;
-    t.tried = true;
     try {
+      if (job.carpenters?.length) {
+        const below = t.layer === 0 ? undefined : job.temp.find((entry) =>
+          entry.id === TEMP_SCAFFOLD && entry.pos.x === t.pos.x &&
+          entry.pos.z === t.pos.z && entry.layer === t.layer - 1);
+        if (t.layer > 0 && !below?.placed) continue;
+        const reserved = [
+          ...job.carpenters.filter((actor, index) => {
+            const column = job.carpenterColumns?.[index];
+            return actor.isValid && actor.dimension.id === job.dimension.id &&
+              (job.carpenterMoves || !column || column.x !== t.pos.x || column.z !== t.pos.z);
+          }).map((actor) => actor.location),
+          ...(job.carpenterMoves?.targets ?? [])
+        ];
+        if (reserved.some((pos) => Math.abs(pos.x - (t.pos.x + 0.5)) < 0.8 &&
+            Math.abs(pos.z - (t.pos.z + 0.5)) < 0.8 &&
+            pos.y < t.pos.y + 1 && pos.y + 1.9 > t.pos.y)) continue;
+      }
+      t.tried = true;
       const block = job.dimension.getBlock(t.pos);
       if (block && block.isAir) {
         block.setPermutation(BlockPermutation.resolve(t.id));
@@ -371,13 +396,69 @@ function forgetChangedTemporary(event) {
       if (t.placed && t.pos.x === pos.x && t.pos.y === pos.y && t.pos.z === pos.z) t.placed = false;
     }
   }
+  try {
+    const pending = readPendingTemporaries();
+    const remaining = pending.filter((entry) => entry.dimension !== event.dimension.id ||
+      entry.temp.pos.x !== pos.x || entry.temp.pos.y !== pos.y || entry.temp.pos.z !== pos.z);
+    if (remaining.length !== pending.length) savePendingTemporaries(remaining);
+  } catch (e) {
+    console.warn(`${LOG} pending temporary edit reconciliation error: ${e}`);
+  }
+}
+
+function readPendingTemporaries() {
+  const raw = world.getDynamicProperty(PENDING_TEMP_CLEANUP);
+  if (raw === undefined) return [];
+  const pending = JSON.parse(raw);
+  if (!Array.isArray(pending)) throw new Error("invalid pending temporary cleanup");
+  return pending;
+}
+
+function savePendingTemporaries(pending) {
+  world.setDynamicProperty(PENDING_TEMP_CLEANUP, pending.length ? JSON.stringify(pending) : undefined);
+}
+
+function retryPendingTemporaries() {
+  try {
+    const pending = readPendingTemporaries();
+    if (!pending.length) return;
+    const remaining = [];
+    for (const entry of pending) {
+      try {
+        const block = world.getDimension(entry.dimension).getBlock(entry.temp.pos);
+        if (!block) {
+          remaining.push(entry);
+          continue;
+        }
+        const t = entry.temp;
+        const component = t.id === TEMP_SIGN && block.typeId === TEMP_SIGN
+          ? block.getComponent("minecraft:sign") : undefined;
+        if (block.typeId === t.id && (t.id !== TEMP_SIGN || t.pending || signMatches(component, t))) {
+          block.setPermutation(BlockPermutation.resolve(AIR));
+        }
+      } catch (e) {
+        remaining.push(entry);
+      }
+    }
+    if (remaining.length !== pending.length) {
+      savePendingTemporaries(remaining);
+      console.warn(`${LOG} deferred temp cleanup: removed or changed=${pending.length - remaining.length} pending=${remaining.length}`);
+    }
+  } catch (e) {
+    console.warn(`${LOG} deferred temp cleanup error: ${e}`);
+  }
 }
 
 // 自分が置いた種類のブロックが残っている座標だけを空気に戻す
-function removeTemporaries(job) {
+function removeTemporaries(job, retainScaffolds = false) {
   let removed = 0, skipped = 0;
+  const deferred = [];
   for (const t of [...job.temp].reverse()) {
     if (!t.placed) continue;
+    if (retainScaffolds && t.id === TEMP_SCAFFOLD) {
+      skipped++;
+      continue;
+    }
     try {
       const block = job.dimension.getBlock(t.pos);
       const signComponent = t.id === TEMP_SIGN && block?.typeId === TEMP_SIGN
@@ -386,13 +467,26 @@ function removeTemporaries(job) {
       if (block && block.typeId === t.id && owned) {
         block.setPermutation(BlockPermutation.resolve("minecraft:air"));
         removed++;
+      } else if (!block) {
+        deferred.push({ dimension: job.dimension.id, temp: t });
+        skipped++;
       } else {
         skipped++;
         if (t.id === TEMP_SIGN) console.warn(`${LOG} site sign cleanup skipped: pos=${t.pos.x},${t.pos.y},${t.pos.z} actual=${block ? block.typeId : "unloaded"}`);
       }
     } catch (e) {
       skipped++;
+      deferred.push({ dimension: job.dimension.id, temp: t });
       console.warn(`${LOG} temp remove error: ${e}`);
+    }
+  }
+  if (deferred.length) {
+    try {
+      savePendingTemporaries([...readPendingTemporaries(), ...deferred]);
+      notify(job.player, `§e未読み込みなどで撤去できない仮設物 ${deferred.length} 個は、読み込み後に再撤去します。`);
+    } catch (e) {
+      console.warn(`${LOG} pending temp cleanup save error: ${e}`);
+      notify(job.player, "§c仮設物の撤去予約を保存できませんでした。現場を確認してください。");
     }
   }
   console.warn(`${LOG} temp cleanup: removed=${removed} skipped=${skipped}`);
@@ -575,7 +669,7 @@ function removeArchitectDestination(job) {
 function arriveArchitect(job) {
   const a = job.architect;
   removeArchitectDestination(job);
-  a.triggerEvent("nonax:start_work");
+  a.triggerEvent("nonax:stop_work");
   job.anchor = { x: a.location.x, y: a.location.y, z: a.location.z };
   job.phase = "arrive";
   job.arriveTick = system.currentTick + ARRIVE_WAIT_TICKS;
@@ -584,6 +678,10 @@ function arriveArchitect(job) {
 function stepArchitectTravel(job) {
   const a = job.architect;
   if (!a || !a.isValid) throw new Error("棟梁がいなくなりました");
+  if (job.travelRestartTick !== undefined && system.currentTick >= job.travelRestartTick) {
+    a.triggerEvent("nonax:start_travel");
+    job.travelRestartTick = undefined;
+  }
   const target = job.travelTarget;
   const dx = a.location.x - target.x, dy = a.location.y - target.y, dz = a.location.z - target.z;
   if (a.dimension.id === job.dimension.id && dx * dx + dy * dy + dz * dz <= 2.25) {
@@ -596,6 +694,11 @@ function stepArchitectTravel(job) {
     const start = job.travelStart;
     const moved = Math.hypot(pos.x - start.x, pos.y - start.y, pos.z - start.z);
     console.warn(`${LOG} architect travel progress: moved=${moved.toFixed(1)} remaining=${Math.hypot(dx, dy, dz).toFixed(1)} destination_valid=${!!job.destination?.isValid}`);
+    if (moved < 1 && job.destination?.isValid) {
+      a.triggerEvent("nonax:stop_work");
+      job.travelRestartTick = system.currentTick + 1;
+      console.warn(`${LOG} architect travel stalled; restarting navigation`);
+    }
     job.travelReportTick = undefined;
   }
   if (system.currentTick < job.travelDeadline) return;
@@ -730,38 +833,7 @@ const TEMP_SCAFFOLD = "minecraft:scaffolding";
 const TEMP_SIGN = "minecraft:standing_sign";
 const SCAFFOLD_MIN_HEIGHT = 5;
 const WORKBENCH_TYPE = "nonax:architect_workbench";
-const SUMMON_CHECK_RADIUS = 16;
-
-// 作業台の右クリックで棟梁を召喚する。付近に棟梁がいる場合は召喚しない。
-function summonArchitect(player, blockPos) {
-  try {
-    if (!player.isValid) return;
-    const dimension = player.dimension;
-    const nearby = dimension.getEntities({
-      type: ARCHITECT_TYPE,
-      location: blockPos,
-      maxDistance: SUMMON_CHECK_RADIUS
-    });
-    if (nearby.length > 0) {
-      notify(player, "§e近くに棟梁がいます。");
-      return;
-    }
-    const above = dimension.getBlock({ x: blockPos.x, y: blockPos.y + 1, z: blockPos.z });
-    if (!above || !above.isAir) {
-      notify(player, "§c作業台の上にスペースがありません。");
-      return;
-    }
-    const spawnLoc = { x: blockPos.x + 0.5, y: blockPos.y + 1, z: blockPos.z + 0.5 };
-    dimension.spawnEntity(ARCHITECT_TYPE, spawnLoc);
-    dimension.playSound("random.levelup", spawnLoc, { volume: 0.8, pitch: 1.0 });
-    dimension.spawnParticle("minecraft:villager_happy", { x: spawnLoc.x, y: spawnLoc.y + 1, z: spawnLoc.z });
-    console.warn(`${LOG} architect summoned by ${player.name}`);
-    notify(player, "§a棟梁が現れました。");
-  } catch (e) {
-    console.warn(`${LOG} summonArchitect error: ${e}`);
-    notify(player, "§c棟梁を召喚できませんでした。");
-  }
-}
+const workbenches = createWorkbenchService({ world, system, ItemStack, BlockPermutation, jobs, notify, rankFromCount, rankName });
 
 const RANK_TITLES = ["見習い", "一人前", "熟練", "名人", "達人"];
 
@@ -784,6 +856,12 @@ function findNearestArchitect(dimension, from, onlyAvailable = false) {
   let nearest;
   let best = Infinity;
   for (const a of architects) {
+    try {
+      if (!workbenches.isActive(a)) continue;
+    } catch (e) {
+      console.warn(`${LOG} architect ledger check failed: ${e}`);
+      continue;
+    }
     if (onlyAvailable && [...jobs.values()].some((job) => job.architect?.id === a.id)) continue;
     const dx = a.location.x - from.x, dy = a.location.y - from.y, dz = a.location.z - from.z;
     const d = dx * dx + dy * dy + dz * dz;
@@ -810,7 +888,7 @@ function creditArchitect(job) {
       console.warn(`${LOG} job architect unavailable for credit`);
       return;
     }
-    const count = (nearest.getDynamicProperty(PROP_BUILD_COUNT) ?? 0) + 1;
+    const count = workbenches.credit(nearest, job.player);
     nearest.setDynamicProperty(PROP_BUILD_COUNT, count);
     const newRank = rankFromCount(count);
     const oldRank = nearest.getDynamicProperty(PROP_RANK) ?? 1;
@@ -843,6 +921,7 @@ function creditArchitect(job) {
     }
   } catch (e) {
     console.warn(`${LOG} creditArchitect error: ${e}`);
+    notify(job.player, "§c棟梁の建築回数を記録または反映できませんでした。Content Log を確認してください。");
   }
 }
 
@@ -881,11 +960,298 @@ function completeEffect(job) {
   }
 }
 
-function finishJob(job, ok, reason) {
-  jobs.delete(job.player.id);
+function carpenterGroundSafe(job, target) {
+  const x = Math.floor(target.x), y = Math.floor(target.y), z = Math.floor(target.z);
+  const { min, max } = job.dimension.heightRange;
+  if (y - 1 < min || y + 1 >= max) return false;
+  const floor = job.dimension.getBlock({ x, y: y - 1, z });
+  const feet = job.dimension.getBlock({ x, y, z });
+  const head = job.dimension.getBlock({ x, y: y + 1, z });
+  return Boolean(floor && workbenches.isSafeCarpenterFloor(floor.typeId) && feet?.isAir && head?.isAir);
+}
+
+function carpenterGroundPositions(job, count) {
+  if (count === 0) return [];
+  const candidates = [];
+  const minX = job.origin.x - 4, maxX = job.origin.x + job.bp.size.x + 3;
+  const minZ = job.origin.z - 4, maxZ = job.origin.z + job.bp.size.z + 3;
+  const reference = job.anchor ?? job.architect.location;
+  for (let x = minX; x <= maxX; x++) {
+    for (let z = minZ; z <= maxZ; z++) {
+      if (x !== minX && x !== maxX && z !== minZ && z !== maxZ) continue;
+      for (let y = job.origin.y - LEVEL_FILL_DEPTH; y <= job.origin.y + 3; y++) {
+        const target = { x: x + 0.5, y, z: z + 0.5 };
+        if (!carpenterGroundSafe(job, target)) continue;
+        const dx = reference.x - target.x, dz = reference.z - target.z;
+        candidates.push({ target, distance: dx * dx + dz * dz });
+      }
+    }
+  }
+  candidates.sort((a, b) => a.distance - b.distance);
+  const selected = [];
+  for (let i = 0; i < count; i++) {
+    const reverse = job.carpenterRank === 2 || (job.carpenterRank >= 3 && i % 2 === 1);
+    const ordered = reverse ? [...candidates].reverse() : candidates;
+    const candidate = ordered.find(({ target }) => selected.every((other) =>
+      Math.abs(other.x - target.x) >= 1 || Math.abs(other.z - target.z) >= 1));
+    if (!candidate) throw new Error("大工が安全に立てる地上の場所が不足しています");
+    selected.push(candidate.target);
+  }
+  return selected;
+}
+
+function scaffoldTargetSafe(job, target) {
+  const x = Math.floor(target.x), y = Math.floor(target.y), z = Math.floor(target.z);
+  const base = job.origin.y - (job.bp.groundOffset || 0);
+  const { min, max } = job.dimension.heightRange;
+  if (base - 1 < min || y - 1 < min || y + 1 >= max) return false;
+  const floor = job.dimension.getBlock({ x, y: y - 1, z });
+  const feet = job.dimension.getBlock({ x, y, z });
+  const head = job.dimension.getBlock({ x, y: y + 1, z });
+  if (!(floor?.typeId === TEMP_SCAFFOLD && feet?.isAir && head?.isAir)) return false;
+  for (let layerY = base; layerY < y; layerY++) {
+    const recorded = job.temp.some((t) => t.id === TEMP_SCAFFOLD && t.placed &&
+      t.pos.x === x && t.pos.y === layerY && t.pos.z === z);
+    if (!recorded || job.dimension.getBlock({ x, y: layerY, z })?.typeId !== TEMP_SCAFFOLD) return false;
+  }
+  const support = job.dimension.getBlock({ x, y: base - 1, z });
+  return Boolean(support && workbenches.isSafeCarpenterFloor(support.typeId));
+}
+
+function carpenterScaffoldPositions(job) {
+  const columns = new Map();
+  for (const t of job.temp) {
+    if (t.id !== TEMP_SCAFFOLD || !t.placed) continue;
+    const key = `${t.pos.x},${t.pos.z}`;
+    if (!columns.has(key) || columns.get(key).pos.y < t.pos.y) columns.set(key, t);
+  }
+  const reference = job.anchor ?? job.architect.location;
+  const candidates = [...columns.values()].map((t) => {
+    const target = { x: t.pos.x + 0.5, y: t.pos.y + 1, z: t.pos.z + 0.5 };
+    const dx = target.x - reference.x, dz = target.z - reference.z;
+    return { target, distance: dx * dx + dz * dz };
+  }).filter(({ target }) => scaffoldTargetSafe(job, target)).sort((a, b) => a.distance - b.distance);
+  if (!job.carpenterColumns) {
+    const planned = new Map();
+    for (const t of job.temp) {
+      if (t.id !== TEMP_SCAFFOLD) continue;
+      const key = `${t.pos.x},${t.pos.z}`;
+      if (!planned.has(key)) {
+        const dx = t.pos.x + 0.5 - reference.x, dz = t.pos.z + 0.5 - reference.z;
+        planned.set(key, { x: t.pos.x, z: t.pos.z, distance: dx * dx + dz * dz });
+      }
+    }
+    const available = [...planned.values()].sort((a, b) => a.distance - b.distance);
+    job.carpenterColumns = job.carpenters.map((_, i) => {
+      const reverse = job.carpenterRank === 2 || (job.carpenterRank >= 3 && i % 2 === 1);
+      return reverse ? available.pop() : available.shift();
+    });
+  }
+  return job.carpenters.map((_, i) => {
+    const column = job.carpenterColumns[i];
+    const candidate = candidates.find(({ target }) => column &&
+      Math.floor(target.x) === column.x && Math.floor(target.z) === column.z);
+    const previous = job.carpenterPositions[i];
+    return previous &&
+      previous.y > (candidate?.target.y ?? -Infinity) && scaffoldTargetSafe(job, previous)
+      ? previous : candidate ? candidate.target : job.carpenterGround[i];
+  });
+}
+
+function beginCarpenterMoves(job, targets, next, background = false) {
+  job.carpenterMoves = { targets, next, index: 0, background };
+  if (!background) job.phase = "carpenter_moves";
+}
+
+function removeCarpenterDestination(job) {
+  if (!job.carpenterDestination) return;
+  try {
+    if (!job.carpenterDestination.isValid) throw new Error("carpenter destination is unavailable");
+    job.carpenterDestination.remove();
+    world.setDynamicProperty(CARPENTER_MARKER, undefined);
+    job.carpenterDestination = undefined;
+  } catch (e) {
+    console.warn(`${LOG} carpenter destination cleanup error: ${e}`);
+    throw e;
+  }
+}
+
+function clearStaleCarpenterDestination() {
+  const id = world.getDynamicProperty(CARPENTER_MARKER);
+  if (id === undefined) return true;
+  if (typeof id !== "string" || !id) throw new Error("invalid carpenter destination reservation");
+  if ([...jobs.values()].some((job) => job.carpenterDestination?.id === id)) return false;
+  const marker = world.getEntity(id);
+  if (!marker?.isValid) return false;
+  if (marker.typeId !== "nonax:carpenter_destination") throw new Error("carpenter destination reservation mismatch");
+  marker.remove();
+  world.setDynamicProperty(CARPENTER_MARKER, undefined);
+  console.warn(`${LOG} stale carpenter destination removed: id=${id}`);
+  return true;
+}
+
+function stepCarpenterMoves(job) {
+  const moves = job.carpenterMoves;
+  if (moves.index >= job.carpenters.length) {
+    job.carpenterMoves = undefined;
+    if (!moves.background) {
+      job.phase = moves.next;
+      job.nextTick = system.currentTick;
+      job.buildClock = system.currentTick;
+      if (moves.next === "build") setArchitectWorking(job, true);
+    }
+    return;
+  }
+  const actor = job.carpenters[moves.index], target = moves.targets[moves.index];
+  if (!actor.isValid || actor.dimension.id !== job.dimension.id) throw new Error(`大工が読み込まれていません: ${actor.id}`);
+  const previous = job.carpenterPositions[moves.index];
+  if (moves.background && previous && previous.x === target.x && previous.y === target.y && previous.z === target.z &&
+      actor.isOnGround && Math.floor(actor.location.x) === Math.floor(target.x) &&
+      Math.floor(actor.location.z) === Math.floor(target.z) && Math.abs(actor.location.y - target.y) <= 0.15) {
+    moves.index++;
+    return;
+  }
+  const isScaffold = target.y !== job.carpenterGround[moves.index].y ||
+    target.x !== job.carpenterGround[moves.index].x || target.z !== job.carpenterGround[moves.index].z;
+  if (!(isScaffold ? scaffoldTargetSafe(job, target) : carpenterGroundSafe(job, target))) {
+    throw new Error(`大工の移動先が安全ではありません: ${target.x},${target.y},${target.z}`);
+  }
+  if (!moves.started) {
+    if ([...jobs.values()].some((other) => other !== job && other.carpenterDestination)) return;
+    if (!clearStaleCarpenterDestination()) {
+      actor.triggerEvent("nonax:start_carpenter_work");
+      actor.teleport(target, { dimension: job.dimension });
+      moves.started = true;
+      moves.settleDeadline = system.currentTick + 40;
+      console.warn(`${LOG} carpenter marker unavailable; moved to verified position: id=${actor.id}`);
+      return;
+    }
+    actor.triggerEvent("nonax:start_carpenter_travel");
+    job.carpenterDestination = job.dimension.spawnEntity("nonax:carpenter_destination", target);
+    try {
+      world.setDynamicProperty(CARPENTER_MARKER, job.carpenterDestination.id);
+    } catch (e) {
+      job.carpenterDestination.remove();
+      job.carpenterDestination = undefined;
+      throw e;
+    }
+    moves.deadline = system.currentTick + CARPENTER_TRAVEL_TIMEOUT;
+    moves.started = true;
+    console.warn(`${LOG} carpenter travel: id=${actor.id} target=${target.x},${target.y},${target.z}`);
+  }
+  const dx = actor.location.x - target.x, dy = actor.location.y - target.y, dz = actor.location.z - target.z;
+  const reached = dx * dx + dz * dz <= 0.36 && Math.abs(dy) <= 0.15 && actor.isOnGround &&
+    Math.floor(actor.location.x) === Math.floor(target.x) && Math.floor(actor.location.z) === Math.floor(target.z);
+  if (!reached) {
+    moves.groundConfirmTick = undefined;
+    if (moves.settleDeadline !== undefined) {
+      if (system.currentTick < moves.settleDeadline) return;
+      throw new Error(`大工の着地を確認できません: ${actor.id}`);
+    }
+    if (system.currentTick < moves.deadline) return;
+    actor.teleport(target, { dimension: job.dimension });
+    console.warn(`${LOG} carpenter travel timed out; teleported: id=${actor.id}`);
+    moves.settleDeadline = system.currentTick + 40;
+    return;
+  }
+  if (moves.groundConfirmTick === undefined) {
+    moves.groundConfirmTick = system.currentTick + 1;
+    return;
+  }
+  if (system.currentTick < moves.groundConfirmTick) return;
+  removeCarpenterDestination(job);
+  actor.triggerEvent("nonax:start_carpenter_work");
+  job.carpenterPositions[moves.index] = target;
+  moves.started = false;
+  moves.settleDeadline = undefined;
+  moves.groundConfirmTick = undefined;
+  moves.waitDeadline = undefined;
+  moves.index++;
+}
+
+function initializeCarpenters(job) {
+  const rank = job.architect.getDynamicProperty(PROP_RANK);
+  if (!Number.isInteger(rank) || rank < 1 || rank > 5) throw new Error("棟梁のランクを確認できません");
+  job.carpenterRank = rank;
+  const carpenters = workbenches.loadedCarpenters(job.architect)
+    .filter((actor) => actor.dimension.id === job.dimension.id);
+  const ground = carpenterGroundPositions(job, carpenters.length);
+  job.carpenters = carpenters;
+  job.finishedCarpenters = [];
+  job.carpenterGround = ground;
+  job.carpenterPositions = [];
+  for (let i = 0; i < job.carpenters.length; i++) {
+    const actor = job.carpenters[i], target = job.carpenterGround[i];
+    actor.setDynamicProperty(CARPENTER_RECOVERY, JSON.stringify({ ...target, dimension: job.dimension.id }));
+    workbenches.suspendCarpenter(actor.id);
+    actor.triggerEvent("nonax:start_carpenter_work");
+  }
+  job.scaffoldLayer = -1;
+  job.buildSpeed = 1 + (job.carpenterRank - 1) * 0.25 *
+    job.carpenters.length / CARPENTER_LIMITS[job.carpenterRank - 1];
+  console.warn(`${LOG} carpenters participating: count=${job.carpenters.length} rank=${job.carpenterRank} speed=${job.buildSpeed}`);
+  if (job.carpenters.length) beginCarpenterMoves(job, job.carpenterGround, "build", true);
+}
+
+function finishCarpenterEvacuation(job) {
+  if (job.evacuationDeadline === undefined) {
+    job.evacuationDeadline = system.currentTick + 100;
+    job.evacuationRepairs = new Map();
+  }
+  let allSafe = true;
+  for (let i = 0; i < (job.carpenters?.length ?? 0); i++) {
+    const actor = job.carpenters[i], target = job.carpenterGround[i];
+    if (!actor.isValid) throw new Error(`大工が読み込まれていません: ${actor.id}`);
+    if (!carpenterGroundSafe(job, target)) throw new Error(`大工の退避先が安全ではありません: ${actor.id}`);
+    const dx = actor.location.x - target.x, dz = actor.location.z - target.z;
+    const reached = actor.dimension.id === job.dimension.id && actor.isOnGround &&
+        dx * dx + dz * dz <= 0.36 && Math.abs(actor.location.y - target.y) <= 0.15 &&
+        Math.floor(actor.location.x) === Math.floor(target.x) && Math.floor(actor.location.z) === Math.floor(target.z);
+    if (!reached) {
+      allSafe = false;
+      job.evacuationConfirmedTick = undefined;
+      if (system.currentTick >= job.evacuationDeadline) {
+        throw new Error(`大工の退避位置を確認できません: ${actor.id} pos=${actor.location.x.toFixed(2)},${actor.location.y.toFixed(2)},${actor.location.z.toFixed(2)} target=${target.x},${target.y},${target.z} onGround=${actor.isOnGround}`);
+      }
+      const lastRepair = job.evacuationRepairs.get(actor.id);
+      if (lastRepair === undefined || system.currentTick - lastRepair >= 20) {
+        actor.triggerEvent("nonax:start_carpenter_work");
+        actor.teleport(target, { dimension: job.dimension });
+        job.evacuationRepairs.set(actor.id, system.currentTick);
+        console.warn(`${LOG} carpenter evacuation position restored: id=${actor.id}`);
+      }
+    }
+  }
+  if (!allSafe) return false;
+  if (job.evacuationConfirmedTick === undefined) {
+    job.evacuationConfirmedTick = system.currentTick + 1;
+    return false;
+  }
+  if (system.currentTick < job.evacuationConfirmedTick) return false;
+  for (const actor of job.carpenters) {
+    actor.triggerEvent("nonax:stop_celebrating");
+    actor.setDynamicProperty(CARPENTER_RECOVERY, undefined);
+  }
+  return true;
+}
+
+function finishJob(job, ok, reason, message) {
+  if (job.carpenters?.length && !job.finishing) {
+    job.finishing = { ok, reason, message };
+    removeCarpenterDestination(job);
+    for (const actor of job.carpenters) {
+      if (actor.isValid) actor.triggerEvent("nonax:start_carpenter_work");
+    }
+    beginCarpenterMoves(job, job.carpenterGround, "carpenter_finish");
+    return;
+  }
+  completeJob(job, ok, reason, message);
+}
+
+function completeJob(job, ok, reason, message, retainScaffolds = false) {
   console.warn(`${LOG} job end: ok=${ok} placed=${job.index}/${job.queue.length}${reason ? ` reason=${reason}` : ""}`);
   removeArchitectDestination(job);
-  removeTemporaries(job);
+  removeTemporaries(job, retainScaffolds);
   setArchitectWorking(job, false);
   if (job.architect) {
     // 取りこぼし対策として、少し後にもう一度停止を指示する
@@ -899,21 +1265,124 @@ function finishJob(job, ok, reason) {
     notify(job.player, "§a建築が完了しました。");
     completeEffect(job);
     creditArchitect(job);
+    if (job.architect?.isValid) {
+      job.phase = "celebrating";
+      job.celebrationEnd = system.currentTick + CELEBRATION_TICKS;
+      job.celebratingCarpenters = [];
+      try {
+        const architect = job.architect;
+        const carpenters = job.finishedCarpenters ?? workbenches.loadedCarpenters(architect).filter((actor) => {
+          if (actor.dimension.id !== job.dimension.id) return false;
+          const dx = actor.location.x - architect.location.x;
+          const dy = actor.location.y - architect.location.y;
+          const dz = actor.location.z - architect.location.z;
+          return dx * dx + dy * dy + dz * dz <= 256;
+        });
+        job.celebratingCarpenters = carpenters;
+        for (const actor of [architect, ...carpenters]) {
+          actor.setDynamicProperty(CELEBRATION_PROPERTY, true);
+          actor.triggerEvent("nonax:celebrate");
+        }
+      } catch (e) {
+        console.warn(`${LOG} celebration start error: ${e}`);
+        notify(job.player, "§c完成演出を開始できませんでした。Content Log を確認してください。");
+      }
+      return;
+    }
   } else {
-    notify(job.player, `§c建築を中断しました: ${reason}`);
+    notify(job.player, message ? `§c${message}` : `§c建築を中断しました: ${reason}`);
   }
+  releaseJob(job);
+}
+
+function releaseJob(job) {
+  jobs.delete(job.player.id);
   if (jobs.size === 0 && timerId !== undefined) {
     system.clearRun(timerId);
     timerId = undefined;
   }
 }
 
+function finishCelebration(job) {
+  const actors = [
+    { actor: job.architect, event: "nonax:stop_work" },
+    ...job.celebratingCarpenters.map((actor) => ({ actor, event: "nonax:stop_celebrating" }))
+  ];
+  for (const { actor, event } of actors) {
+    try {
+      if (!actor?.isValid) continue;
+      if (!actor.getDynamicProperty(CELEBRATION_PROPERTY)) continue;
+      actor.triggerEvent(event);
+      actor.setDynamicProperty(CELEBRATION_PROPERTY, undefined);
+    } catch (e) {
+      console.warn(`${LOG} celebration cleanup error: actor=${actor?.id} error=${e}`);
+      notify(job.player, "§c完成演出から復帰できませんでした。再読み込み時に再試行します。Content Log を確認してください。");
+    }
+  }
+  for (const actor of job.celebratingCarpenters) workbenches.suspendCarpenter(actor.id);
+  job.phase = "follow_pending";
+  job.followTick = system.currentTick + 2;
+}
+
+function failCarpenterEvacuation(job, error) {
+  try { removeCarpenterDestination(job); } catch (cleanupError) {
+    console.warn(`${LOG} carpenter destination could not be removed: ${cleanupError}`);
+  }
+  notify(job.player, "§c大工の退避を確認できません。足場を撤去し、大工の復旧を再試行します。Content Log を確認してください。");
+  completeJob(job, false, `大工の退避に失敗しました: ${error}`);
+  workbenches.reconcileFollow();
+}
+
 function tickJobs() {
   for (const job of [...jobs.values()]) {
     try {
+      if (job.phase === "follow_pending") {
+        if (system.currentTick >= job.followTick) {
+          releaseJob(job);
+          workbenches.reconcileFollow();
+        }
+        continue;
+      }
+      if (job.phase === "celebrating") {
+        if (system.currentTick >= job.celebrationEnd) finishCelebration(job);
+        continue;
+      }
+      if (job.phase === "carpenter_finish") {
+        if (!finishCarpenterEvacuation(job)) continue;
+        job.finishedCarpenters = job.carpenters;
+        const { ok, reason, message } = job.finishing;
+        if (!ok) {
+          for (const actor of job.carpenters) workbenches.suspendCarpenter(actor.id);
+          job.carpenters = [];
+        }
+        completeJob(job, ok, reason, message);
+        if (!ok) workbenches.reconcileFollow();
+        continue;
+      }
+      if (job.phase === "carpenter_moves" && job.finishing) {
+        stepCarpenterMoves(job);
+        continue;
+      }
       if (!job.player.isValid) {
         finishJob(job, false, "プレイヤーが退出しました");
         continue;
+      }
+      if (job.phase === "carpenter_moves") {
+        stepCarpenterMoves(job);
+        continue;
+      }
+      if (job.phase === "build" && job.carpenterMoves?.background) stepCarpenterMoves(job);
+      if (job.carpenters?.length) {
+        for (let i = 0; i < job.carpenters.length; i++) {
+          const actor = job.carpenters[i], position = job.carpenterPositions[i];
+          if (!actor.isValid || actor.dimension.id !== job.dimension.id) throw new Error(`大工が読み込まれていません: ${actor.id}`);
+          if (!position || job.carpenterMoves) continue;
+          const ground = job.carpenterGround[i];
+          const isGround = position.x === ground.x && position.y === ground.y && position.z === ground.z;
+          if (!(isGround ? carpenterGroundSafe(job, position) : scaffoldTargetSafe(job, position))) {
+            throw new Error(`大工の作業位置が安全ではありません: ${actor.id}`);
+          }
+        }
       }
       if (job.phase === "travel_pending") {
         summonArchitectToSite(job);
@@ -969,6 +1438,10 @@ function tickJobs() {
         }
         if (result.done) {
           job.phase = "build";
+          if (job.architect) {
+            initializeCarpenters(job);
+            setArchitectWorking(job, true);
+          }
         }
         continue;
       }
@@ -988,9 +1461,28 @@ function tickJobs() {
       }
 
       const step = job.queue[job.index];
+      if (job.carpenters?.length) {
+        const upper = step.deferred && isDoor(step.id) ? job.queue[job.index + 1] : undefined;
+        const layer = (upper?.pos.y ?? step.pos.y) - job.origin.y + (job.bp.groundOffset || 0);
+        job.scaffoldLayer = Math.max(job.scaffoldLayer, layer);
+        placeScaffolding(job, job.scaffoldLayer);
+        if (!job.carpenterMoves) {
+          const targets = carpenterScaffoldPositions(job);
+          if (targets.some((target, i) => {
+            const previous = job.carpenterPositions[i];
+            const actor = job.carpenters[i];
+            return !previous || target.x !== previous.x || target.y !== previous.y || target.z !== previous.z ||
+              !actor.isOnGround || Math.floor(actor.location.x) !== Math.floor(target.x) ||
+              Math.floor(actor.location.z) !== Math.floor(target.z) || Math.abs(actor.location.y - target.y) > 0.15;
+          })) beginCarpenterMoves(job, targets, "build", true);
+        }
+        job.buildClock = Math.max(job.buildClock ?? system.currentTick, system.currentTick - 1) +
+          PLACE_INTERVAL_TICKS / job.buildSpeed;
+        job.nextTick = job.buildClock;
+      }
       const block = job.dimension.getBlock(step.pos);
       if (!block) {
-        finishJob(job, false, "建築範囲が読み込まれていません");
+        finishJob(job, false, "建築範囲が読み込まれていません", "施主が不在になったので、建築を中断します");
         continue;
       }
       if (!block.isAir) {
@@ -1018,12 +1510,12 @@ function tickJobs() {
         block.setPermutation(lowerPermutation);
         upperBlock.setPermutation(upperPermutation);
         placeEffect(job.dimension, step.pos);
-        placeScaffolding(job, upper.pos.y - job.origin.y + (job.bp.groundOffset || 0));
+        if (!job.carpenters?.length) placeScaffolding(job, upper.pos.y - job.origin.y + (job.bp.groundOffset || 0));
         job.index += 2;
       } else {
         block.setPermutation(BlockPermutation.resolve(step.id, step.states));
         placeEffect(job.dimension, step.pos);
-        placeScaffolding(job, step.pos.y - job.origin.y + (job.bp.groundOffset || 0));
+        if (!job.carpenters?.length) placeScaffolding(job, step.pos.y - job.origin.y + (job.bp.groundOffset || 0));
         job.index++;
       }
       if (job.index >= job.queue.length) {
@@ -1032,7 +1524,16 @@ function tickJobs() {
       }
     } catch (e) {
       console.warn(`${LOG} tick error: ${e}`);
-      finishJob(job, false, `処理に失敗しました: ${e}`);
+      if (job.finishing) {
+        failCarpenterEvacuation(job, e);
+      } else {
+        try {
+          finishJob(job, false, `処理に失敗しました: ${e}`);
+        } catch (cleanupError) {
+          console.warn(`${LOG} job interruption error: ${cleanupError}`);
+          failCarpenterEvacuation(job, cleanupError);
+        }
+      }
     }
   }
 }
@@ -1043,7 +1544,28 @@ function ensureTimer() {
 
 try {
   world.afterEvents.playerBreakBlock.subscribe(forgetChangedTemporary);
-  world.afterEvents.playerPlaceBlock.subscribe(forgetChangedTemporary);
+  world.afterEvents.playerPlaceBlock.subscribe((event) => {
+    forgetChangedTemporary(event);
+    workbenches.placed(event);
+  });
+  world.beforeEvents.playerBreakBlock.subscribe((event) => workbenches.beforeBreak(event));
+  world.afterEvents.entityLoad.subscribe((event) => {
+    const actor = event.entity;
+    if (actor.typeId === ARCHITECT_TYPE) system.run(() => workbenches.loaded(actor));
+    if (actor.typeId === "nonax:carpenter") system.run(() => workbenches.carpenterLoaded(actor));
+    if (actor.typeId === "nonax:carpenter_destination") system.run(() => {
+      try { clearStaleCarpenterDestination(); } catch (e) { console.warn(`${LOG} carpenter destination recovery error: ${e}`); }
+    });
+  });
+  world.afterEvents.entityDie.subscribe((event) => {
+    if (event.deadEntity.typeId === "nonax:carpenter") workbenches.carpenterDeath(event.deadEntity);
+  });
+  world.afterEvents.playerSpawn.subscribe((event) => {
+    if (event.initialSpawn) system.run(() => workbenches.recoverPending(event.player));
+  });
+  system.runInterval(() => workbenches.reconcileLoaded(), 200);
+  system.runInterval(() => workbenches.reconcileFollow(), 20);
+  system.runInterval(retryPendingTemporaries, 200);
   world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
     const { player, block, itemStack, blockFace } = event;
     if (!player || !block) return;
@@ -1056,9 +1578,12 @@ try {
       // 作業台は常に棟梁の召喚に使う（手に持ったアイテムの通常操作は行わせない）
       event.cancel = true;
       const pos = { x: block.location.x, y: block.location.y, z: block.location.z };
-      system.run(() => summonArchitect(player, pos));
+      const dimension = block.dimension;
+      system.run(() => workbenches.summon(player, pos, dimension));
       return;
     }
+    workbenches.capturePlacement(event);
+    if (event.cancel) return;
     if (!itemStack) return;
     if (!BLUEPRINTS[itemStack.typeId]) return;
     if (event.isFirstEvent === false) return;

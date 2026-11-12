@@ -25,7 +25,8 @@
       "animations": {
         "look": "animation.nonax_architect.look",
         "move": "animation.nonax_architect.move",
-        "work": "animation.nonax_architect.work"
+        "work": "animation.nonax_architect.work",
+        "celebrate": "animation.nonax_architect.celebrate"
       },
       "animation_controllers": [
         {
